@@ -41,7 +41,6 @@ public class UC_Medium_suchen {
 			}
 		}
 		return suchergebnisse;
-
 	}
 	
 	public ArrayList<Medium> jahr(int jahr) {
