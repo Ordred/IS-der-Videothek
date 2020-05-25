@@ -33,12 +33,16 @@ public class UC_Medium_erfassen {
 	}
 	
 	public void setFilm() {
-		fs = new Film_suchen(new UC_Film_suchen(fl, true), true);
+		fs = new Film_suchen(new UC_Film_suchen(fl, true), true, this);
 		fs.setVisible(true);
 		fs.setSize(300, 200);
 		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		f = fs.getF();
+		
+	}
+	
+	public void setFilm2(Film f) {
 		m.setFilm(f);
+		
 	}
 	
 	public void setMedium(String medium) {
@@ -46,6 +50,7 @@ public class UC_Medium_erfassen {
 	}
 	
 	public void speichern() {
+		
 		
 		ml.mediumHinzufügen(m);
 		

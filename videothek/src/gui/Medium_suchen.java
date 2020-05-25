@@ -231,12 +231,12 @@ public class Medium_suchen extends JFrame {
 				if (auswahl.getSelectedItem() == "Titel") {
 					suchergebnisse = ucms.titel(suchfeld.getText());
 					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
-						
+
 						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
 						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
 						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
@@ -245,8 +245,12 @@ public class Medium_suchen extends JFrame {
 						suchergebnisseB.get(i).setVisible(true);
 						suchergebnisseB.get(i).addActionListener(a);
 						suchergebnisseP.add(suchergebnisseB.get(i));
+						suchergebnisseP.add(suchergebnisseMedium.get(i));
+						suchergebnisseP.add(suchergebnisseTitel.get(i));
 						suchergebnisseP.add(suchergebnisseGenre.get(i));
 						suchergebnisseP.add(suchergebnisseJahr.get(i));
+						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseP.setLayout(sucheGL);
@@ -256,16 +260,16 @@ public class Medium_suchen extends JFrame {
 						System.out.println(suchergebnisseB.get(i).getText());
 					}
 				}
-				
+
 				if (auswahl.getSelectedItem() == "ID") {
 					suchergebnisse = ucms.id(Integer.parseInt(suchfeld.getText()));
 					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
-						
+
 						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
 						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
 						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
@@ -274,8 +278,12 @@ public class Medium_suchen extends JFrame {
 						suchergebnisseB.get(i).setVisible(true);
 						suchergebnisseB.get(i).addActionListener(a);
 						suchergebnisseP.add(suchergebnisseB.get(i));
+						suchergebnisseP.add(suchergebnisseMedium.get(i));
+						suchergebnisseP.add(suchergebnisseTitel.get(i));
 						suchergebnisseP.add(suchergebnisseGenre.get(i));
 						suchergebnisseP.add(suchergebnisseJahr.get(i));
+						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseP.setLayout(sucheGL);
@@ -285,16 +293,16 @@ public class Medium_suchen extends JFrame {
 						System.out.println(suchergebnisseB.get(i).getText());
 					}
 				}
-				
+
 				if (auswahl.getSelectedItem() == "Medium") {
 					suchergebnisse = ucms.medium(suchfeld.getText());
 					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
-						
+
 						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
 						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
 						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
@@ -303,8 +311,12 @@ public class Medium_suchen extends JFrame {
 						suchergebnisseB.get(i).setVisible(true);
 						suchergebnisseB.get(i).addActionListener(a);
 						suchergebnisseP.add(suchergebnisseB.get(i));
+						suchergebnisseP.add(suchergebnisseMedium.get(i));
+						suchergebnisseP.add(suchergebnisseTitel.get(i));
 						suchergebnisseP.add(suchergebnisseGenre.get(i));
 						suchergebnisseP.add(suchergebnisseJahr.get(i));
+						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseP.setLayout(sucheGL);
@@ -314,16 +326,16 @@ public class Medium_suchen extends JFrame {
 						System.out.println(suchergebnisseB.get(i).getText());
 					}
 				}
-				
+
 				if (auswahl.getSelectedItem() == "Jahr") {
 					suchergebnisse = ucms.jahr(Integer.parseInt(suchfeld.getText()));
 					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
-						
+
 						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
 						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
 						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
@@ -332,8 +344,12 @@ public class Medium_suchen extends JFrame {
 						suchergebnisseB.get(i).setVisible(true);
 						suchergebnisseB.get(i).addActionListener(a);
 						suchergebnisseP.add(suchergebnisseB.get(i));
+						suchergebnisseP.add(suchergebnisseMedium.get(i));
+						suchergebnisseP.add(suchergebnisseTitel.get(i));
 						suchergebnisseP.add(suchergebnisseGenre.get(i));
 						suchergebnisseP.add(suchergebnisseJahr.get(i));
+						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseP.setLayout(sucheGL);
@@ -343,16 +359,16 @@ public class Medium_suchen extends JFrame {
 						System.out.println(suchergebnisseB.get(i).getText());
 					}
 				}
-				
+
 				if (auswahl.getSelectedItem() == "Genre") {
 					suchergebnisse = ucms.genre(suchfeld.getText());
 					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
-						
+
 						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
 						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
 						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
@@ -361,8 +377,12 @@ public class Medium_suchen extends JFrame {
 						suchergebnisseB.get(i).setVisible(true);
 						suchergebnisseB.get(i).addActionListener(a);
 						suchergebnisseP.add(suchergebnisseB.get(i));
+						suchergebnisseP.add(suchergebnisseMedium.get(i));
+						suchergebnisseP.add(suchergebnisseTitel.get(i));
 						suchergebnisseP.add(suchergebnisseGenre.get(i));
 						suchergebnisseP.add(suchergebnisseJahr.get(i));
+						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 						suchergebnisseP.setLayout(sucheGL);

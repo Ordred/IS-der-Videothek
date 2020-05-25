@@ -27,7 +27,7 @@ public class UC_Film_suchen {
 		
 		if (!medium) {
 
-		fs = new Film_suchen(this, medium);
+		fs = new Film_suchen(this, medium, null);
 
 		fs.setVisible(true);
 		fs.setSize(300,150);

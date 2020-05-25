@@ -31,6 +31,7 @@ import javax.swing.SwingConstants;
 import filme.Film;
 import filme.Filmliste;
 import filme.UC_Film_suchen;
+import filme.UC_Medium_erfassen;
 
 public class Film_suchen extends JFrame {
 
@@ -60,7 +61,7 @@ public class Film_suchen extends JFrame {
 	String [] kriterien = {"Titel", "Jahr", "Genre", "Beschreibung"};
 
 	UC_Film_suchen ucfs;
-
+	UC_Medium_erfassen ucme;
 
 	JComboBox<String> auswahl = new JComboBox<String>(kriterien);
 	JLabel auswahlL;
@@ -82,13 +83,14 @@ public class Film_suchen extends JFrame {
 	JPanel suche;
 	JPanel buttons;
 
-	public Film_suchen (UC_Film_suchen ucsf, boolean medium) {
+	public Film_suchen (UC_Film_suchen ucsf, boolean medium, UC_Medium_erfassen ucme) {
 
 		super("Film suchen");
 		gl = new GridLayout(3, 1);
 		super.setLayout(gl);
 		
 		this.medium = medium;
+		this.ucme = ucme;
 
 		suche2 = new JDialog();
 
@@ -194,16 +196,6 @@ public class Film_suchen extends JFrame {
 	}
 
 
-	public Film getF() {
-		return f;
-	}
-
-
-	public void setF(Film f) {
-		this.f = f;
-	}
-
-
 	public class ActionHandler implements ActionListener {
 
 		@Override
@@ -224,7 +216,10 @@ public class Film_suchen extends JFrame {
 			else {
 				for (int i = 0; i < suchergebnisseB.size(); i++) {
 					if (e.getSource() == suchergebnisseB.get(i)) {
-						f = suchergebnisse.get(i);
+						ucme.setFilm2(suchergebnisse.get(i));
+						System.out.println("film gesetzt");
+						suche2.dispose();
+						dispose();
 					}
 				}
 			}

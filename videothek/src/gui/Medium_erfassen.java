@@ -95,6 +95,7 @@ public class Medium_erfassen extends JFrame{
 			if (e.getSource() == speichern) {
 				ume.setMedium(medium.getText());
 				ume.speichern();
+				dispose();
 			}
 			
 			if (e.getSource() == abbrechen) {

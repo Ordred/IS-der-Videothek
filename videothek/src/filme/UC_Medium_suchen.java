@@ -11,6 +11,7 @@ public class UC_Medium_suchen {
 
 	Medienliste ml;
 
+
 	Medium_suchen ms;
 
 	ArrayList<Medium> suchergebnisse;
@@ -26,7 +27,7 @@ public class UC_Medium_suchen {
 		ms = new Medium_suchen(this);
 
 		ms.setVisible(true);
-		ms.setSize(300,150);
+		ms.setSize(300,175);
 		ms.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
