@@ -23,29 +23,29 @@ import kunden.UC_Kunde_suchen;
 public class Hauptmenu_Besitzer extends JFrame {
 
 
-	ActionHandler a;
+	private	ActionHandler a;
 
-	JButton filmerfassen;
-	JButton kundeerfassen;
-	JButton filmsuchen;
-	JButton kundesuchen;
-	JButton guthabenaufladen;
-	JButton mediumsuchen;
-	JButton mediumerfassen;
+	private JButton filmerfassen;
+	private JButton kundeerfassen;
+	private JButton filmsuchen;
+	private JButton kundesuchen;
+	private JButton guthabenaufladen;
+	private JButton mediumsuchen;
+	private JButton mediumerfassen;
 
-	GridLayout gr;
+	private GridLayout gr;
 
-	UC_Film_erfassen ucf;
-	UC_Kunde_erfassen uck;
-	UC_Film_suchen ucsf;
-	UC_Kunde_suchen ucks;
-	UC_Guthaben_aufladen uga;
-	UC_Medium_suchen ucms;
-	UC_Medium_erfassen ucme;
+	private UC_Film_erfassen ucf;
+	private UC_Kunde_erfassen uck;
+	private UC_Film_suchen ucsf;
+	private UC_Kunde_suchen ucks;
+	private UC_Guthaben_aufladen uga;
+	private UC_Medium_suchen ucms;
+	private UC_Medium_erfassen ucme;
 
-	Filmliste fl;
-	Kundenliste kl;
-	Medienliste ml;
+	private Filmliste fl;
+	private Kundenliste kl;
+	private Medienliste ml;
 
 	public Hauptmenu_Besitzer() {
 
@@ -58,9 +58,9 @@ public class Hauptmenu_Besitzer extends JFrame {
 		kl = new Kundenliste();
 
 		kl.laden();
-		
+
 		ml = new Medienliste();
-		
+
 		ml.laden();
 
 		a = new ActionHandler();
@@ -72,8 +72,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 		guthabenaufladen = new JButton("Guthaben aufladen");
 		mediumsuchen = new JButton("Medium suchen");
 		mediumerfassen = new JButton("Medium erfassen");
-		
-		
+
+
 		filmerfassen.addActionListener(a);
 		kundeerfassen.addActionListener(a);
 		filmsuchen.addActionListener(a);
@@ -81,7 +81,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 		guthabenaufladen.addActionListener(a);
 		mediumsuchen.addActionListener(a);
 		mediumerfassen.addActionListener(a);
-		
+
 		gr = new GridLayout(3, 2);
 
 		super.setLayout(gr);
@@ -112,23 +112,23 @@ public class Hauptmenu_Besitzer extends JFrame {
 				uck = new UC_Kunde_erfassen(kl);
 				kl.laden();
 			}
-			
+
 			if (e.getSource() == filmsuchen) {
 				fl.laden();
 				ucsf = new UC_Film_suchen(fl, false);
 			}
-			
+
 			if (e.getSource() == kundesuchen) {
 				kl.laden();
 				ucks = new UC_Kunde_suchen(kl);
 			}
-			
+
 			if (e.getSource() == mediumsuchen) {
-		
+
 				ml.laden();
 				ucms = new UC_Medium_suchen(ml);
 			}
-			
+
 			if (e.getSource() == mediumerfassen) {
 				ucme = new UC_Medium_erfassen(ml, fl);
 			}

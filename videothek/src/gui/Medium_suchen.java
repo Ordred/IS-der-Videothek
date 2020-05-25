@@ -37,53 +37,53 @@ import filme.UC_Medium_suchen;
 
 public class Medium_suchen extends JFrame {
 
-	ArrayList<Medium> suchergebnisse;
-	ArrayList<JButton> suchergebnisseB;
-	ArrayList<JLabel> suchergebnisseMedium;
-	ArrayList<JLabel> suchergebnisseTitel;	
-	ArrayList<JLabel> suchergebnisseGenre;
-	ArrayList<JLabel> suchergebnisseJahr;
-	JPanel suchergebnisseP;
-	JScrollPane sucheScroll;
-	GridLayout sucheGL;
+	private ArrayList<Medium> suchergebnisse;
+	private ArrayList<JButton> suchergebnisseB;
+	private ArrayList<JLabel> suchergebnisseMedium;
+	private ArrayList<JLabel> suchergebnisseTitel;	
+	private ArrayList<JLabel> suchergebnisseGenre;
+	private ArrayList<JLabel> suchergebnisseJahr;
+	private JPanel suchergebnisseP;
+	private JScrollPane sucheScroll;
+	private GridLayout sucheGL;
 
-	JLabel [] titelleiste;
+	private JLabel [] titelleiste;
 
-	JDialog suche2;
+	private JDialog suche2;
 
-	ActionHandler a;
+	private ActionHandler a;
 
-	Film_anzeigen fa;
+	private Film_anzeigen fa;
 
-	JDialog nichtgefunden;
-	JLabel nichtgefundenL;
-	JButton ok;
-	JPanel ngfPanel;
+	private JDialog nichtgefunden;
+	private JLabel nichtgefundenL;
+	private JButton ok;
+	private JPanel ngfPanel;
 
-	String [] kriterien = {"ID", "Medium", "Titel", "Jahr", "Genre", "Beschreibung"};
+	private String [] kriterien = {"ID", "Medium", "Titel", "Jahr", "Genre", "Beschreibung"};
 
-	UC_Medium_suchen ucms;
+	private UC_Medium_suchen ucms;
 
 
-	JComboBox<String> auswahl = new JComboBox<String>(kriterien);
-	JLabel auswahlL;
+	private JComboBox<String> auswahl = new JComboBox<String>(kriterien);
+	private JLabel auswahlL;
 
-	JTextField suchfeld;
-	JLabel suchbegriffe;
+	private JTextField suchfeld;
+	private JLabel suchbegriffe;
 
-	JButton suchen;
-	JButton abbrechen;
+	private JButton suchen;
+	private JButton abbrechen;
 
-	FlowLayout flow1;
-	FlowLayout flow2;
-	FlowLayout flow3;
-	FlowLayout nichtgFL;
+	private FlowLayout flow1;
+	private FlowLayout flow2;
+	private FlowLayout flow3;
+	private FlowLayout nichtgFL;
 
-	GridLayout gl;
+	private GridLayout gl;
 
-	JPanel menu;
-	JPanel suche;
-	JPanel buttons;
+	private JPanel menu;
+	private JPanel suche;
+	private JPanel buttons;
 
 	public Medium_suchen (UC_Medium_suchen ucms) {
 

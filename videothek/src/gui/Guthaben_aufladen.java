@@ -15,17 +15,17 @@ import kunden.UC_Guthaben_aufladen;
 
 public class Guthaben_aufladen extends JFrame {
 	
-	JLabel betrag;
-	JTextField eingabe;
-	JButton abbrechen;
-	JButton speichern;
+	private JLabel betrag;
+	private JTextField eingabe;
+	private JButton abbrechen;
+	private JButton speichern;
 	
-	JPanel buttons;
-	JPanel eingeben;
+	private JPanel buttons;
+	private JPanel eingeben;
 	
-	UC_Guthaben_aufladen uga;
+	private UC_Guthaben_aufladen uga;
 	
-	ActionHandler a;
+	private ActionHandler a;
 
 	public Guthaben_aufladen(UC_Guthaben_aufladen uga) {
 		

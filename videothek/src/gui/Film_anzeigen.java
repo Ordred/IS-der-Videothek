@@ -15,28 +15,28 @@ import filme.Film;
 
 public class Film_anzeigen extends JFrame {
 	
-	Film f;
+	private Film f;
 	
-	ActionHandler a;
+	private ActionHandler a;
 	
-	GridLayout gl;
-	FlowLayout fl;
+	private GridLayout gl;
+	private FlowLayout fl;
 	
-	JPanel angaben;
-	JPanel buttons;
+	private JPanel angaben;
+	private JPanel buttons;
 	
-	JLabel titel;
-	JLabel jahr;
-	JLabel genre;
-	JLabel beschreibung;
+	private JLabel titel;
+	private JLabel jahr;
+	private JLabel genre;
+	private JLabel beschreibung;
 	
-	JLabel titelT;
-	JLabel jahrT;
-	JLabel genreT;
-	JLabel beschreibungT;
+	private JLabel titelT;
+	private JLabel jahrT;
+	private JLabel genreT;
+	private JLabel beschreibungT;
 	
-	JButton ausleihen;
-	JButton abbrechen;
+	private JButton ausleihen;
+	private JButton abbrechen;
 	
 	public Film_anzeigen(Film f) {
 		super("Filminformationen");

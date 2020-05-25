@@ -11,7 +11,7 @@ public class UC_Film_erfassen {
 
 	private Film f;
 	private Filmliste fl;
-	Film_Erfassen fe;
+	private Film_Erfassen fe;
 
 	public UC_Film_erfassen (Filmliste fl) {
 		f = new Film();

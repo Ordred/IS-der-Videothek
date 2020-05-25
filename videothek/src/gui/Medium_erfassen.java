@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +18,9 @@ import filme.UC_Medium_erfassen;
 public class Medium_erfassen extends JFrame{
 	
 	private JLabel mediumL;
-	private JTextField medium;
+	private JComboBox<String> medium;
+	
+	private String [] mArten = {"Blu-Ray","DVD","VHS"};
 
 	private JButton filmerfassen;
 	
@@ -27,10 +30,10 @@ public class Medium_erfassen extends JFrame{
 	private JPanel buttons;
 	private JPanel medien;
 	
-	ActionHandler a;
+	private ActionHandler a;
 	
-	UC_Medium_erfassen ume;
-	Medienliste ml;
+	private UC_Medium_erfassen ume;
+	private Medienliste ml;
 	
 	
 	public Medium_erfassen(UC_Medium_erfassen ume, Medienliste ml) {
@@ -38,6 +41,8 @@ public class Medium_erfassen extends JFrame{
 		
 		this.ume = ume;		
 		this.ml = ml;
+		
+		
 		
 		
 		a = new ActionHandler();
@@ -51,7 +56,7 @@ public class Medium_erfassen extends JFrame{
 		ume.setID(ml.getMedienliste().size());
 		
 		mediumL = new JLabel("Medium");
-		medium = new JTextField("Medium");
+		medium = new JComboBox<String>(mArten);
 		
 		filmerfassen = new JButton("Film hinzufügen");
 		
@@ -93,7 +98,8 @@ public class Medium_erfassen extends JFrame{
 			}
 			
 			if (e.getSource() == speichern) {
-				ume.setMedium(medium.getText());
+				
+				ume.setMedium(medium.getSelectedItem().toString());
 				ume.speichern();
 				dispose();
 			}

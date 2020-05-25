@@ -8,11 +8,11 @@ import gui.Film_suchen;
 
 public class UC_Film_suchen {
 
-	Filmliste fl;
+	private Filmliste fl;
 
-	Film_suchen fs;
+	private Film_suchen fs;
 
-	ArrayList<Film> suchergebnisse;
+	private ArrayList<Film> suchergebnisse;
 
 	private boolean medium;
 

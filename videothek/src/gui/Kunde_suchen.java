@@ -40,53 +40,53 @@ import kunden.UC_Kunde_suchen;
 public class Kunde_suchen extends JFrame {
 
 
-		ArrayList<Kunde> suchergebnisse;
-		ArrayList<JButton> suchergebnisseName;
-		ArrayList<JLabel> suchergebnisseVorname;
-		ArrayList<JLabel> suchergebnisseGeburtsdatum;
-		JPanel suchergebnisseP;
-		JScrollPane sucheScroll;
-		GridLayout sucheGL;
+		private ArrayList<Kunde> suchergebnisse;
+		private ArrayList<JButton> suchergebnisseName;
+		private ArrayList<JLabel> suchergebnisseVorname;
+		private ArrayList<JLabel> suchergebnisseGeburtsdatum;
+		private JPanel suchergebnisseP;
+		private JScrollPane sucheScroll;
+		private GridLayout sucheGL;
 
-		JLabel [] titelleiste;
+		private JLabel [] titelleiste;
 
-		JDialog suche2;
+		private JDialog suche2;
 
-		ActionHandler a;
+		private ActionHandler a;
 
-		Kunde_anzeigen ka;
+		private Kunde_anzeigen ka;
 		
-		Kundenliste kl;
+		private Kundenliste kl;
 
-		JDialog nichtgefunden;
-		JLabel nichtgefundenL;
-		JButton ok;
-		JPanel ngfPanel;
+		private JDialog nichtgefunden;
+		private JLabel nichtgefundenL;
+		private JButton ok;
+		private JPanel ngfPanel;
 
-		String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Lieblingsgenre"};
+		private String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Lieblingsgenre"};
 
-		UC_Kunde_suchen ucks;
+		private UC_Kunde_suchen ucks;
 
 
-		JComboBox<String> auswahl = new JComboBox<String>(kriterien);
-		JLabel auswahlL;
+		private JComboBox<String> auswahl = new JComboBox<String>(kriterien);
+		private JLabel auswahlL;
 
-		JTextField suchfeld;
-		JLabel suchbegriffe;
+		private JTextField suchfeld;
+		private JLabel suchbegriffe;
 
-		JButton suchen;
-		JButton abbrechen;
+		private JButton suchen;
+		private JButton abbrechen;
 
-		FlowLayout flow1;
-		FlowLayout flow2;
-		FlowLayout flow3;
-		FlowLayout nichtgFL;
+		private FlowLayout flow1;
+		private FlowLayout flow2;
+		private FlowLayout flow3;
+		private FlowLayout nichtgFL;
 
-		GridLayout gl;
+		private GridLayout gl;
 
-		JPanel menu;
-		JPanel suche;
-		JPanel buttons;
+		private JPanel menu;
+		private JPanel suche;
+		private JPanel buttons;
 
 		public Kunde_suchen (UC_Kunde_suchen ucks, Kundenliste kl) {
 

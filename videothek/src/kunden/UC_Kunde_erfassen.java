@@ -10,7 +10,7 @@ public class UC_Kunde_erfassen {
 
 	private Kunde k;
 	private Kundenliste kl;
-	Kunde_Erfassen ke;
+	private Kunde_Erfassen ke;
 
 	public UC_Kunde_erfassen (Kundenliste kl) {
 		k = new Kunde();

@@ -8,11 +8,11 @@ import gui.Kunde_suchen;
 
 public class UC_Kunde_suchen {
 
-	Kundenliste kl;
+	private Kundenliste kl;
 
-	Kunde_suchen ks;
+	private Kunde_suchen ks;
 
-	ArrayList<Kunde> suchergebnisse;
+	private ArrayList<Kunde> suchergebnisse;
 
 
 

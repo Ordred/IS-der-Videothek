@@ -17,35 +17,35 @@ import kunden.UC_Guthaben_aufladen;
 
 public class Kunde_anzeigen extends JFrame {
 	
-	Kunde k;
-	Kundenliste kl;
+	private Kunde k;
+	private Kundenliste kl;
 	
-	UC_Guthaben_aufladen uga;
+	private UC_Guthaben_aufladen uga;
 	
-	ActionHandler a;
+	private ActionHandler a;
 	
-	Kunde_anzeigen ka;
+	private Kunde_anzeigen ka;
 	
-	GridLayout gl;
-	FlowLayout fl;
+	private GridLayout gl;
+	private FlowLayout fl;
 	
-	JPanel angaben;
-	JPanel buttons;
+	private JPanel angaben;
+	private JPanel buttons;
 	
-	JLabel name;
-	JLabel vorname;
-	JLabel geburtsdatum;
-	JLabel lieblingsgenre;
-	JLabel guthaben;
+	private JLabel name;
+	private JLabel vorname;
+	private JLabel geburtsdatum;
+	private JLabel lieblingsgenre;
+	private JLabel guthaben;
 	
-	JLabel nameT;
-	JLabel vornameT;
-	JLabel geburtsdatumT;
-	JLabel lieblingsgenreT;
-	JLabel guthabenT;
+	private JLabel nameT;
+	private JLabel vornameT;
+	private JLabel geburtsdatumT;
+	private JLabel lieblingsgenreT;
+	private JLabel guthabenT;
 	
-	JButton guthabenaufladen;
-	JButton abbrechen;
+	private JButton guthabenaufladen;
+	private JButton abbrechen;
 	
 	public Kunde_anzeigen(Kunde k, Kundenliste kl) {
 		super("Kundeinformationen");

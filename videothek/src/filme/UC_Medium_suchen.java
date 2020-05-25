@@ -9,12 +9,12 @@ import gui.Medium_suchen;
 
 public class UC_Medium_suchen {
 
-	Medienliste ml;
+	private Medienliste ml;
 
 
-	Medium_suchen ms;
+	private Medium_suchen ms;
 
-	ArrayList<Medium> suchergebnisse;
+	private ArrayList<Medium> suchergebnisse;
 
 
 

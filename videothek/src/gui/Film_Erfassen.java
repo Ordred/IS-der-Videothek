@@ -16,31 +16,29 @@ import filme.UC_Film_erfassen;
 
 public class Film_Erfassen extends JFrame{
 	
-	UC_Film_erfassen ufe;
+	private UC_Film_erfassen ufe;
 	
-	JTextField titel;
-	JTextField jahr;
-	JTextField genre;
-	JTextField beschreibung;
+	private JTextField titel;
+	private JTextField jahr;
+	private JTextField genre;
+	private JTextField beschreibung;
 	
-	JLabel titelL;
-	JLabel jahrL;
-	JLabel genreL;
-	JLabel beschreibungL;
+	private JLabel titelL;
+	private JLabel jahrL;
+	private JLabel genreL;
+	private JLabel beschreibungL;
 	
-	JPanel buttons;
-	JPanel form;
+	private JPanel buttons;
+	private JPanel form;
 	
-	GridLayout gl1;
-	GridLayout gl2;
-	GridLayout gl3;
+	private GridLayout gl1;
 	
-	FlowLayout fl;
+	private FlowLayout fl;
 	
-	JButton speichern;
-	JButton abbrechen;
+	private JButton speichern;
+	private JButton abbrechen;
 	
-	ActionHandler a;
+	private ActionHandler a;
 	
 	
 	public Film_Erfassen(UC_Film_erfassen ufe) {

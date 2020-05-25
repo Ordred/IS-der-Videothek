@@ -7,11 +7,11 @@ import gui.Kunde_anzeigen;
 
 public class UC_Guthaben_aufladen {
 	
-	Kunde k;
-	Kundenliste kl;
-	Guthaben_aufladen ga;
+	private Kunde k;
+	private Kundenliste kl;
+	private Guthaben_aufladen ga;
 	
-	Kunde_anzeigen ka;
+	private Kunde_anzeigen ka;
 	
 	
 	public UC_Guthaben_aufladen(Kunde k, Kundenliste kl, Kunde_anzeigen ka) {

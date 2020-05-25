@@ -16,33 +16,32 @@ import kunden.UC_Kunde_erfassen;
 
 public class Kunde_Erfassen extends JFrame{
 	
-	UC_Kunde_erfassen uke;
+	private UC_Kunde_erfassen uke;
 	
-	JTextField name;
-	JTextField vorname;
-	JTextField geburtsdatum;
-	JTextField lieblingsgenre;
-	JTextField guthaben;
+	private JTextField name;
+	private JTextField vorname;
+	private JTextField geburtsdatum;
+	private JTextField lieblingsgenre;
+	private JTextField guthaben;
 	
-	JLabel nameL;
-	JLabel vornameL;
-	JLabel geburtsdatumL;
-	JLabel lieblingsgenreL;
-	JLabel guthabenL;
+	private JLabel nameL;
+	private JLabel vornameL;
+	private JLabel geburtsdatumL;
+	private JLabel lieblingsgenreL;
+	private JLabel guthabenL;
 	
-	JPanel buttons;
-	JPanel form;
+	private JPanel buttons;
+	private JPanel form;
 	
-	GridLayout gl1;
-	GridLayout gl2;
-	GridLayout gl3;
+	private GridLayout gl1;
+
 	
-	FlowLayout fl;
+	private FlowLayout fl;
 	
-	JButton speichern;
-	JButton abbrechen;
+	private JButton speichern;
+	private JButton abbrechen;
 	
-	ActionHandler a;
+	private ActionHandler a;
 	
 	
 	public Kunde_Erfassen(UC_Kunde_erfassen uke) {
