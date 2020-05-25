@@ -14,19 +14,25 @@ public class UC_Film_suchen {
 
 	ArrayList<Film> suchergebnisse;
 
+	private boolean medium;
 
 
-	public UC_Film_suchen(Filmliste fl) {
+	public UC_Film_suchen(Filmliste fl, boolean medium) {
 
 		this.fl = fl;
-
+		this.medium = medium;
+		
+		
 		suchergebnisse = new ArrayList<Film>();
+		
+		if (!medium) {
 
-		fs = new Film_suchen(this);
+		fs = new Film_suchen(this, medium);
 
 		fs.setVisible(true);
 		fs.setSize(300,150);
 		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
 	}
 
 

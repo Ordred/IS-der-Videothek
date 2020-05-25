@@ -41,6 +41,8 @@ public class Film_suchen extends JFrame {
 	JPanel suchergebnisseP;
 	JScrollPane sucheScroll;
 	GridLayout sucheGL;
+	boolean medium;
+	private Film f;
 
 	JLabel [] titelleiste;
 
@@ -80,11 +82,13 @@ public class Film_suchen extends JFrame {
 	JPanel suche;
 	JPanel buttons;
 
-	public Film_suchen (UC_Film_suchen ucsf) {
+	public Film_suchen (UC_Film_suchen ucsf, boolean medium) {
 
 		super("Film suchen");
 		gl = new GridLayout(3, 1);
 		super.setLayout(gl);
+		
+		this.medium = medium;
 
 		suche2 = new JDialog();
 
@@ -190,11 +194,22 @@ public class Film_suchen extends JFrame {
 	}
 
 
+	public Film getF() {
+		return f;
+	}
+
+
+	public void setF(Film f) {
+		this.f = f;
+	}
+
 
 	public class ActionHandler implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			if (!medium) {
 
 			for (int i = 0; i < suchergebnisseB.size(); i++) {
 				if (e.getSource() == suchergebnisseB.get(i)) {
@@ -202,6 +217,15 @@ public class Film_suchen extends JFrame {
 					fa.setSize(400, 400);
 					fa.setVisible(true);
 					fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
+			}
+			}
+			
+			else {
+				for (int i = 0; i < suchergebnisseB.size(); i++) {
+					if (e.getSource() == suchergebnisseB.get(i)) {
+						f = suchergebnisse.get(i);
+					}
 				}
 			}
 

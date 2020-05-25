@@ -29,6 +29,7 @@ public class Medienliste implements Serializable{
 	public void mediumHinzufügen(Medium m) {
 		medienliste.add(m);
 		speichern();
+		System.out.println("hinzugefügt");
 
 	}
 

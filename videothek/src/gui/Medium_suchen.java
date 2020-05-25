@@ -30,12 +30,17 @@ import javax.swing.SwingConstants;
 
 import filme.Film;
 import filme.Filmliste;
+import filme.Medium;
 import filme.UC_Film_suchen;
+import filme.UC_Medium_ausleihen;
+import filme.UC_Medium_suchen;
 
 public class Medium_suchen extends JFrame {
 
 	ArrayList<Medium> suchergebnisse;
 	ArrayList<JButton> suchergebnisseB;
+	ArrayList<JLabel> suchergebnisseMedium;
+	ArrayList<JLabel> suchergebnisseTitel;	
 	ArrayList<JLabel> suchergebnisseGenre;
 	ArrayList<JLabel> suchergebnisseJahr;
 	JPanel suchergebnisseP;
@@ -55,9 +60,9 @@ public class Medium_suchen extends JFrame {
 	JButton ok;
 	JPanel ngfPanel;
 
-	String [] kriterien = {"Titel", "Jahr", "Genre", "Beschreibung"};
+	String [] kriterien = {"ID", "Medium", "Titel", "Jahr", "Genre", "Beschreibung"};
 
-	UC_Film_suchen ucfs;
+	UC_Medium_suchen ucms;
 
 
 	JComboBox<String> auswahl = new JComboBox<String>(kriterien);
@@ -80,23 +85,27 @@ public class Medium_suchen extends JFrame {
 	JPanel suche;
 	JPanel buttons;
 
-	public Medium_suchen (UC_Film_suchen ucsf) {
+	public Medium_suchen (UC_Medium_suchen ucms) {
 
-		super("Film suchen");
-		gl = new GridLayout(3, 1);
+		super("Medium suchen");
+		gl = new GridLayout(5, 1);
 		super.setLayout(gl);
 
 		suche2 = new JDialog();
 
 
-		suchergebnisse = new ArrayList<Film>();
+		suchergebnisse = new ArrayList<Medium>();
 		suchergebnisseB = new ArrayList<JButton>();
+		suchergebnisseMedium = new ArrayList<JLabel>();
+		suchergebnisseTitel = new ArrayList<JLabel>();
 		suchergebnisseGenre = new ArrayList<JLabel>();
 		suchergebnisseJahr = new ArrayList<JLabel>();
-		titelleiste = new JLabel[3];
-		titelleiste[0] = new JLabel("Titel", SwingConstants.CENTER);
-		titelleiste[1] = new JLabel("Genre", SwingConstants.CENTER);
-		titelleiste[2] = new JLabel("Jahr", SwingConstants.CENTER);
+		titelleiste = new JLabel[5];
+		titelleiste[0] = new JLabel("ID", SwingConstants.CENTER);
+		titelleiste[1] = new JLabel("Medium", SwingConstants.CENTER);
+		titelleiste[2] = new JLabel("Titel", SwingConstants.CENTER);
+		titelleiste[3] = new JLabel("Genre", SwingConstants.CENTER);
+		titelleiste[4] = new JLabel("Jahr", SwingConstants.CENTER);
 		suchergebnisseP = new JPanel();
 		sucheGL = new GridLayout(20, 3);
 
@@ -107,14 +116,20 @@ public class Medium_suchen extends JFrame {
 		suchergebnisseP.add(titelleiste[0]);
 		suchergebnisseP.add(titelleiste[1]);
 		suchergebnisseP.add(titelleiste[2]);
+		suchergebnisseP.add(titelleiste[3]);
+		suchergebnisseP.add(titelleiste[4]);
 
 		titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.black));
 		titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.black));
 		titelleiste[2].setBorder(BorderFactory.createLineBorder(Color.black));
+		titelleiste[3].setBorder(BorderFactory.createLineBorder(Color.black));
+		titelleiste[4].setBorder(BorderFactory.createLineBorder(Color.black));
 
 		titelleiste[0].setOpaque(true);
 		titelleiste[1].setOpaque(true);
 		titelleiste[2].setOpaque(true);
+		titelleiste[3].setOpaque(true);
+		titelleiste[4].setOpaque(true);
 
 		titelleiste[0].setBackground(Color.BLUE);
 		titelleiste[0].setForeground(Color.WHITE);
@@ -122,13 +137,17 @@ public class Medium_suchen extends JFrame {
 		titelleiste[1].setForeground(Color.WHITE);
 		titelleiste[2].setBackground(Color.BLUE);
 		titelleiste[2].setForeground(Color.WHITE);
+		titelleiste[3].setBackground(Color.BLUE);
+		titelleiste[3].setForeground(Color.WHITE);
+		titelleiste[4].setBackground(Color.BLUE);
+		titelleiste[4].setForeground(Color.WHITE);
 
 		sucheScroll.setPreferredSize(new Dimension(300, 300));
 
 
 		a = new ActionHandler();
 
-		this.ucfs = ucsf;
+		this.ucms = ucms;
 
 		auswahl.addActionListener(a);
 
@@ -198,7 +217,7 @@ public class Medium_suchen extends JFrame {
 
 			for (int i = 0; i < suchergebnisseB.size(); i++) {
 				if (e.getSource() == suchergebnisseB.get(i)) {
-					fa = new Film_anzeigen(suchergebnisse.get(i));
+					fa = new Film_anzeigen(suchergebnisse.get(i).getFilm());
 					fa.setSize(400, 400);
 					fa.setVisible(true);
 					fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -210,13 +229,16 @@ public class Medium_suchen extends JFrame {
 				System.out.println("Suchen");
 
 				if (auswahl.getSelectedItem() == "Titel") {
-					suchergebnisse = ucfs.titel(suchfeld.getText());
+					suchergebnisse = ucms.titel(suchfeld.getText());
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
+						
+						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -234,16 +256,76 @@ public class Medium_suchen extends JFrame {
 						System.out.println(suchergebnisseB.get(i).getText());
 					}
 				}
+				
+				if (auswahl.getSelectedItem() == "ID") {
+					suchergebnisse = ucms.id(Integer.parseInt(suchfeld.getText()));
+					for (int i = 0; i < suchergebnisse.size(); i++) {
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
+						
+						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
+						suchergebnisseB.get(i).setSize(300, 10);
+
+						suchergebnisseB.get(i).setVisible(true);
+						suchergebnisseB.get(i).addActionListener(a);
+						suchergebnisseP.add(suchergebnisseB.get(i));
+						suchergebnisseP.add(suchergebnisseGenre.get(i));
+						suchergebnisseP.add(suchergebnisseJahr.get(i));
+						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseP.setLayout(sucheGL);
+						suchergebnisseP.repaint();
+						sucheScroll.repaint();
+						repaint();
+						System.out.println(suchergebnisseB.get(i).getText());
+					}
+				}
+				
+				if (auswahl.getSelectedItem() == "Medium") {
+					suchergebnisse = ucms.medium(suchfeld.getText());
+					for (int i = 0; i < suchergebnisse.size(); i++) {
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+
+						
+						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+
+						suchergebnisseB.get(i).setSize(300, 10);
+
+						suchergebnisseB.get(i).setVisible(true);
+						suchergebnisseB.get(i).addActionListener(a);
+						suchergebnisseP.add(suchergebnisseB.get(i));
+						suchergebnisseP.add(suchergebnisseGenre.get(i));
+						suchergebnisseP.add(suchergebnisseJahr.get(i));
+						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseP.setLayout(sucheGL);
+						suchergebnisseP.repaint();
+						sucheScroll.repaint();
+						repaint();
+						System.out.println(suchergebnisseB.get(i).getText());
+					}
+				}
+				
 				if (auswahl.getSelectedItem() == "Jahr") {
-					suchergebnisse = ucfs.jahr(Integer.parseInt(suchfeld.getText()));
+					suchergebnisse = ucms.jahr(Integer.parseInt(suchfeld.getText()));
 					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(3, suchergebnisse.size()+1);
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
+						
+						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -259,19 +341,20 @@ public class Medium_suchen extends JFrame {
 						sucheScroll.repaint();
 						repaint();
 						System.out.println(suchergebnisseB.get(i).getText());
-
-
 					}
 				}
-
+				
 				if (auswahl.getSelectedItem() == "Genre") {
-					suchergebnisse = ucfs.genre(suchfeld.getText());
+					suchergebnisse = ucms.genre(suchfeld.getText());
 					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(3, suchergebnisse.size()+1);
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
+						
+						suchergebnisseB.add(new JButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new JLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new JLabel(suchergebnisse.get(i).getFilm().getTitel()));
+						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -290,33 +373,12 @@ public class Medium_suchen extends JFrame {
 					}
 				}
 
-				if (auswahl.getSelectedItem() == "Beschreibung") {
-					suchergebnisse = ucfs.beschreibung(suchfeld.getText());
-					for (int i = 0; i < suchergebnisse.size(); i++) {
 
-						sucheGL = new GridLayout(3, suchergebnisse.size()+1);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
 
-						suchergebnisseB.get(i).setSize(300, 10);
 
-						suchergebnisseB.get(i).setVisible(true);
-						suchergebnisseB.get(i).addActionListener(a);
-						suchergebnisseP.add(suchergebnisseB.get(i));
-						suchergebnisseP.add(suchergebnisseGenre.get(i));
-						suchergebnisseP.add(suchergebnisseJahr.get(i));
-						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseP.setLayout(sucheGL);
-						suchergebnisseP.repaint();
-						sucheScroll.repaint();
-						repaint();
-						System.out.println(suchergebnisseB.get(i).getText());
 
-					}
-				}
+
 
 				if (suchergebnisse.size() > 0) {
 

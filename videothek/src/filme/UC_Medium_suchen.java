@@ -5,77 +5,92 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import gui.Film_suchen;
+import gui.Medium_suchen;
 
 public class UC_Medium_suchen {
 
-	Filmliste fl;
+	Medienliste ml;
 
-	Film_suchen fs;
+	Medium_suchen ms;
 
 	ArrayList<Medium> suchergebnisse;
 
 
 
-	public UC_Medium_suchen(Filmliste fl) {
+	public UC_Medium_suchen(Medienliste ml) {
 
-		this.fl = fl;
+		this.ml = ml;
 
 		suchergebnisse = new ArrayList<Medium>();
 
-		fs = new Film_suchen(this);
+		ms = new Medium_suchen(this);
 
-		fs.setVisible(true);
-		fs.setSize(300,150);
-		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		ms.setVisible(true);
+		ms.setSize(300,150);
+		ms.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 
-	public ArrayList<Film> titel(String titel) {
+	public ArrayList<Medium> titel(String titel) {
 
-		for (int i = 0; i < fl.getFilmliste().size(); i++) {
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
 
-			if (fl.getFilmliste().get(i).getTitel().contains(titel)) {
-				suchergebnisse.add(fl.getFilmliste().get(i));
+			if (ml.getMedienliste().get(i).getFilm().getTitel().contains(titel)) {
+				suchergebnisse.add(ml.getMedienliste().get(i));
+			}
+		}
+		return suchergebnisse;
+
+	}
+	
+	public ArrayList<Medium> jahr(int jahr) {
+
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
+
+			if (ml.getMedienliste().get(i).getFilm().getJahr() == jahr) {
+				suchergebnisse.add(ml.getMedienliste().get(i));
+			}
+		}
+		return suchergebnisse;
+
+	}
+	
+	public ArrayList<Medium> genre(String genre) {
+
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
+
+			if (ml.getMedienliste().get(i).getFilm().getTitel().contains(genre)) {
+				suchergebnisse.add(ml.getMedienliste().get(i));
+			}
+		}
+		return suchergebnisse;
+
+	}
+	
+	public ArrayList<Medium> id(int id) {
+
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
+
+			if (ml.getMedienliste().get(i).getId() == id) {
+				suchergebnisse.add(ml.getMedienliste().get(i));
+			}
+		}
+		return suchergebnisse;
+
+	}
+	
+	public ArrayList<Medium> medium(String medium) {
+
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
+
+			if (ml.getMedienliste().get(i).getMedium().contains(medium)) {
+				suchergebnisse.add(ml.getMedienliste().get(i));
 			}
 		}
 		return suchergebnisse;
 
 	}
 
-	public ArrayList<Film> jahr(int jahr) {
 
-		for (int i = 0; i < fl.getFilmliste().size(); i++) {
-
-			if (fl.getFilmliste().get(i).getJahr() == jahr) {
-				suchergebnisse.add(fl.getFilmliste().get(i));
-			}
-		}	
-		return suchergebnisse;
-
-	}
-
-	public ArrayList<Film> beschreibung(String beschreibung) {
-
-		for (int i = 0; i < fl.getFilmliste().size(); i++) {
-
-			if (fl.getFilmliste().get(i).getTitel().contains(beschreibung)) {
-				suchergebnisse.add(fl.getFilmliste().get(i));
-			}
-		}	
-		return suchergebnisse;
-
-	}
-
-	public ArrayList<Film> genre(String genre) {
-
-		for (int i = 0; i < fl.getFilmliste().size(); i++) {
-
-			if (fl.getFilmliste().get(i).getTitel().contains(genre)) {
-				suchergebnisse.add(fl.getFilmliste().get(i));
-			}
-		}	
-		return suchergebnisse;
-
-	}
 
 }

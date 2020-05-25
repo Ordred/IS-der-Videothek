@@ -12,11 +12,8 @@ public class Medium implements Serializable {
 	private boolean lagernd;
 	private LocalDate rückgabedatum;
 
-	public Medium(String medium, int id, Film film) {
+	public Medium() {
 
-		this.medium = medium;
-		this.id = id;
-		this.film = film;
 		lagernd = true;
 
 	}
