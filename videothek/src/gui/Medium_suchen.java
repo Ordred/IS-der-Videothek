@@ -88,7 +88,7 @@ public class Medium_suchen extends JFrame {
 	public Medium_suchen (UC_Medium_suchen ucms) {
 
 		super("Medium suchen");
-		gl = new GridLayout(5, 1);
+		gl = new GridLayout(3, 1);
 		super.setLayout(gl);
 
 		suche2 = new JDialog();
