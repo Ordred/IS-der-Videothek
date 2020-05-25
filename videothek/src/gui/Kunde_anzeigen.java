@@ -48,7 +48,7 @@ public class Kunde_anzeigen extends JFrame {
 	private JButton abbrechen;
 	
 	public Kunde_anzeigen(Kunde k, Kundenliste kl) {
-		super("Kundeinformationen");
+		super("Kundeninformationen");
 		
 		a = new ActionHandler();
 		
@@ -117,6 +117,8 @@ public class Kunde_anzeigen extends JFrame {
 			
 			if (e.getSource() == guthabenaufladen) {
 				uga = new UC_Guthaben_aufladen(k, kl, ka);
+				validate();
+				repaint();
 			}
 			
 			

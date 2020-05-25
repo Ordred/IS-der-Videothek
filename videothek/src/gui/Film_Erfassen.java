@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import filme.UC_Film_erfassen;
 
 public class Film_Erfassen extends JFrame{
+
+	/* JFilechooser */
 	
 	private UC_Film_erfassen ufe;
 	
