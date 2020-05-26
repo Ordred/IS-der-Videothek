@@ -69,9 +69,11 @@ public class Film_anzeigen extends JFrame {
 	
 	private JDialog medium;
 	
+	private boolean mediumE;
 	
 	
-	public Film_anzeigen(Film f, Kunde k, Kundenliste kl, Medienliste ml) {
+	
+	public Film_anzeigen(Film f, Kunde k, Kundenliste kl, Medienliste ml, boolean mediumE) {
 		super("Filminformationen");
 		
 		a = new ActionHandler();
@@ -81,6 +83,8 @@ public class Film_anzeigen extends JFrame {
 
 		this.kl = kl;
 		this.ml = ml;
+		
+		this.mediumE = mediumE;
 		
 		
 		
@@ -132,7 +136,9 @@ public class Film_anzeigen extends JFrame {
 		angaben.add(beschreibungT);
 		
 		buttons.add(abbrechen);
+		if(!mediumE) {
 		buttons.add(ausleihen);
+		}
 		
 		add(angaben, BorderLayout.NORTH);
 		add(buttons, BorderLayout.SOUTH);

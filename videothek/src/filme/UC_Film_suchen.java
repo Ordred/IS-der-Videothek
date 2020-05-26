@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import gui.Film_suchen;
+import kunden.Kunde;
 import kunden.Kundenliste;
 
 public class UC_Film_suchen {
@@ -20,21 +21,24 @@ public class UC_Film_suchen {
 	private boolean medium;
 	
 	private Medienliste ml;
+	
+	private Kunde k;
 
 
-	public UC_Film_suchen(Filmliste fl, boolean medium, Kundenliste kl, Medienliste ml) {
+	public UC_Film_suchen(Filmliste fl, boolean medium, Kundenliste kl, Medienliste ml, Kunde k) {
 
 		this.fl = fl;
 		this.medium = medium;
 		this.kl = kl;
 		this.ml = ml;
+		this.k = k;
 		
 		
 		suchergebnisse = new ArrayList<Film>();
 		
 		if (!medium) {
 
-		fs = new Film_suchen(this, medium, null,  false, null, kl, ml);
+		fs = new Film_suchen(this, medium, k,  k != null, null, kl, ml);
 
 		fs.setVisible(true);
 		fs.setSize(300,150);

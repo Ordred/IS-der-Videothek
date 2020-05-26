@@ -218,7 +218,7 @@ public class Film_suchen extends JFrame {
 
 			for (int i = 0; i < suchergebnisseB.size(); i++) {
 				if (e.getSource() == suchergebnisseB.get(i)) {
-					fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml);
+					fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml, medium);
 					fa.setSize(400, 400);
 					fa.setVisible(true);
 					fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

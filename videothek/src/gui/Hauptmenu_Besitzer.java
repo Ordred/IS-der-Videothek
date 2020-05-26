@@ -121,7 +121,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 			if (e.getSource() == filmsuchen) {
 				fl.laden();
 				ml.laden();
-				ucsf = new UC_Film_suchen(fl, false, kl, ml);
+				ucsf = new UC_Film_suchen(fl, false, kl, ml, k);
 			}
 
 			if (e.getSource() == kundesuchen) {
