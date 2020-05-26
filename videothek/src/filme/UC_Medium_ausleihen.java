@@ -18,15 +18,17 @@ public class UC_Medium_ausleihen {
 	private Medienliste ml;
 	private Kundenliste kl;
 	
+	private Medium m;
 	
 	
-	public UC_Medium_ausleihen(String medium, Kunde k, Film f, Medienliste ml, Kundenliste kl) {
+	public UC_Medium_ausleihen(String medium, Kunde k, Film f, Medienliste ml, Kundenliste kl, Medium m) {
 		
 		this.f = f;
 		this.medium = medium;
 		this.k = k;
 		this.ml = ml;
 		this.kl = kl;
+		this.m = m;
 		
 		heute = LocalDate.now();
 		
@@ -36,22 +38,13 @@ public class UC_Medium_ausleihen {
 	public void ausleihen() {
 		
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
-			System.out.println("geht");
-			System.out.println(ml.getMedienliste().get(i).isLagernd());
 			
-			System.out.println();
-			System.out.println(ml.getMedienliste().get(i).getFilm() == f && ml.getMedienliste().get(i).getFilm() == f);
 			
-			System.out.println(ml.getMedienliste().get(i).getMedium().toString().contains(medium.toString()));
-			
-			System.out.println(medium);
-			System.out.println(ml.getMedienliste().get(i).getMedium());
-			
-			System.out.println(k.toString());
-			
-			if (ml.getMedienliste().get(i).getFilm().getTitel().toString().contains(f.getTitel().toString()) && ml.getMedienliste().get(i).getFilm().getJahr() == f.getJahr() && ml.getMedienliste().get(i).isLagernd() && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(medium)) {
+			if (m == null && ml.getMedienliste().get(i).getFilm().getTitel().toString().contains(f.getTitel().toString()) && ml.getMedienliste().get(i).getFilm().getJahr() == f.getJahr() && ml.getMedienliste().get(i).isLagernd() && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(medium)) {
 				System.out.println("geht2");
-				k.getAusleihliste().add(ml.getMedienliste().get(i));
+				m = ml.getMedienliste().get(i);
+				
+				k.getAusleihliste().add(m);
 				k.setGuthaben(ml.getMedienliste().get(i).getPreis());
 				
 				for (int j = 0; j < kl.getKundenliste().size(); j++) {
@@ -62,10 +55,11 @@ public class UC_Medium_ausleihen {
 				kl.speichern();
 				
 				
-				ml.getMedienliste().get(i).setLagernd(false);
-				ml.getMedienliste().get(i).setRückgabedatum(heute.plusDays(7));
+				m.setLagernd(false);
+				m.setRückgabedatum(heute.plusDays(7));
 				ml.speichern();
 			}
+			
 			else if (ml.getMedienliste().get(i).getFilm() == f && !ml.getMedienliste().get(i).isLagernd()) {
 				
 			}

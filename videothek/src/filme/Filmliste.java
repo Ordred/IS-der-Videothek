@@ -24,6 +24,12 @@ public class Filmliste implements Serializable{
 		filmliste = new ArrayList<Film>();
 		datei = "filmliste.ser";
 	}
+	
+	public void filmÄndern(Film f, int i) {
+		filmliste.remove(i);
+		filmliste.add(i, f);
+		speichern();
+	}
 
 
 	public void filmHinzufügen(Film f) {

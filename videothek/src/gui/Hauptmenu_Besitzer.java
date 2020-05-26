@@ -87,7 +87,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 		mediumsuchen.addActionListener(a);
 		mediumerfassen.addActionListener(a);
 
-		gr = new GridLayout(3, 2);
+		gr = new GridLayout(3, 3);
 
 		super.setLayout(gr);
 

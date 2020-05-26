@@ -15,117 +15,160 @@ import javax.swing.JPanel;
 
 import filme.Film;
 import filme.Medienliste;
+import filme.Medium;
 import filme.UC_Medium_ausleihen;
 import kunden.Kunde;
 import kunden.Kundenliste;
 import kunden.UC_Kunde_suchen;
 
 public class Film_anzeigen extends JFrame {
-	
+
 	private JComboBox<String> auswahl;
 	private JLabel mediumL;
-	
+
 	private Medienliste ml;
-	
+
 	private Film f;
-	
+
 	private Kunde k;
-	
+
 	private String m;
-	
+
 	private JButton abbrechen2;
 	private JButton ok;
-	
+
 	private Kunde_suchen ks;
-	
+
 	private UC_Kunde_suchen ucks;
-	
+
 	private Kundenliste kl;
-	
+
 	private UC_Medium_ausleihen ucma;
-	
+
 	private ActionHandler a;
-	
+
 	private GridLayout gl;
 	private FlowLayout fl;
-	
+
 	private JPanel angaben;
 	private JPanel buttons;
-	
+
 	private JLabel titel;
 	private JLabel jahr;
 	private JLabel genre;
 	private JLabel beschreibung;
-	
+
 	private JLabel titelT;
 	private JLabel jahrT;
 	private JLabel genreT;
 	private JLabel beschreibungT;
-	
+
 	private JButton ausleihen;
 	private JButton abbrechen;
-	
+
 	private String [] ausws;
-	
+
 	private JDialog medium;
-	
+
 	private boolean mediumE;
-	
-	
-	
-	public Film_anzeigen(Film f, Kunde k, Kundenliste kl, Medienliste ml, boolean mediumE) {
-		super("Filminformationen");
-		
+
+	private Medium media;
+
+	private JLabel idL;
+	private JLabel id;
+	private JLabel lagerL;
+	private JLabel lager;
+	private JLabel verfügbarkeitL;
+	private JLabel verfügbarkeit;
+
+	private String verf;
+
+
+
+	public Film_anzeigen(Film f, Kunde k, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
+		super();
+		if (media == null) {
+			super.setTitle("Filminformationen");
+		}
+
+		else {
+			super.setTitle("Medieninformationen");
+		}
 		a = new ActionHandler();
-		
+
 		this.f = f;
 		this.k = k;
 
 		this.kl = kl;
 		this.ml = ml;
-		
+
+		this.media = media;
+
 		this.mediumE = mediumE;
-		
-		
-		
+
+
+
 		mediumL = new JLabel("Medium");
-		
+
 		abbrechen2 = new JButton("Abbrechen");
 		ok = new JButton ("Ok");
-		
+
 		abbrechen2.addActionListener(a);
 		ok.addActionListener(a);
-		
+
 		ausws = new String [] {"DVD","Blu-Ray","VHS"};
-		
+
 		auswahl = new JComboBox<String>(ausws);
-		
+
 		angaben = new JPanel();
 		buttons = new JPanel();
-		
+
+		idL = new JLabel("ID");
+		lagerL = new JLabel("Lager");
+		verfügbarkeitL = new JLabel("Verfügbar ab");
+
 		titel = new JLabel("Titel");
 		jahr = new JLabel("Jahr");
 		genre = new JLabel("Genre");
 		beschreibung = new JLabel("Beschreibung");
-		
+
 		titelT = new JLabel(f.getTitel());
 		jahrT = new JLabel(Integer.toString(f.getJahr()));
 		genreT = new JLabel(f.getGenre());
 		beschreibungT = new JLabel(f.getBeschreibung());
-		
-		
-		gl = new GridLayout(4, 2);
+
+
+		gl = new GridLayout(7, 2);
 		fl = new FlowLayout();
-		
+
 		angaben.setLayout(gl);
 		buttons.setLayout(fl);
-		
+
 		abbrechen = new JButton("Abbrechen");
 		ausleihen = new JButton("Ausleihen");
-		
+
 		abbrechen.addActionListener(a);
 		ausleihen.addActionListener(a);
-		
+
+
+		if (media != null) {
+			id = new JLabel(Integer.toString(media.getId()));
+
+			if (media.isLagernd()) {
+				lager = new JLabel("Ja");
+			}
+			else {
+				lager = new JLabel("Nein");
+			}
+			verfügbarkeit = new JLabel (media.getRückgabedatum().toString());
+			
+			angaben.add(idL);
+			angaben.add(id);
+			angaben.add(lagerL);
+			angaben.add(lager);
+			angaben.add(verfügbarkeitL);
+			angaben.add(verfügbarkeit);
+		}
 		angaben.add(titel);
 		angaben.add(titelT);
 		angaben.add(jahr);
@@ -134,19 +177,19 @@ public class Film_anzeigen extends JFrame {
 		angaben.add(genreT);
 		angaben.add(beschreibung);
 		angaben.add(beschreibungT);
-		
+
 		buttons.add(abbrechen);
 		if(!mediumE) {
-		buttons.add(ausleihen);
+			buttons.add(ausleihen);
 		}
-		
+
 		add(angaben, BorderLayout.NORTH);
 		add(buttons, BorderLayout.SOUTH);
-		
-		
-		
+
+
+
 	}
-	
+
 
 
 
@@ -154,64 +197,68 @@ public class Film_anzeigen extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			if (e.getSource() == abbrechen) {
 				dispose();
 			}
-			
+
 			if (e.getSource() == abbrechen2) {
 				medium.dispose();
 			}
-			
+
 			if (e.getSource() == ok) {
 				m = auswahl.getSelectedItem().toString();
 				medium.setVisible(false);
-				
+
 				if (k == null) {
-				k = ucks.getKs().getK();
+					k = ucks.getKs().getK();
 				}
-				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl);
+				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, null);
+				
+				if (media != null) {
+					ucma.set(media);
+				}
 
 				ucma.ausleihen();
-				
+
 			}
-			
+
 			if (e.getSource() == ausleihen) {
-				
-				
-				
+
+
+
 				medium = new JDialog();
-				
+
 				JPanel suche = new JPanel();
 				JPanel buttons = new JPanel();
 				suche.setLayout(new FlowLayout());
 				buttons.setLayout(new FlowLayout());
-				
+
 				suche.add(mediumL);
 				suche.add(auswahl);
-				
+
 				buttons.add(abbrechen2);
 				buttons.add(ok);
-				
-				
+
+
 				medium.setTitle("Medium auswählen");
 				medium.setLayout(new GridLayout(2,1));
 				medium.add(suche);
 				medium.add(buttons);
-				
+
 				medium.setVisible(true);
 				medium.setSize(300, 150);
 				medium.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				
+
 				if (k == null) {
-				ucks = new UC_Kunde_suchen(kl, true);
+					ucks = new UC_Kunde_suchen(kl, true);
 				}
-						
+
 				dispose();
 			}
-			
+
 		}
-		
+
 	}
 
 }
