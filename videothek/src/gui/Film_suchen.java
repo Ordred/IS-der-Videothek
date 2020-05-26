@@ -358,7 +358,7 @@ public class Film_suchen extends JFrame {
 					suche2.setVisible(true);
 					suche2.setSize(600, 400);;
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					dispose();
+					
 				}
 
 				else {

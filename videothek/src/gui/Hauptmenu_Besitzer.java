@@ -126,7 +126,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 
 			if (e.getSource() == kundesuchen) {
 				kl.laden();
-				ucks = new UC_Kunde_suchen(kl, k != null);
+				ucks = new UC_Kunde_suchen(kl, false);
 			}
 
 			if (e.getSource() == mediumsuchen) {
@@ -143,7 +143,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 		}
 	}
 
-	
+	/*
 	
 	public static void main(String[] args) {
 		Hauptmenu_Besitzer hb = new Hauptmenu_Besitzer(null);
@@ -151,6 +151,6 @@ public class Hauptmenu_Besitzer extends JFrame {
 		hb.setVisible(true);
 		hb.setSize(400, 400);
 		hb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+*/
 	
 }

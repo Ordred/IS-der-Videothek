@@ -31,6 +31,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
+import filme.Filmliste;
+import filme.Medienliste;
+import filme.UC_Film_suchen;
 import kunden.Kunde;
 import kunden.Kundenliste;
 import kunden.UC_Guthaben_aufladen;
@@ -39,12 +42,12 @@ import kunden.UC_Kunde_suchen;
 
 public class LogIn extends JFrame {
 
-		private ArrayList<JButton> suchergebnisseName;
-		private ArrayList<JLabel> suchergebnisseVorname;
-		private ArrayList<JLabel> suchergebnisseGeburtsdatum;
-		private JPanel suchergebnisseP;
-		private JScrollPane sucheScroll;
-		private GridLayout sucheGL;
+		private ArrayList<JButton> name;
+		private ArrayList<JLabel> vorname;
+		private ArrayList<JLabel> geburtsdatum;
+		private JPanel nutzerP;
+		private JScrollPane nutzerPane;
+		private GridLayout loginGL;
 
 		private JLabel [] titelleiste;
 
@@ -71,11 +74,19 @@ public class LogIn extends JFrame {
 		private Hauptmenu_Besitzer hs;
 		
 		private JButton admin;
+		
+		private Kunde k;
+		
+		private UC_Film_suchen ucfs;
+		
+		private Filmliste fl;
+		
+		private Medienliste ml;
 
 
-		public LogIn (UC_Kunde_suchen ucks, Kundenliste kl) {
+		public LogIn () {
 
-			super("Kunde suchen");
+			super("Login");
 			gl = new GridLayout(3, 1);
 			super.setLayout(gl);
 			
@@ -84,23 +95,20 @@ public class LogIn extends JFrame {
 			kl.laden();
 
 
-			suchergebnisseName = new ArrayList<JButton>();
-			suchergebnisseVorname = new ArrayList<JLabel>();
-			suchergebnisseGeburtsdatum = new ArrayList<JLabel>();
+			name = new ArrayList<JButton>();
+			vorname = new ArrayList<JLabel>();
+			geburtsdatum = new ArrayList<JLabel>();
 			titelleiste = new JLabel[3];
 			titelleiste[0] = new JLabel("Name", SwingConstants.CENTER);
 			titelleiste[1] = new JLabel("Vorname", SwingConstants.CENTER);
 			titelleiste[2] = new JLabel("Geburtadatum", SwingConstants.CENTER);
-			suchergebnisseP = new JPanel();
-			sucheGL = new GridLayout(20, 3);
+			nutzerP = new JPanel();
+			loginGL = new GridLayout(20, 3);
 
 
-			suchergebnisseP.setLayout(sucheGL);
-			sucheScroll = new JScrollPane(suchergebnisseP,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-			suchergebnisseP.add(titelleiste[0]);
-			suchergebnisseP.add(titelleiste[1]);
-			suchergebnisseP.add(titelleiste[2]);
+			nutzerP.setLayout(loginGL);
+			
+			
 
 			titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.black));
 			titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.black));
@@ -117,43 +125,74 @@ public class LogIn extends JFrame {
 			titelleiste[2].setBackground(Color.BLUE);
 			titelleiste[2].setForeground(Color.WHITE);
 
-			sucheScroll.setPreferredSize(new Dimension(300, 300));
+
 
 
 			a = new ActionHandler();
 
 			auswahl.addActionListener(a);
 			
-			sucheGL = new GridLayout(kl.getKundenliste().size()+2, 3);
+			loginGL = new GridLayout(kl.getKundenliste().size()+2, 3);
 			
 			admin = new JButton("Admin");
 			
-			suchergebnisseName.add(admin);
-			suchergebnisseVorname.add(new JLabel("Admin", SwingConstants.CENTER));
-			suchergebnisseGeburtsdatum.add(new JLabel ("Admin", SwingConstants.CENTER));
+			nutzerP.add(titelleiste[0]);
+			nutzerP.add(titelleiste[1]);
+			nutzerP.add(titelleiste[2]);
+			
+			
+			
+			System.out.println(kl);
+			
+			
 
 			for (int i = 0; i < kl.getKundenliste().size(); i++) {
 				
+				if (i == 0) {
+					name.add(admin);
+					vorname.add(new JLabel("Admin", SwingConstants.CENTER));
+					geburtsdatum.add(new JLabel ("Admin", SwingConstants.CENTER));
+					
+					nutzerP.add(name.get(i));
+					nutzerP.add(vorname.get(i));
+					nutzerP.add(geburtsdatum.get(i));
+					
+					name.get(i).addActionListener(a);
+					
+					vorname.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+					geburtsdatum.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+				}
+				
+				System.out.println(kl.getKundenliste().get(i).getName());
 
-				suchergebnisseName.add(new JButton(kl.getKundenliste().get(i).getName()));
-				suchergebnisseVorname.add(new JLabel(kl.getKundenliste().get(i).getVorname(), SwingConstants.CENTER));
-				suchergebnisseGeburtsdatum.add(new JLabel(kl.getKundenliste().get(i).getGeburtsdatum(), SwingConstants.CENTER));
+				name.add(new JButton(kl.getKundenliste().get(i).getName()));
+				vorname.add(new JLabel(kl.getKundenliste().get(i).getVorname(), SwingConstants.CENTER));
+				geburtsdatum.add(new JLabel(kl.getKundenliste().get(i).getGeburtsdatum(), SwingConstants.CENTER));
+				
+				vorname.get(i+1).setBorder(BorderFactory.createLineBorder(Color.black));
+				geburtsdatum.get(i+1).setBorder(BorderFactory.createLineBorder(Color.black));
 
-				suchergebnisseName.get(i).setSize(300, 10);
-
-				suchergebnisseName.get(i).setVisible(true);
-				suchergebnisseName.get(i).addActionListener(a);
-				suchergebnisseP.add(suchergebnisseName.get(i));
-				suchergebnisseP.add(suchergebnisseVorname.get(i));
-				suchergebnisseP.add(suchergebnisseGeburtsdatum.get(i));
-				suchergebnisseVorname.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-				suchergebnisseGeburtsdatum.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-				suchergebnisseP.setLayout(sucheGL);
-				suchergebnisseP.repaint();
-				sucheScroll.repaint();
+				name.get(i+1).addActionListener(a);
+				nutzerP.add(name.get(i+1));
+				nutzerP.add(vorname.get(i+1));
+				nutzerP.add(geburtsdatum.get(i+1));
+				
+				nutzerP.setLayout(loginGL);
+				nutzerP.repaint();
 				repaint();
-				System.out.println(suchergebnisseName.get(i).getText());
+				System.out.println(name.get(i).getText());
 			}
+			
+			nutzerPane = new JScrollPane(nutzerP,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+			nutzerPane.setPreferredSize(new Dimension(300, 300));
+			
+			
+			
+			super.add(nutzerPane);
+			validate();
+			repaint();
+			
 
 		}
 
@@ -166,10 +205,22 @@ public class LogIn extends JFrame {
 
 				
 				if (e.getSource() == admin) {
-					hs = new Hauptmenu_Besitzer();
+					hs = new Hauptmenu_Besitzer(k);
 					hs.setVisible(true);
 					hs.setSize(500, 500);
 					hs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dispose();
+				}
+				
+				for (int i = 1; i < name.size(); i++) {
+					k = kl.getKundenliste().get(i-1);
+					fl = new Filmliste();
+					ml = new Medienliste();
+					fl.laden();
+					ml.laden();
+					if (e.getSource() == name.get(i)) {
+						ucfs = new UC_Film_suchen(fl, false, kl, ml, k);
+					}
 				}
 
 
@@ -225,10 +276,16 @@ public class LogIn extends JFrame {
 			
 		}
 		
-		/*
+		
 		public static void main(String[] args) {
+			LogIn l = new LogIn();
+			l.setVisible(true);
+			l.setSize(400, 400);
+			l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			
 			
 		}
 		
-		*/
+		
 	}

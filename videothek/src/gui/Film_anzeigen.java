@@ -166,9 +166,12 @@ public class Film_anzeigen extends JFrame {
 			if (e.getSource() == ok) {
 				m = auswahl.getSelectedItem().toString();
 				medium.setVisible(false);
-				k = ucks.getKs().getK();								
+				
+				if (k == null) {
+				k = ucks.getKs().getK();
+				}
 				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl);
-				ucma.setK(k);
+
 				ucma.ausleihen();
 				
 			}
@@ -199,8 +202,10 @@ public class Film_anzeigen extends JFrame {
 				medium.setVisible(true);
 				medium.setSize(300, 150);
 				medium.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				ucks = new UC_Kunde_suchen(kl, true);
 				
+				if (k == null) {
+				ucks = new UC_Kunde_suchen(kl, true);
+				}
 						
 				dispose();
 			}
