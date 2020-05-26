@@ -217,7 +217,7 @@ public class Medium_suchen extends JFrame {
 
 			for (int i = 0; i < suchergebnisseB.size(); i++) {
 				if (e.getSource() == suchergebnisseB.get(i)) {
-					fa = new Film_anzeigen(suchergebnisse.get(i).getFilm());
+					fa = new Film_anzeigen(suchergebnisse.get(i).getFilm(),null,null,null);
 					fa.setSize(400, 400);
 					fa.setVisible(true);
 					fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -408,7 +408,7 @@ public class Medium_suchen extends JFrame {
 					suche2.setVisible(true);
 					suche2.setSize(600, 400);;
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+					dispose();
 				}
 
 				else {

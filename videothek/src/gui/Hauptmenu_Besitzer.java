@@ -15,6 +15,7 @@ import filme.UC_Film_erfassen;
 import filme.UC_Film_suchen;
 import filme.UC_Medium_erfassen;
 import filme.UC_Medium_suchen;
+import kunden.Kunde;
 import kunden.Kundenliste;
 import kunden.UC_Guthaben_aufladen;
 import kunden.UC_Kunde_erfassen;
@@ -24,6 +25,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 
 
 	private	ActionHandler a;
+	
+	private Kunde k;
 
 	private JButton filmerfassen;
 	private JButton kundeerfassen;
@@ -47,9 +50,11 @@ public class Hauptmenu_Besitzer extends JFrame {
 	private Kundenliste kl;
 	private Medienliste ml;
 
-	public Hauptmenu_Besitzer() {
+	public Hauptmenu_Besitzer(Kunde k) {
 
 		super("Hauptmenu Besitzer");
+		
+		this.k = k;
 
 		fl = new Filmliste();
 
@@ -115,12 +120,13 @@ public class Hauptmenu_Besitzer extends JFrame {
 
 			if (e.getSource() == filmsuchen) {
 				fl.laden();
-				ucsf = new UC_Film_suchen(fl, false);
+				ml.laden();
+				ucsf = new UC_Film_suchen(fl, false, kl, ml);
 			}
 
 			if (e.getSource() == kundesuchen) {
 				kl.laden();
-				ucks = new UC_Kunde_suchen(kl);
+				ucks = new UC_Kunde_suchen(kl, k != null);
 			}
 
 			if (e.getSource() == mediumsuchen) {
@@ -130,6 +136,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 			}
 
 			if (e.getSource() == mediumerfassen) {
+				ml.laden();
+				fl.laden();
 				ucme = new UC_Medium_erfassen(ml, fl);
 			}
 		}
@@ -138,7 +146,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 	
 	
 	public static void main(String[] args) {
-		Hauptmenu_Besitzer hb = new Hauptmenu_Besitzer();
+		Hauptmenu_Besitzer hb = new Hauptmenu_Besitzer(null);
 
 		hb.setVisible(true);
 		hb.setSize(400, 400);

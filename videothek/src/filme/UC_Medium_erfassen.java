@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 
 import gui.Film_suchen;
 import gui.Medium_erfassen;
+import kunden.Kunde;
+import kunden.Kundenliste;
 
 public class UC_Medium_erfassen {
 	
@@ -13,6 +15,7 @@ public class UC_Medium_erfassen {
 	private Filmliste fl;
 	private Film f;
 	private Medium_erfassen me;
+	private Kundenliste kl;
 	
 	public UC_Medium_erfassen(Medienliste ml, Filmliste fl) {
 		m = new Medium();
@@ -32,8 +35,12 @@ public class UC_Medium_erfassen {
 		m.setId(id);
 	}
 	
+	public void setPreis(int preis) {
+		m.setPreis(-preis);
+	}
+	
 	public void setFilm() {
-		fs = new Film_suchen(new UC_Film_suchen(fl, true), true, this);
+		fs = new Film_suchen(new UC_Film_suchen(fl, true, kl, ml), true, null, true, this, kl, ml);
 		fs.setVisible(true);
 		fs.setSize(300, 200);
 		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

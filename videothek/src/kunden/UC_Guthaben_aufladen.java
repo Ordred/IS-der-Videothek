@@ -30,7 +30,7 @@ public class UC_Guthaben_aufladen {
 	
 	public void aufladen(int betrag) {
 		
-		k.setGuthaben(k.getGuthaben()+betrag);
+		k.setGuthaben(betrag);
 		kl.kundeBearbeiten(k);
 		
 		ka.repaint();

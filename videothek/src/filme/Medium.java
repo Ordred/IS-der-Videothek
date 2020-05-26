@@ -11,11 +11,21 @@ public class Medium implements Serializable {
 	private Film film;
 	private boolean lagernd;
 	private LocalDate rückgabedatum;
+	private int preis;
 
 	public Medium() {
 
 		lagernd = true;
+		preis = 5;
 
+	}
+
+	public int getPreis() {
+		return preis;
+	}
+
+	public void setPreis(int preis) {
+		this.preis = preis;
 	}
 
 	public boolean isLagernd() {

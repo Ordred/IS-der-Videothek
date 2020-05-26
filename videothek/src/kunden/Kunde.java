@@ -17,13 +17,12 @@ public class Kunde implements Serializable {
 	private int guthaben;
 	private ArrayList<Medium> ausleihliste;
 	
-	
-	public void ausleihen(Medium medium) {
-		if (ausleihliste == null) {
-			ausleihliste = new ArrayList<Medium>();
-		}
-		ausleihliste.add(medium);
+	public Kunde() {
+		guthaben = 0;
+		
+		ausleihliste = new ArrayList<Medium>();
 	}
+	
 	
 	public ArrayList<Medium> getAusleihliste() {
 		return ausleihliste;
@@ -59,7 +58,7 @@ public class Kunde implements Serializable {
 		return guthaben;
 	}
 	public void setGuthaben(int guthaben) {
-		this.guthaben = guthaben;
+		this.guthaben += guthaben;
 	}
 	
 }

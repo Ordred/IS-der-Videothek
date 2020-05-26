@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import filme.UC_Medium_ausleihen;
 import gui.Kunde_suchen;
 
 public class UC_Kunde_suchen {
@@ -16,17 +17,29 @@ public class UC_Kunde_suchen {
 
 
 
-	public UC_Kunde_suchen(Kundenliste kl) {
+
+	public UC_Kunde_suchen(Kundenliste kl, boolean admin) {
 
 		this.kl = kl;
 
+
 		suchergebnisse = new ArrayList<Kunde>();
 
-		ks = new Kunde_suchen(this, kl);
+		ks = new Kunde_suchen(this, kl, admin);
 
 		ks.setVisible(true);
 		ks.setSize(300, 150);
 		ks.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+
+
+	public Kunde_suchen getKs() {
+		return ks;
+	}
+
+
+	public void setKs(Kunde_suchen ks) {
+		this.ks = ks;
 	}
 
 

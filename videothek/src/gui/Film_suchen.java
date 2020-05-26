@@ -30,8 +30,13 @@ import javax.swing.SwingConstants;
 
 import filme.Film;
 import filme.Filmliste;
+import filme.Medienliste;
 import filme.UC_Film_suchen;
+import filme.UC_Medium_ausleihen;
 import filme.UC_Medium_erfassen;
+import kunden.Kunde;
+import kunden.Kundenliste;
+import kunden.UC_Kunde_suchen;
 
 public class Film_suchen extends JFrame {
 
@@ -81,8 +86,13 @@ public class Film_suchen extends JFrame {
 	private JPanel menu;
 	private JPanel suche;
 	private JPanel buttons;
+	
+	private boolean admin;
+	private Kunde k;
+	private Kundenliste kl;
+	private Medienliste ml;
 
-	public Film_suchen (UC_Film_suchen ucsf, boolean medium, UC_Medium_erfassen ucme) {
+	public Film_suchen (UC_Film_suchen ucsf, boolean medium, Kunde k, boolean admin, UC_Medium_erfassen ucme, Kundenliste kl, Medienliste ml) {
 
 		super("Film suchen");
 		gl = new GridLayout(3, 1);
@@ -90,6 +100,10 @@ public class Film_suchen extends JFrame {
 		
 		this.medium = medium;
 		this.ucme = ucme;
+		this.k = k;
+		this.admin = admin;
+		this.kl = kl;
+		this.ml = ml;
 
 		suche2 = new JDialog();
 
@@ -204,7 +218,7 @@ public class Film_suchen extends JFrame {
 
 			for (int i = 0; i < suchergebnisseB.size(); i++) {
 				if (e.getSource() == suchergebnisseB.get(i)) {
-					fa = new Film_anzeigen(suchergebnisse.get(i));
+					fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml);
 					fa.setSize(400, 400);
 					fa.setVisible(true);
 					fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -344,7 +358,7 @@ public class Film_suchen extends JFrame {
 					suche2.setVisible(true);
 					suche2.setSize(600, 400);;
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+					dispose();
 				}
 
 				else {
