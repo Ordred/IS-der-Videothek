@@ -1,11 +1,10 @@
-package kunden;
+package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
 
-import filme.Medium;
 import login.Benutzer;
 
 public class Kunde implements Serializable {

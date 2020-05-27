@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -28,22 +32,22 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import filme.Film;
-import filme.Filmliste;
-import filme.Medienliste;
-import filme.UC_Film_suchen;
-import filme.UC_Medium_ausleihen;
-import filme.UC_Medium_erfassen;
-import kunden.Kunde;
-import kunden.Kundenliste;
-import kunden.UC_Kunde_suchen;
+import controller.UC_Film_suchen;
+import controller.UC_Kunde_suchen;
+import controller.UC_Medium_ausleihen;
+import controller.UC_Medium_erfassen;
+import model.Film;
+import model.Filmliste;
+import model.Kunde;
+import model.Kundenliste;
+import model.Medienliste;
 
-public class Film_suchen extends JFrame {
+public class Film_suchen extends suchFrame {
 
 	private ArrayList<Film> suchergebnisse;
-	private ArrayList<JButton> suchergebnisseB;
-	private ArrayList<JLabel> suchergebnisseGenre;
-	private ArrayList<JLabel> suchergebnisseJahr;
+	private ArrayList<suchButton> suchergebnisseB;
+	private ArrayList<suchLabel> suchergebnisseGenre;
+	private ArrayList<suchLabel> suchergebnisseJahr;
 	private JPanel suchergebnisseP;
 	private JScrollPane sucheScroll;
 	private GridLayout sucheGL;
@@ -59,8 +63,8 @@ public class Film_suchen extends JFrame {
 
 	private JDialog nichtgefunden;
 	private JLabel nichtgefundenL;
-	private JButton ok;
-	private JPanel ngfPanel;
+	private buttons ok;
+	private erfassPanel ngfPanel;
 
 	private String [] kriterien = {"Titel", "Jahr", "Genre", "Beschreibung"};
 
@@ -74,7 +78,7 @@ public class Film_suchen extends JFrame {
 	private JLabel suchbegriffe;
 
 	private JButton suchen;
-	private JButton abbrechen;
+	private buttons abbrechen;
 
 	private FlowLayout flow1;
 	private FlowLayout flow2;
@@ -86,7 +90,7 @@ public class Film_suchen extends JFrame {
 	private JPanel menu;
 	private JPanel suche;
 	private JPanel buttons;
-	
+
 	private boolean admin;
 	private Kunde k;
 	private Kundenliste kl;
@@ -97,7 +101,9 @@ public class Film_suchen extends JFrame {
 		super("Film suchen");
 		gl = new GridLayout(3, 1);
 		super.setLayout(gl);
-		
+
+		setLocationRelativeTo(null);
+
 		this.medium = medium;
 		this.ucme = ucme;
 		this.k = k;
@@ -109,16 +115,18 @@ public class Film_suchen extends JFrame {
 
 
 		suchergebnisse = new ArrayList<Film>();
-		suchergebnisseB = new ArrayList<JButton>();
-		suchergebnisseGenre = new ArrayList<JLabel>();
-		suchergebnisseJahr = new ArrayList<JLabel>();
+		suchergebnisseB = new ArrayList<suchButton>();
+		suchergebnisseGenre = new ArrayList<suchLabel>();
+		suchergebnisseJahr = new ArrayList<suchLabel>();
 		titelleiste = new JLabel[3];
-		titelleiste[0] = new JLabel("Titel", SwingConstants.CENTER);
-		titelleiste[1] = new JLabel("Genre", SwingConstants.CENTER);
-		titelleiste[2] = new JLabel("Jahr", SwingConstants.CENTER);
+		titelleiste[0] = new erfassLabel("Titel", SwingConstants.CENTER);
+		titelleiste[1] = new erfassLabel("Genre", SwingConstants.CENTER);
+		titelleiste[2] = new erfassLabel("Jahr", SwingConstants.CENTER);
 		suchergebnisseP = new JPanel();
 		sucheGL = new GridLayout(20, 3);
 
+		suchergebnisseP.setBackground(Color.black);
+		suchergebnisseP.setForeground(Color.white);
 
 		suchergebnisseP.setLayout(sucheGL);
 		sucheScroll = new JScrollPane(suchergebnisseP,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -127,20 +135,23 @@ public class Film_suchen extends JFrame {
 		suchergebnisseP.add(titelleiste[1]);
 		suchergebnisseP.add(titelleiste[2]);
 
-		titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.black));
-		titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.black));
-		titelleiste[2].setBorder(BorderFactory.createLineBorder(Color.black));
+		titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.white));
+		titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.white));
+		titelleiste[2].setBorder(BorderFactory.createLineBorder(Color.white));
 
 		titelleiste[0].setOpaque(true);
 		titelleiste[1].setOpaque(true);
 		titelleiste[2].setOpaque(true);
 
-		titelleiste[0].setBackground(Color.BLUE);
-		titelleiste[0].setForeground(Color.WHITE);
-		titelleiste[1].setBackground(Color.BLUE);
-		titelleiste[1].setForeground(Color.WHITE);
-		titelleiste[2].setBackground(Color.BLUE);
-		titelleiste[2].setForeground(Color.WHITE);
+		for (int i = 0; i < titelleiste.length; i++) {
+
+
+
+			titelleiste[i].setFont(new Font("Arial", 2, 30));
+
+		}
+
+
 
 		sucheScroll.setPreferredSize(new Dimension(300, 300));
 
@@ -151,11 +162,11 @@ public class Film_suchen extends JFrame {
 
 		auswahl.addActionListener(a);
 
-		auswahlL = new JLabel("Auswahl");
+		auswahlL = new erfassLabel("Auswahl", SwingConstants.LEFT);
 
-		menu = new JPanel();
-		suche = new JPanel();
-		buttons = new JPanel();
+		menu = new erfassPanel(null);
+		suche = new erfassPanel(null);
+		buttons = new erfassPanel(null);
 
 		flow1 = new FlowLayout();
 		flow2 = new FlowLayout();
@@ -165,14 +176,27 @@ public class Film_suchen extends JFrame {
 		buttons.setLayout(flow2);
 		menu.setLayout(flow3);
 
-		suchen = new JButton("Suchen");
-		abbrechen = new JButton("Abbrechen");
+
+		ImageIcon sucheIc = new ImageIcon("hiclipart.com.png");
+
+
+		Image img = sucheIc.getImage() ;  
+		Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
+		sucheIc = new ImageIcon( newimg );
+
+		suchen = new buttons(sucheIc);
+
+
+
+		suchen.setSize(20, 20);
+
+		abbrechen = new buttons("Abbrechen");
 
 		suchen.addActionListener(a);
 		abbrechen.addActionListener(a);
 
 		suchfeld = new JTextField("Suchbegriff eingeben");
-		suchbegriffe = new JLabel("Suchbegriffe");
+		suchbegriffe = new erfassLabel("Suchbegriffe", SwingConstants.LEFT);
 
 		suche.add(suchbegriffe, BorderLayout.WEST);
 		suche.add(suchfeld, BorderLayout.CENTER);
@@ -183,7 +207,7 @@ public class Film_suchen extends JFrame {
 		menu.add(auswahlL);
 		menu.add(auswahl);
 
-
+		suchergebnisseP.setBackground(Color.black);
 
 		add(menu, BorderLayout.NORTH);
 		add(suche, BorderLayout.CENTER);
@@ -191,10 +215,11 @@ public class Film_suchen extends JFrame {
 
 
 		nichtgefunden = new JDialog();
-		nichtgefundenL = new JLabel("Es konnte kein Film mit diesen Angaben gefunden werden");
+		nichtgefunden.setBackground(Color.black);
+		nichtgefundenL = new erfassLabel("Es konnte kein Film mit diesen Angaben gefunden werden", SwingConstants.CENTER);
 		nichtgFL = new FlowLayout();
-		ok = new JButton ("Ok");
-		ngfPanel = new JPanel();
+		ok = new buttons ("Ok");
+		ngfPanel = new erfassPanel(null);
 		ngfPanel.setLayout(nichtgFL);
 		ngfPanel.add(ok, BorderLayout.CENTER);
 		ok.addActionListener(a);
@@ -213,19 +238,20 @@ public class Film_suchen extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			if (!medium) {
 
-			for (int i = 0; i < suchergebnisseB.size(); i++) {
-				if (e.getSource() == suchergebnisseB.get(i)) {
-					fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml, medium, null);
-					fa.setSize(400, 400);
-					fa.setVisible(true);
-					fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				for (int i = 0; i < suchergebnisseB.size(); i++) {
+					if (e.getSource() == suchergebnisseB.get(i)) {
+						fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml, medium, null);
+						fa.setVisible(true);
+
+						fa.setLocationRelativeTo(null);
+						fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					}
 				}
 			}
-			}
-			
+
 			else {
 				for (int i = 0; i < suchergebnisseB.size(); i++) {
 					if (e.getSource() == suchergebnisseB.get(i)) {
@@ -246,9 +272,9 @@ public class Film_suchen extends JFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new suchButton(suchergebnisse.get(i).getTitel()));
+						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -273,9 +299,9 @@ public class Film_suchen extends JFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(3, suchergebnisse.size()+1);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new suchButton(suchergebnisse.get(i).getTitel()));
+						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -301,9 +327,9 @@ public class Film_suchen extends JFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(3, suchergebnisse.size()+1);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new suchButton(suchergebnisse.get(i).getTitel()));
+						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -328,9 +354,9 @@ public class Film_suchen extends JFrame {
 
 						sucheGL = new GridLayout(3, suchergebnisse.size()+1);
 
-						suchergebnisseB.add(new JButton(suchergebnisse.get(i).getTitel()));
-						suchergebnisseGenre.add(new JLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new JLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new suchButton(suchergebnisse.get(i).getTitel()));
+						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -356,9 +382,11 @@ public class Film_suchen extends JFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize(600, 400);;
+					suche2.setSize(800,800);
+					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					
+					dispose();
+
 				}
 
 				else {
@@ -393,7 +421,7 @@ public class Film_suchen extends JFrame {
 					suchergebnisse = ucfs.jahr(Integer.parseInt(suchfeld.getText()));
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 
-						suchergebnisseL.add(new JButton(suchergebnisse.get(i).getJahr()+"\t"+
+						suchergebnisseL.add(new buttons(suchergebnisse.get(i).getJahr()+"\t"+
 								suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 					}
@@ -402,7 +430,7 @@ public class Film_suchen extends JFrame {
 						suchergebnisse = ucfs.genre(suchfeld.getText());
 						for (int i = 0; i < suchergebnisse.size(); i++) {
 
-							suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
+							suchergebnisseL.add(new buttons(suchergebnisse.get(i).getTitel()+"\t"+
 									suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 						}
@@ -411,7 +439,7 @@ public class Film_suchen extends JFrame {
 							suchergebnisse = ucfs.beschreibung(suchfeld.getText());
 							for (int i = 0; i < suchergebnisse.size(); i++) {
 
-								suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
+								suchergebnisseL.add(new buttons(suchergebnisse.get(i).getTitel()+"\t"+
 										suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 							}		

@@ -31,13 +31,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import filme.Filmliste;
-import filme.Medienliste;
-import filme.UC_Film_suchen;
-import kunden.Kunde;
-import kunden.Kundenliste;
-import kunden.UC_Guthaben_aufladen;
-import kunden.UC_Kunde_suchen;
+import controller.UC_Film_suchen;
+import controller.UC_Guthaben_aufladen;
+import controller.UC_Kunde_suchen;
+import model.Filmliste;
+import model.Kunde;
+import model.Kundenliste;
+import model.Medienliste;
 
 
 public class LogIn extends JFrame {
@@ -90,7 +90,7 @@ public class LogIn extends JFrame {
 			gl = new GridLayout(3, 1);
 			super.setLayout(gl);
 			
-
+			setLocationRelativeTo(null);
 			kl = new Kundenliste();
 			kl.laden();
 
@@ -144,9 +144,9 @@ public class LogIn extends JFrame {
 			
 			System.out.println(kl);
 			
-			
+			int i = 0;
 
-			for (int i = 0; i < kl.getKundenliste().size(); i++) {
+			do {
 				
 				if (i == 0) {
 					name.add(admin);
@@ -163,6 +163,8 @@ public class LogIn extends JFrame {
 					geburtsdatum.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
 				}
 				
+				if (kl.getKundenliste().size() != 0) {
+				
 				System.out.println(kl.getKundenliste().get(i).getName());
 
 				name.add(new JButton(kl.getKundenliste().get(i).getName()));
@@ -173,15 +175,18 @@ public class LogIn extends JFrame {
 				geburtsdatum.get(i+1).setBorder(BorderFactory.createLineBorder(Color.black));
 
 				name.get(i+1).addActionListener(a);
+				
 				nutzerP.add(name.get(i+1));
 				nutzerP.add(vorname.get(i+1));
 				nutzerP.add(geburtsdatum.get(i+1));
-				
+				}
 				nutzerP.setLayout(loginGL);
 				nutzerP.repaint();
 				repaint();
 				System.out.println(name.get(i).getText());
-			}
+				i++;
+				
+			} while (i < kl.getKundenliste().size());
 			
 			nutzerPane = new JScrollPane(nutzerP,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -208,6 +213,7 @@ public class LogIn extends JFrame {
 					hs = new Hauptmenu_Besitzer(k);
 					hs.setVisible(true);
 					hs.setSize(500, 500);
+					hs.setLocationRelativeTo(null);
 					hs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					dispose();
 				}
@@ -278,11 +284,19 @@ public class LogIn extends JFrame {
 		
 		
 		public static void main(String[] args) {
+			
 			LogIn l = new LogIn();
 			l.setVisible(true);
 			l.setSize(400, 400);
 			l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
+			l.setLocationRelativeTo(null);
+			/*
+			Hauptmenu_Besitzer hs = new Hauptmenu_Besitzer(null);
+			hs.setVisible(true);
+			hs.setSize(500, 500);
+			hs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			hs.setLocationRelativeTo(null);
+			*/
 			
 			
 		}

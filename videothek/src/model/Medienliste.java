@@ -1,5 +1,6 @@
-package kunden;
+package model;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,58 +10,47 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+public class Medienliste implements Serializable{
 
-public class Kundenliste implements Serializable{
-	
-	private ArrayList<Kunde> kundenliste;
+	private ArrayList<Medium> medienliste;
 	private String datei;
 	private FileOutputStream fos;
 	private ObjectOutputStream out;
 	private FileInputStream fis;
 	private ObjectInputStream in;
 
-	
-	public Kundenliste() {
-		kundenliste = new ArrayList<Kunde>();
-		datei = "kundenlist.ser";		
+
+	public Medienliste() {
+		medienliste = new ArrayList<Medium>();
+		datei = "medienliste.ser";
 	}
-	
-	public void kundeBearbeiten(Kunde k) {
-		
-		for (int i = 0; i < kundenliste.size(); i++) {
-			if (k == kundenliste.get(i)) {
-				kundenliste.set(i, k);
-			}
-		}
+
+
+	public void mediumHinzufügen(Medium m) {
+		medienliste.add(m);
 		speichern();
-		
-	}
-	
-	public void kundeHinzufügen(Kunde k) {
-		kundenliste.add(k);
-		speichern();
+		System.out.println("hinzugefügt");
 
 	}
-	
+
 	public void laden() {
 
 		try {
 		fis = new FileInputStream(datei);
 		in = new ObjectInputStream(fis);
 		
-		kundenliste = (ArrayList<Kunde>)in.readObject();
+		medienliste = (ArrayList<Medium>)in.readObject();
 		} catch (FileNotFoundException e) {
 			
 		}
 		catch (IOException e) {
-			System.out.println("iokunde");
+			System.out.println("iofilm");
 			
 		}
 		catch (ClassNotFoundException e) {
 			
 		}
 	}
-	
 
 
 	public void speichern() {
@@ -69,7 +59,7 @@ public class Kundenliste implements Serializable{
 			fos = new FileOutputStream(datei);
 			out = new ObjectOutputStream(fos);
 
-			out.writeObject(kundenliste);
+			out.writeObject(medienliste);
 
 			fos.close();
 			out.close();
@@ -77,16 +67,17 @@ public class Kundenliste implements Serializable{
 			System.out.println("gespeichert");
 
 		} catch (IOException e) {
-			System.out.println("io gesp k");
+
 		}		
 	}
-	
-	public ArrayList<Kunde> getKundenliste() {
-		return kundenliste;
+
+	public ArrayList<Medium> getMedienliste() {
+
+		return medienliste;
 	}
 
-	public void setKundenliste(ArrayList<Kunde> kundenliste) {
-		this.kundenliste = kundenliste;
+	public void setFilmliste(ArrayList<Medium> medienliste) {
+		this.medienliste = medienliste;
 	}
 
 }

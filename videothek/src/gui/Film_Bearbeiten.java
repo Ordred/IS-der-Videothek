@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import filme.UC_Film_bearbeiten;
-import filme.UC_Film_erfassen;
+import controller.UC_Film_bearbeiten;
+import controller.UC_Film_erfassen;
 
 public class Film_Bearbeiten extends JFrame{
 
@@ -49,6 +49,8 @@ public class Film_Bearbeiten extends JFrame{
 		
 		super("Film erfassen");
 		
+		
+		setLocationRelativeTo(null);
 		this.ucfb = ucfb;
 		
 		a = new ActionHandler();

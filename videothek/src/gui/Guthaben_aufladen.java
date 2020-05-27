@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import kunden.UC_Guthaben_aufladen;
+import controller.UC_Guthaben_aufladen;
 
 public class Guthaben_aufladen extends JFrame {
 	
@@ -31,6 +31,8 @@ public class Guthaben_aufladen extends JFrame {
 		
 		super("Guthaben aufladen");
 		
+		
+		setLocationRelativeTo(null);
 		this.uga = uga;
 		
 		a = new ActionHandler();

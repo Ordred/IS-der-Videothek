@@ -1,11 +1,15 @@
-package filme;
+package controller;
 
 import javax.swing.JFrame;
 
 import gui.Film_suchen;
 import gui.Medium_erfassen;
-import kunden.Kunde;
-import kunden.Kundenliste;
+import model.Film;
+import model.Filmliste;
+import model.Kunde;
+import model.Kundenliste;
+import model.Medienliste;
+import model.Medium;
 
 public class UC_Medium_erfassen {
 	
@@ -24,7 +28,7 @@ public class UC_Medium_erfassen {
 		
 		me = new Medium_erfassen(this, ml);
 		me.setVisible(true);
-		me.setSize(300, 200);
+		me.setSize(300, 250);
 		me.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		

@@ -3,28 +3,30 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import filme.Film;
-import filme.Medienliste;
-import filme.Medium;
-import filme.UC_Medium_ausleihen;
-import kunden.Kunde;
-import kunden.Kundenliste;
-import kunden.UC_Kunde_suchen;
 
-public class Film_anzeigen extends JFrame {
+import javax.swing.SwingConstants;
+
+import controller.UC_Kunde_suchen;
+import controller.UC_Medium_ausleihen;
+import model.Film;
+import model.Kunde;
+import model.Kundenliste;
+import model.Medienliste;
+import model.Medium;
+
+public class Film_anzeigen extends erfassFrame {
 
 	private JComboBox<String> auswahl;
-	private JLabel mediumL;
+	private erfassLabel mediumL;
 
 	private Medienliste ml;
 
@@ -34,8 +36,8 @@ public class Film_anzeigen extends JFrame {
 
 	private String m;
 
-	private JButton abbrechen2;
-	private JButton ok;
+	private buttons abbrechen2;
+	private buttons ok;
 
 	private Kunde_suchen ks;
 
@@ -50,21 +52,22 @@ public class Film_anzeigen extends JFrame {
 	private GridLayout gl;
 	private FlowLayout fl;
 
-	private JPanel angaben;
-	private JPanel buttons;
+	private erfassPanel angaben;
+	private erfassPanel buttons;
 
-	private JLabel titel;
-	private JLabel jahr;
-	private JLabel genre;
-	private JLabel beschreibung;
+	private erfassLabel titel;
+	private erfassLabel jahr;
+	private erfassLabel genre;
+	private erfassLabel beschreibung;
+	private erfassLabel hülle;
 
-	private JLabel titelT;
-	private JLabel jahrT;
-	private JLabel genreT;
-	private JLabel beschreibungT;
+	private erfassLabel titelT;
+	private erfassLabel jahrT;
+	private erfassLabel genreT;
+	private erfassLabel beschreibungT;
 
-	private JButton ausleihen;
-	private JButton abbrechen;
+	private buttons ausleihen;
+	private buttons abbrechen;
 
 	private String [] ausws;
 
@@ -74,19 +77,24 @@ public class Film_anzeigen extends JFrame {
 
 	private Medium media;
 
-	private JLabel idL;
-	private JLabel id;
-	private JLabel lagerL;
-	private JLabel lager;
-	private JLabel verfügbarkeitL;
-	private JLabel verfügbarkeit;
+	private erfassLabel idL;
+	private erfassLabel id;
+	private erfassLabel lagerL;
+	private erfassLabel lager;
+	private erfassLabel verfügbarkeitL;
+	private erfassLabel verfügbarkeit;
 
 	private String verf;
+	private erfassPanel bild;
 
 
 
 	public Film_anzeigen(Film f, Kunde k, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
-		super();
+		super("");
+		
+		
+		
+		setSize(500, 400);
 		if (media == null) {
 			super.setTitle("Filminformationen");
 		}
@@ -94,6 +102,8 @@ public class Film_anzeigen extends JFrame {
 		else {
 			super.setTitle("Medieninformationen");
 		}
+		
+		setLocationRelativeTo(null);
 		a = new ActionHandler();
 
 		this.f = f;
@@ -106,12 +116,23 @@ public class Film_anzeigen extends JFrame {
 
 		this.mediumE = mediumE;
 
+		
+		ImageIcon icon = new ImageIcon(f.getHülle());
 
+		
+		
+		Image img = icon.getImage() ;  
+		Image newimg = img.getScaledInstance( 200, 300,  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon = new ImageIcon( newimg );
 
-		mediumL = new JLabel("Medium");
+		hülle = new erfassLabel(icon);
+		
+		
+		mediumL = new erfassLabel("Medium", SwingConstants.CENTER);
+	
+		abbrechen2 = new buttons("Abbrechen");
 
-		abbrechen2 = new JButton("Abbrechen");
-		ok = new JButton ("Ok");
+		ok = new buttons ("Ok");
 
 		abbrechen2.addActionListener(a);
 		ok.addActionListener(a);
@@ -120,22 +141,24 @@ public class Film_anzeigen extends JFrame {
 
 		auswahl = new JComboBox<String>(ausws);
 
-		angaben = new JPanel();
-		buttons = new JPanel();
+		angaben = new erfassPanel();
+		buttons = new erfassPanel();
+		bild = new erfassPanel();
+		bild.add(hülle, BorderLayout.CENTER);
 
-		idL = new JLabel("ID");
-		lagerL = new JLabel("Lager");
-		verfügbarkeitL = new JLabel("Verfügbar ab");
+		idL = new erfassLabel("ID", SwingConstants.LEFT);
+		lagerL = new erfassLabel("Lager",  SwingConstants.LEFT);
+		verfügbarkeitL = new erfassLabel("Verfügbar ab", SwingConstants.LEFT);
 
-		titel = new JLabel("Titel");
-		jahr = new JLabel("Jahr");
-		genre = new JLabel("Genre");
-		beschreibung = new JLabel("Beschreibung");
+		titel = new erfassLabel("Titel", SwingConstants.LEFT);
+		jahr = new erfassLabel("Jahr",  SwingConstants.LEFT);
+		genre = new erfassLabel("Genre", SwingConstants.LEFT);
+		beschreibung = new erfassLabel("Beschreibung                ",  SwingConstants.LEFT);
 
-		titelT = new JLabel(f.getTitel());
-		jahrT = new JLabel(Integer.toString(f.getJahr()));
-		genreT = new JLabel(f.getGenre());
-		beschreibungT = new JLabel(f.getBeschreibung());
+		titelT = new erfassLabel(f.getTitel(),  SwingConstants.RIGHT);
+		jahrT = new erfassLabel(Integer.toString(f.getJahr()),  SwingConstants.RIGHT);
+		genreT = new erfassLabel(f.getGenre(),  SwingConstants.RIGHT);
+		beschreibungT = new erfassLabel(f.getBeschreibung(),  SwingConstants.RIGHT);
 
 
 		gl = new GridLayout(7, 2);
@@ -144,23 +167,30 @@ public class Film_anzeigen extends JFrame {
 		angaben.setLayout(gl);
 		buttons.setLayout(fl);
 
-		abbrechen = new JButton("Abbrechen");
-		ausleihen = new JButton("Ausleihen");
+		abbrechen = new buttons("Abbrechen");
+		ausleihen = new buttons("Ausleihen");
 
 		abbrechen.addActionListener(a);
 		ausleihen.addActionListener(a);
 
 
 		if (media != null) {
-			id = new JLabel(Integer.toString(media.getId()));
+			
+			
+			id = new erfassLabel(Integer.toString(media.getId()), SwingConstants.RIGHT);
 
 			if (media.isLagernd()) {
-				lager = new JLabel("Ja");
+				lager = new erfassLabel("Ja", SwingConstants.RIGHT);
 			}
 			else {
-				lager = new JLabel("Nein");
+				lager = new erfassLabel("Nein", SwingConstants.RIGHT);
 			}
-			verfügbarkeit = new JLabel (media.getRückgabedatum().toString());
+			if (media.getRückgabedatum() != null) {
+			verfügbarkeit = new erfassLabel (media.getRückgabedatum().toString(),SwingConstants.RIGHT);
+			}
+			else {
+				verfügbarkeit = new erfassLabel("Sofort", SwingConstants.RIGHT);
+			}
 			
 			angaben.add(idL);
 			angaben.add(id);
@@ -169,6 +199,7 @@ public class Film_anzeigen extends JFrame {
 			angaben.add(verfügbarkeitL);
 			angaben.add(verfügbarkeit);
 		}
+		
 		angaben.add(titel);
 		angaben.add(titelT);
 		angaben.add(jahr);
@@ -177,13 +208,19 @@ public class Film_anzeigen extends JFrame {
 		angaben.add(genreT);
 		angaben.add(beschreibung);
 		angaben.add(beschreibungT);
+		
 
 		buttons.add(abbrechen);
 		if(!mediumE) {
 			buttons.add(ausleihen);
 		}
+		
+		bild.setLayout(new FlowLayout());
+		
+		
 
-		add(angaben, BorderLayout.NORTH);
+		add(angaben, BorderLayout.WEST);
+		add(bild,BorderLayout.CENTER);
 		add(buttons, BorderLayout.SOUTH);
 
 
@@ -213,11 +250,13 @@ public class Film_anzeigen extends JFrame {
 				if (k == null) {
 					k = ucks.getKs().getK();
 				}
-				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, null);
+				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
 				
 				if (media != null) {
-					ucma.set(media);
+					ucma.setM(media);
 				}
+				
+				ml.laden();
 
 				ucma.ausleihen();
 
@@ -229,8 +268,8 @@ public class Film_anzeigen extends JFrame {
 
 				medium = new JDialog();
 
-				JPanel suche = new JPanel();
-				JPanel buttons = new JPanel();
+				erfassPanel suche = new erfassPanel();
+				erfassPanel buttons = new erfassPanel();
 				suche.setLayout(new FlowLayout());
 				buttons.setLayout(new FlowLayout());
 
@@ -248,8 +287,12 @@ public class Film_anzeigen extends JFrame {
 
 				medium.setVisible(true);
 				medium.setSize(300, 150);
+				
+				
 				medium.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+				
+				setLocationRelativeTo(null);
 				if (k == null) {
 					ucks = new UC_Kunde_suchen(kl, true);
 				}

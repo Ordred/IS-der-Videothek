@@ -1,11 +1,14 @@
-package filme;
+package controller;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
 
-import kunden.Kunde;
-import kunden.Kundenliste;
+import model.Film;
+import model.Kunde;
+import model.Kundenliste;
+import model.Medienliste;
+import model.Medium;
 
 public class UC_Medium_ausleihen {
 	
@@ -40,10 +43,12 @@ public class UC_Medium_ausleihen {
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
 			
 			
-			if (m == null && ml.getMedienliste().get(i).getFilm().getTitel().toString().contains(f.getTitel().toString()) && ml.getMedienliste().get(i).getFilm().getJahr() == f.getJahr() && ml.getMedienliste().get(i).isLagernd() && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(medium)) {
+			if (ml.getMedienliste().get(i).getFilm().getTitel().toString().contains(f.getTitel().toString()) && ml.getMedienliste().get(i).getFilm().getJahr() == f.getJahr() && ml.getMedienliste().get(i).isLagernd() && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(medium)) {
 				System.out.println("geht2");
-				m = ml.getMedienliste().get(i);
 				
+				if(m == null) {
+				m = ml.getMedienliste().get(i);
+				}
 				k.getAusleihliste().add(m);
 				k.setGuthaben(ml.getMedienliste().get(i).getPreis());
 				
@@ -65,6 +70,16 @@ public class UC_Medium_ausleihen {
 			}
 		}
 		
+	}
+
+
+	public Medium getM() {
+		return m;
+	}
+
+
+	public void setM(Medium m) {
+		this.m = m;
 	}
 
 

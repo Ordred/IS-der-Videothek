@@ -1,4 +1,4 @@
-package filme;
+package model;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -50,6 +50,7 @@ public class Filmliste implements Serializable{
 		}
 		catch (IOException e) {
 			System.out.println("iofilm");
+			filmliste = new ArrayList<Film>();
 			
 		}
 		catch (ClassNotFoundException e) {

@@ -1,25 +1,27 @@
-package filme;
+package model;
 
 import java.io.Serializable;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Film implements Serializable {
 	
 	private String titel;
 	private int jahr;
-	private Icon hülle;
+	private String hülle;
 	private String beschreibung;
 	private String genre;
 	
 	
 	
-	public Icon getHülle() {
+	public String getHülle() {
 		return hülle;
 	}
-	public void setHülle(Icon hülle) {
+	public void setHülle(String hülle) {
 		this.hülle = hülle;
 	}
+	
 	public String getGenre() {
 		return genre;
 	}

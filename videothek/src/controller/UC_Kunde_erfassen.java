@@ -1,10 +1,12 @@
-package kunden;
+package controller;
 
 import javax.swing.Icon;
 import javax.swing.JFrame;
 
 import gui.Film_Erfassen;
 import gui.Kunde_Erfassen;
+import model.Kunde;
+import model.Kundenliste;
 
 public class UC_Kunde_erfassen {
 

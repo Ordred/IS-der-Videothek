@@ -7,7 +7,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -31,14 +33,14 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import filme.UC_Medium_ausleihen;
-import kunden.Kunde;
-import kunden.Kundenliste;
-import kunden.UC_Guthaben_aufladen;
-import kunden.UC_Kunde_suchen;
+import controller.UC_Guthaben_aufladen;
+import controller.UC_Kunde_suchen;
+import controller.UC_Medium_ausleihen;
+import model.Kunde;
+import model.Kundenliste;
 
 
-public class Kunde_suchen extends JFrame {
+public class Kunde_suchen extends suchFrame {
 
 	private boolean admin;
 
@@ -46,9 +48,9 @@ public class Kunde_suchen extends JFrame {
 
 
 	private ArrayList<Kunde> suchergebnisse;
-	private ArrayList<JButton> suchergebnisseName;
-	private ArrayList<JLabel> suchergebnisseVorname;
-	private ArrayList<JLabel> suchergebnisseGeburtsdatum;
+	private ArrayList<suchButton> suchergebnisseName;
+	private ArrayList<suchLabel> suchergebnisseVorname;
+	private ArrayList<suchLabel> suchergebnisseGeburtsdatum;
 	private JPanel suchergebnisseP;
 	private JScrollPane sucheScroll;
 	private GridLayout sucheGL;
@@ -65,7 +67,7 @@ public class Kunde_suchen extends JFrame {
 
 	private JDialog nichtgefunden;
 	private JLabel nichtgefundenL;
-	private JButton ok;
+	private buttons ok;
 	private JPanel ngfPanel;
 
 	private String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Lieblingsgenre"};
@@ -77,10 +79,10 @@ public class Kunde_suchen extends JFrame {
 	private JLabel auswahlL;
 
 	private JTextField suchfeld;
-	private JLabel suchbegriffe;
+	private erfassLabel suchbegriffe;
 
-	private JButton suchen;
-	private JButton abbrechen;
+	private buttons suchen;
+	private buttons abbrechen;
 
 	private FlowLayout flow1;
 	private FlowLayout flow2;
@@ -89,9 +91,9 @@ public class Kunde_suchen extends JFrame {
 
 	private GridLayout gl;
 
-	private JPanel menu;
-	private JPanel suche;
-	private JPanel buttons;
+	private erfassPanel menu;
+	private erfassPanel suche;
+	private erfassPanel buttons;
 
 	public Kunde_suchen (UC_Kunde_suchen ucks, Kundenliste kl, boolean admin) {
 
@@ -99,6 +101,8 @@ public class Kunde_suchen extends JFrame {
 		gl = new GridLayout(3, 1);
 		super.setLayout(gl);
 
+
+		setLocationRelativeTo(null);
 		suche2 = new JDialog();
 
 		this.ucks = ucks;
@@ -108,9 +112,9 @@ public class Kunde_suchen extends JFrame {
 
 
 		suchergebnisse = new ArrayList<Kunde>();
-		suchergebnisseName = new ArrayList<JButton>();
-		suchergebnisseVorname = new ArrayList<JLabel>();
-		suchergebnisseGeburtsdatum = new ArrayList<JLabel>();
+		suchergebnisseName = new ArrayList<suchButton>();
+		suchergebnisseVorname = new ArrayList<suchLabel>();
+		suchergebnisseGeburtsdatum = new ArrayList<suchLabel>();
 		titelleiste = new JLabel[3];
 		titelleiste[0] = new JLabel("Name", SwingConstants.CENTER);
 		titelleiste[1] = new JLabel("Vorname", SwingConstants.CENTER);
@@ -126,20 +130,28 @@ public class Kunde_suchen extends JFrame {
 		suchergebnisseP.add(titelleiste[1]);
 		suchergebnisseP.add(titelleiste[2]);
 
-		titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.black));
-		titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.black));
-		titelleiste[2].setBorder(BorderFactory.createLineBorder(Color.black));
+		titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.white));
+		titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.white));
+		titelleiste[2].setBorder(BorderFactory.createLineBorder(Color.white));
 
 		titelleiste[0].setOpaque(true);
 		titelleiste[1].setOpaque(true);
 		titelleiste[2].setOpaque(true);
 
 		titelleiste[0].setBackground(Color.BLUE);
-		titelleiste[0].setForeground(Color.WHITE);
+		titelleiste[0].setForeground(Color.white);
 		titelleiste[1].setBackground(Color.BLUE);
 		titelleiste[1].setForeground(Color.WHITE);
 		titelleiste[2].setBackground(Color.BLUE);
 		titelleiste[2].setForeground(Color.WHITE);
+
+		for (int i = 0; i < titelleiste.length; i++) {
+
+
+
+			titelleiste[i].setFont(new Font("Arial", 2, 30));
+
+		}
 
 		sucheScroll.setPreferredSize(new Dimension(300, 300));
 
@@ -148,11 +160,11 @@ public class Kunde_suchen extends JFrame {
 
 		auswahl.addActionListener(a);
 
-		auswahlL = new JLabel("Auswahl");
+		auswahlL = new erfassLabel("Auswahl");
 
-		menu = new JPanel();
-		suche = new JPanel();
-		buttons = new JPanel();
+		menu = new erfassPanel(null);
+		suche = new erfassPanel(null);
+		buttons = new erfassPanel(null);
 
 		flow1 = new FlowLayout();
 		flow2 = new FlowLayout();
@@ -162,14 +174,21 @@ public class Kunde_suchen extends JFrame {
 		buttons.setLayout(flow2);
 		menu.setLayout(flow3);
 
-		suchen = new JButton("Suchen");
-		abbrechen = new JButton("Abbrechen");
+		ImageIcon sucheIc = new ImageIcon("hiclipart.com.png");
+
+
+		Image img = sucheIc.getImage() ;  
+		Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
+		sucheIc = new ImageIcon( newimg );
+
+		suchen = new buttons(sucheIc);
+		abbrechen = new buttons("Abbrechen");
 
 		suchen.addActionListener(a);
 		abbrechen.addActionListener(a);
 
 		suchfeld = new JTextField("Suchbegriff eingeben");
-		suchbegriffe = new JLabel("Suchbegriffe");
+		suchbegriffe = new erfassLabel("Suchbegriffe", SwingConstants.LEFT);
 
 		suche.add(suchbegriffe, BorderLayout.WEST);
 		suche.add(suchfeld, BorderLayout.CENTER);
@@ -188,10 +207,10 @@ public class Kunde_suchen extends JFrame {
 
 
 		nichtgefunden = new JDialog();
-		nichtgefundenL = new JLabel("Es konnte kein Kunde mit diesen Angaben gefunden werden");
+		nichtgefundenL = new erfassLabel("Es konnte kein Kunde mit diesen Angaben gefunden werden");
 		nichtgFL = new FlowLayout();
-		ok = new JButton ("Ok");
-		ngfPanel = new JPanel();
+		ok = new buttons ("Ok");
+		ngfPanel = new erfassPanel();
 		ngfPanel.setLayout(nichtgFL);
 		ngfPanel.add(ok, BorderLayout.CENTER);
 		ok.addActionListener(a);
@@ -259,9 +278,9 @@ public class Kunde_suchen extends JFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new JButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new JLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new JLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -286,9 +305,9 @@ public class Kunde_suchen extends JFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new JButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new JLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new JLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -313,9 +332,9 @@ public class Kunde_suchen extends JFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new JButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new JLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new JLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -339,9 +358,9 @@ public class Kunde_suchen extends JFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new JButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new JLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new JLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -405,7 +424,7 @@ public class Kunde_suchen extends JFrame {
 						suchergebnisse = ucfs.jahr(Integer.parseInt(suchfeld.getText()));
 						for (int i = 0; i < suchergebnisse.size(); i++) {
 
-							suchergebnisseL.add(new JButton(suchergebnisse.get(i).getJahr()+"\t"+
+							suchergebnisseL.add(new buttons(suchergebnisse.get(i).getJahr()+"\t"+
 									suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 						}
@@ -414,7 +433,7 @@ public class Kunde_suchen extends JFrame {
 							suchergebnisse = ucfs.genre(suchfeld.getText());
 							for (int i = 0; i < suchergebnisse.size(); i++) {
 
-								suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
+								suchergebnisseL.add(new buttons(suchergebnisse.get(i).getTitel()+"\t"+
 										suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 							}
@@ -423,7 +442,7 @@ public class Kunde_suchen extends JFrame {
 								suchergebnisse = ucfs.beschreibung(suchfeld.getText());
 								for (int i = 0; i < suchergebnisse.size(); i++) {
 
-									suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
+									suchergebnisseL.add(new buttons(suchergebnisse.get(i).getTitel()+"\t"+
 											suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 								}		

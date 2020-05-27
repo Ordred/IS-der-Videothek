@@ -6,15 +6,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-import kunden.UC_Kunde_erfassen;
+import controller.UC_Kunde_erfassen;
 
-public class Kunde_Erfassen extends JFrame{
+public class Kunde_Erfassen extends erfassFrame{
 	
 	private UC_Kunde_erfassen uke;
 	
@@ -24,22 +24,22 @@ public class Kunde_Erfassen extends JFrame{
 	private JTextField lieblingsgenre;
 	private JTextField guthaben;
 	
-	private JLabel nameL;
-	private JLabel vornameL;
-	private JLabel geburtsdatumL;
-	private JLabel lieblingsgenreL;
-	private JLabel guthabenL;
+	private erfassLabel nameL;
+	private erfassLabel vornameL;
+	private erfassLabel geburtsdatumL;
+	private erfassLabel lieblingsgenreL;
+	private erfassLabel guthabenL;
 	
-	private JPanel buttons;
-	private JPanel form;
+	private erfassPanel buttons;
+	private erfassPanel form;
 	
 	private GridLayout gl1;
 
 	
 	private FlowLayout fl;
 	
-	private JButton speichern;
-	private JButton abbrechen;
+	private buttons speichern;
+	private buttons abbrechen;
 	
 	private ActionHandler a;
 	
@@ -48,6 +48,8 @@ public class Kunde_Erfassen extends JFrame{
 		
 		super("Kunde erfassen");
 		
+		
+		setLocationRelativeTo(null);
 		this.uke = uke;
 		
 		a = new ActionHandler();
@@ -55,11 +57,11 @@ public class Kunde_Erfassen extends JFrame{
 		gl1 = new GridLayout(5,2);
 		fl = new FlowLayout();
 		
-		form = new JPanel(gl1);
-		buttons = new JPanel(fl);
+		form = new erfassPanel(gl1);
+		buttons = new erfassPanel(fl);
 		
-		speichern = new JButton("Speichern");
-		abbrechen = new JButton("Abbrechen");
+		speichern = new buttons("Speichern");
+		abbrechen = new buttons("Abbrechen");
 		
 		
 		name = new JTextField("Name");
@@ -68,11 +70,11 @@ public class Kunde_Erfassen extends JFrame{
 		lieblingsgenre = new JTextField("Lieblingsgenre");
 		guthaben = new JTextField("Guthaben");
 		
-		nameL = new JLabel("Name");
-		vornameL = new JLabel("Vorname");
-		geburtsdatumL = new JLabel("Geburtsdatum");
-		lieblingsgenreL = new JLabel("Lieblingsgenre");
-		guthabenL = new JLabel("Guthaben");
+		nameL = new erfassLabel("Name", SwingConstants.LEFT);
+		vornameL = new erfassLabel("Vorname", SwingConstants.LEFT);
+		geburtsdatumL = new erfassLabel("Geburtsdatum", SwingConstants.LEFT);
+		lieblingsgenreL = new erfassLabel("Lieblingsgenre", SwingConstants.LEFT);
+		guthabenL = new erfassLabel("Guthaben", SwingConstants.LEFT);
 		
 		name.addActionListener(a);
 		vorname.addActionListener(a);

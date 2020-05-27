@@ -6,14 +6,12 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import kunden.Kunde;
-import kunden.Kundenliste;
-import kunden.UC_Guthaben_aufladen;
+
+import controller.UC_Guthaben_aufladen;
+import model.Kunde;
+import model.Kundenliste;
 
 public class Kunde_anzeigen extends JFrame {
 	
@@ -29,47 +27,50 @@ public class Kunde_anzeigen extends JFrame {
 	private GridLayout gl;
 	private FlowLayout fl;
 	
-	private JPanel angaben;
-	private JPanel buttons;
+	private erfassPanel angaben;
+	private erfassPanel buttons;
 	
-	private JLabel name;
-	private JLabel vorname;
-	private JLabel geburtsdatum;
-	private JLabel lieblingsgenre;
-	private JLabel guthaben;
+	private erfassLabel name;
+	private erfassLabel vorname;
+	private erfassLabel geburtsdatum;
+	private erfassLabel lieblingsgenre;
+	private erfassLabel guthaben;
 	
-	private JLabel nameT;
-	private JLabel vornameT;
-	private JLabel geburtsdatumT;
-	private JLabel lieblingsgenreT;
-	private JLabel guthabenT;
+	private erfassLabel nameT;
+	private erfassLabel vornameT;
+	private erfassLabel geburtsdatumT;
+	private erfassLabel lieblingsgenreT;
+	private erfassLabel guthabenT;
 	
-	private JButton guthabenaufladen;
-	private JButton abbrechen;
+	private buttons guthabenaufladen;
+	private buttons abbrechen;
 	
 	public Kunde_anzeigen(Kunde k, Kundenliste kl) {
 		super("Kundeninformationen");
 		
+		setLocationRelativeTo(null);
+		
+		setLocationRelativeTo(null);
 		a = new ActionHandler();
 		
 		this.k = k;
 		this.kl = kl;
 		ka = this;
 		
-		angaben = new JPanel();
-		buttons = new JPanel();
+		angaben = new erfassPanel();
+		buttons = new erfassPanel();
 		
-		name = new JLabel("Name");
-		vorname = new JLabel("Vorname");
-		geburtsdatum = new JLabel("Geburtsdatum");
-		lieblingsgenre = new JLabel("Lieblingsgenre");
-		guthaben = new JLabel("Guthaben");
+		name = new erfassLabel("Name");
+		vorname = new erfassLabel("Vorname");
+		geburtsdatum = new erfassLabel("Geburtsdatum");
+		lieblingsgenre = new erfassLabel("Lieblingsgenre");
+		guthaben = new erfassLabel("Guthaben");
 		
-		nameT = new JLabel(k.getName());
-		vornameT = new JLabel(k.getVorname());
-		geburtsdatumT = new JLabel(k.getGeburtsdatum());
-		lieblingsgenreT = new JLabel(k.getLieblingsgenre());
-		guthabenT = new JLabel(Integer.toString(k.getGuthaben()));
+		nameT = new erfassLabel(k.getName());
+		vornameT = new erfassLabel(k.getVorname());
+		geburtsdatumT = new erfassLabel(k.getGeburtsdatum());
+		lieblingsgenreT = new erfassLabel(k.getLieblingsgenre());
+		guthabenT = new erfassLabel(Integer.toString(k.getGuthaben()));
 		
 		
 		gl = new GridLayout(5, 2);
@@ -78,8 +79,8 @@ public class Kunde_anzeigen extends JFrame {
 		angaben.setLayout(gl);
 		buttons.setLayout(fl);
 		
-		abbrechen = new JButton("Abbrechen");
-		guthabenaufladen = new JButton("Guthaben aufladen");
+		abbrechen = new buttons("Abbrechen");
+		guthabenaufladen = new buttons("Guthaben aufladen");
 		
 		abbrechen.addActionListener(a);
 		guthabenaufladen.addActionListener(a);

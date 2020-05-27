@@ -1,12 +1,15 @@
-package filme;
+package controller;
 
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import gui.Film_suchen;
-import kunden.Kunde;
-import kunden.Kundenliste;
+import model.Film;
+import model.Filmliste;
+import model.Kunde;
+import model.Kundenliste;
+import model.Medienliste;
 
 public class UC_Film_suchen {
 
@@ -42,6 +45,7 @@ public class UC_Film_suchen {
 
 		fs.setVisible(true);
 		fs.setSize(300,150);
+		fs.setLocationRelativeTo(null);
 		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 	}

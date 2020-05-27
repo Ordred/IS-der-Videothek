@@ -1,4 +1,4 @@
-package filme;
+package controller;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,8 @@ import javax.swing.Icon;
 import javax.swing.JFrame;
 
 import gui.Film_Erfassen;
+import model.Film;
+import model.Filmliste;
 
 public class UC_Film_erfassen {
 
@@ -23,6 +25,10 @@ public class UC_Film_erfassen {
 		this.fl = fl;
 	}
 	
+	
+	public void setHülle(String datei) {
+		f.setHülle(datei);
+	}
 	
 
 	public void setJahr(int jahr) {

@@ -1,9 +1,11 @@
-package kunden;
+package controller;
 
 import javax.swing.JFrame;
 
 import gui.Guthaben_aufladen;
 import gui.Kunde_anzeigen;
+import model.Kunde;
+import model.Kundenliste;
 
 public class UC_Guthaben_aufladen {
 	

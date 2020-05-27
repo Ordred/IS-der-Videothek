@@ -5,34 +5,32 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import filme.Medienliste;
-import filme.UC_Medium_erfassen;
+import controller.UC_Medium_erfassen;
+import model.Medienliste;
 
-public class Medium_erfassen extends JFrame{
+public class Medium_erfassen extends erfassFrame{
 	
-	private JLabel mediumL;
+	private erfassLabel mediumL;
 	private JComboBox<String> medium;
 	
 	private String [] mArten = {"Blu-Ray","DVD","VHS"};
-	private JLabel preisL;
+	private erfassLabel preisL;
 	private JTextField preis;
 
-	private JButton filmerfassen;
+	private buttons filmerfassen;
 	
-	private JButton speichern;
-	private JButton abbrechen;
+	private buttons speichern;
+	private buttons abbrechen;
 	
-	private JPanel buttons;
-	private JPanel preise;
-	private JPanel medien;
+	private erfassPanel buttons;
+	private erfassPanel preise;
+	private erfassPanel medien;
 	
 	private ActionHandler a;
 	
@@ -43,6 +41,8 @@ public class Medium_erfassen extends JFrame{
 	public Medium_erfassen(UC_Medium_erfassen ume, Medienliste ml) {
 		super("Medium erfassen");
 		
+		setLocationRelativeTo(null);
+		
 		this.ume = ume;		
 		this.ml = ml;
 		
@@ -50,27 +50,27 @@ public class Medium_erfassen extends JFrame{
 		
 		
 		a = new ActionHandler();
-		buttons = new JPanel();
-		medien = new JPanel();
-		preise = new JPanel();
+		buttons = new erfassPanel(null);
+		medien = new erfassPanel(null);
+		preise = new erfassPanel(null);
 		
 		buttons.setLayout(new FlowLayout());
 		medien.setLayout(new FlowLayout());
-		preise = new JPanel(new FlowLayout());
+		preise = new erfassPanel(new FlowLayout());
 		
 		
 		ume.setID(ml.getMedienliste().size());
 		
-		mediumL = new JLabel("Medium");
+		mediumL = new erfassLabel("Medium", SwingConstants.LEFT);
 		medium = new JComboBox<String>(mArten);
 		
-		preisL = new JLabel("Preis", SwingConstants.CENTER);
+		preisL = new erfassLabel("Preis", SwingConstants.CENTER);
 		preis = new JTextField("Hier Preis eingeben");
 		
-		filmerfassen = new JButton("Film hinzufügen");
+		filmerfassen = new buttons("Film hinzufügen");
 		
-		speichern = new JButton("Speichern");
-		abbrechen = new JButton("Abbrechen");
+		speichern = new buttons("Speichern");
+		abbrechen = new buttons("Abbrechen");
 		
 		filmerfassen.addActionListener(a);
 		speichern.addActionListener(a);

@@ -1,9 +1,11 @@
-package filme;
+package controller;
 
 import javax.swing.Icon;
 import javax.swing.JFrame;
 
 import gui.Film_Bearbeiten;
+import model.Film;
+import model.Filmliste;
 
 public class UC_Film_bearbeiten {
 

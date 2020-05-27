@@ -5,21 +5,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import filme.Film;
-import filme.Filmliste;
-import filme.Medienliste;
-import filme.UC_Film_erfassen;
-import filme.UC_Film_suchen;
-import filme.UC_Medium_erfassen;
-import filme.UC_Medium_suchen;
-import kunden.Kunde;
-import kunden.Kundenliste;
-import kunden.UC_Guthaben_aufladen;
-import kunden.UC_Kunde_erfassen;
-import kunden.UC_Kunde_suchen;
+import controller.UC_Film_erfassen;
+import controller.UC_Film_suchen;
+import controller.UC_Guthaben_aufladen;
+import controller.UC_Kunde_erfassen;
+import controller.UC_Kunde_suchen;
+import controller.UC_Medium_erfassen;
+import controller.UC_Medium_suchen;
+import model.Film;
+import model.Filmliste;
+import model.Kunde;
+import model.Kundenliste;
+import model.Medienliste;
 
 public class Hauptmenu_Besitzer extends JFrame {
 
@@ -28,13 +27,13 @@ public class Hauptmenu_Besitzer extends JFrame {
 	
 	private Kunde k;
 
-	private JButton filmerfassen;
-	private JButton kundeerfassen;
-	private JButton filmsuchen;
-	private JButton kundesuchen;
-	private JButton guthabenaufladen;
-	private JButton mediumsuchen;
-	private JButton mediumerfassen;
+	private hmButtons filmerfassen;
+	private hmButtons kundeerfassen;
+	private hmButtons filmsuchen;
+	private hmButtons kundesuchen;
+	private hmButtons guthabenaufladen;
+	private hmButtons mediumsuchen;
+	private hmButtons mediumerfassen;
 
 	private GridLayout gr;
 
@@ -54,6 +53,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 
 		super("Hauptmenu Besitzer");
 		
+		
+		setLocationRelativeTo(null);
 		this.k = k;
 
 		fl = new Filmliste();
@@ -70,13 +71,13 @@ public class Hauptmenu_Besitzer extends JFrame {
 
 		a = new ActionHandler();
 
-		filmerfassen = new JButton("Film erfassen");
-		kundeerfassen = new JButton("Kunde erfassen");
-		filmsuchen = new JButton("Film suchen");
-		kundesuchen = new JButton("Kunde suchen");
-		guthabenaufladen = new JButton("Guthaben aufladen");
-		mediumsuchen = new JButton("Medium suchen");
-		mediumerfassen = new JButton("Medium erfassen");
+		filmerfassen = new hmButtons("Film erfassen");
+		kundeerfassen = new hmButtons("Kunde erfassen");
+		filmsuchen = new hmButtons("Film suchen");
+		kundesuchen = new hmButtons("Kunde suchen");
+		guthabenaufladen = new hmButtons("Guthaben aufladen");
+		mediumsuchen = new hmButtons("Medium suchen");
+		mediumerfassen = new hmButtons("Medium erfassen");
 
 
 		filmerfassen.addActionListener(a);
@@ -132,7 +133,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 			if (e.getSource() == mediumsuchen) {
 
 				ml.laden();
-				ucms = new UC_Medium_suchen(ml);
+				ucms = new UC_Medium_suchen(ml, kl);
 			}
 
 			if (e.getSource() == mediumerfassen) {

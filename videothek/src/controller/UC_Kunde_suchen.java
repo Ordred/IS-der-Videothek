@@ -1,11 +1,12 @@
-package kunden;
+package controller;
 
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import filme.UC_Medium_ausleihen;
 import gui.Kunde_suchen;
+import model.Kunde;
+import model.Kundenliste;
 
 public class UC_Kunde_suchen {
 
@@ -28,7 +29,8 @@ public class UC_Kunde_suchen {
 		ks = new Kunde_suchen(this, kl, admin);
 
 		ks.setVisible(true);
-		ks.setSize(300, 150);
+		ks.setSize(300,150);
+		ks.setLocationRelativeTo(null);
 		ks.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
