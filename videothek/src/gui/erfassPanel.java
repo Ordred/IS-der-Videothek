@@ -20,6 +20,7 @@ public class erfassPanel extends JPanel {
 	
 	public erfassPanel() {
 
+		
 		setBackground(Color.black);
 		setForeground(Color.white);
 	}

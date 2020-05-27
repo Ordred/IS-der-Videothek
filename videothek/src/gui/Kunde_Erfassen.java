@@ -49,7 +49,7 @@ public class Kunde_Erfassen extends erfassFrame{
 		super("Kunde erfassen");
 		
 		
-		setLocationRelativeTo(null);
+		
 		this.uke = uke;
 		
 		a = new ActionHandler();

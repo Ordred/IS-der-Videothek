@@ -86,6 +86,9 @@ public class Film_anzeigen extends erfassFrame {
 
 	private String verf;
 	private erfassPanel bild;
+	
+	private buttons ok2;
+	private erfassFrame kG;
 
 
 
@@ -103,7 +106,7 @@ public class Film_anzeigen extends erfassFrame {
 			super.setTitle("Medieninformationen");
 		}
 		
-		setLocationRelativeTo(null);
+		
 		a = new ActionHandler();
 
 		this.f = f;
@@ -119,6 +122,8 @@ public class Film_anzeigen extends erfassFrame {
 		
 		ImageIcon icon = new ImageIcon(f.getHülle());
 
+		ok2 = new buttons();
+		ok2.setText("Ok");
 		
 		
 		Image img = icon.getImage() ;  
@@ -136,7 +141,7 @@ public class Film_anzeigen extends erfassFrame {
 
 		abbrechen2.addActionListener(a);
 		ok.addActionListener(a);
-
+		ok2.addActionListener(a);
 		ausws = new String [] {"DVD","Blu-Ray","VHS"};
 
 		auswahl = new JComboBox<String>(ausws);
@@ -190,6 +195,7 @@ public class Film_anzeigen extends erfassFrame {
 			}
 			else {
 				verfügbarkeit = new erfassLabel("Sofort", SwingConstants.RIGHT);
+				
 			}
 			
 			angaben.add(idL);
@@ -252,14 +258,25 @@ public class Film_anzeigen extends erfassFrame {
 				}
 				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
 				
+				
 				if (media != null) {
 					ucma.setM(media);
 				}
-				
+				if( k != null && media != null && k.getGuthaben() >= media.getPreis()) {
 				ml.laden();
 
 				ucma.ausleihen();
+				}
+				else {
+					kG = new erfassFrame("Zu wenig Guthaben");
+					kG.add(new erfassLabel("Zu wenig Guthaben!"));
+					kG.add(ok2);
+				}
 
+			}
+			
+			if (e.getSource() == ok2) {
+				kG.dispose();
 			}
 
 			if (e.getSource() == ausleihen) {

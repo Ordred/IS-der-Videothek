@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,7 +15,7 @@ import javax.swing.SwingConstants;
 import controller.UC_Medium_erfassen;
 import model.Medienliste;
 
-public class Medium_erfassen extends erfassFrame{
+public class Medium_erfassen extends suchFrame{
 	
 	private erfassLabel mediumL;
 	private JComboBox<String> medium;
@@ -50,13 +51,12 @@ public class Medium_erfassen extends erfassFrame{
 		
 		
 		a = new ActionHandler();
-		buttons = new erfassPanel(null);
-		medien = new erfassPanel(null);
-		preise = new erfassPanel(null);
-		
-		buttons.setLayout(new FlowLayout());
-		medien.setLayout(new FlowLayout());
+		buttons = new erfassPanel(new FlowLayout());
+		medien = new erfassPanel(new FlowLayout());
 		preise = new erfassPanel(new FlowLayout());
+		
+		
+		
 		
 		
 		ume.setID(ml.getMedienliste().size());
@@ -64,7 +64,7 @@ public class Medium_erfassen extends erfassFrame{
 		mediumL = new erfassLabel("Medium", SwingConstants.LEFT);
 		medium = new JComboBox<String>(mArten);
 		
-		preisL = new erfassLabel("Preis", SwingConstants.CENTER);
+		preisL = new erfassLabel("Preis", SwingConstants.LEFT);
 		preis = new JTextField("Hier Preis eingeben");
 		
 		filmerfassen = new buttons("Film hinzufügen");
@@ -76,18 +76,18 @@ public class Medium_erfassen extends erfassFrame{
 		speichern.addActionListener(a);
 		abbrechen.addActionListener(a);
 		
-		medien.add(mediumL);
-		medien.add(medium);
+		medien.add(mediumL, BorderLayout.WEST);
+		medien.add(medium, BorderLayout.CENTER);
 		
-		preise.add(preisL);
-		preise.add(preis);
+		preise.add(preisL, BorderLayout.WEST);
+		preise.add(preis, BorderLayout.CENTER);
 		
 		buttons.add(filmerfassen);
 		buttons.add(speichern);
 		buttons.add(abbrechen);
 		
 		
-		super.setLayout(new GridLayout(3, 1));
+		setLayout(new GridLayout(3, 1));
 		
 		add(medien);
 		add(preise);

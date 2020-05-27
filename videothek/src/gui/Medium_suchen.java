@@ -132,36 +132,17 @@ public class Medium_suchen extends suchFrame {
 		suchergebnisseP.add(titelleiste[3]);
 		suchergebnisseP.add(titelleiste[4]);
 
-		titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.white));
-		titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.white));
-		titelleiste[2].setBorder(BorderFactory.createLineBorder(Color.white));
-		titelleiste[3].setBorder(BorderFactory.createLineBorder(Color.white));
-		titelleiste[4].setBorder(BorderFactory.createLineBorder(Color.white));
-
-		titelleiste[0].setOpaque(true);
-		titelleiste[1].setOpaque(true);
-		titelleiste[2].setOpaque(true);
-		titelleiste[3].setOpaque(true);
-		titelleiste[4].setOpaque(true);
-
-		titelleiste[0].setBackground(Color.BLUE);
-		titelleiste[0].setForeground(Color.WHITE);
-		titelleiste[1].setBackground(Color.BLUE);
-		titelleiste[1].setForeground(Color.WHITE);
-		titelleiste[2].setBackground(Color.BLUE);
-		titelleiste[2].setForeground(Color.WHITE);
-		titelleiste[3].setBackground(Color.BLUE);
-		titelleiste[3].setForeground(Color.WHITE);
-		titelleiste[4].setBackground(Color.BLUE);
-		titelleiste[4].setForeground(Color.WHITE);
-		
 		for (int i = 0; i < titelleiste.length; i++) {
-			
-			
-			
-			titelleiste[i].setFont(new Font("Arial", 2, 30));
-			
+
+
+			titelleiste[i].setOpaque(true);
+			titelleiste[i].setFont(new Font("Arial", 3, 40));
+			titelleiste[i].setBackground(Color.gray);
+			titelleiste[i].setForeground(Color.white);
+
 		}
+		
+		
 
 		sucheScroll.setPreferredSize(new Dimension(300, 300));
 

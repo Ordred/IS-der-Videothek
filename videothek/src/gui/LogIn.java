@@ -90,7 +90,6 @@ public class LogIn extends JFrame {
 			gl = new GridLayout(3, 1);
 			super.setLayout(gl);
 			
-			setLocationRelativeTo(null);
 			kl = new Kundenliste();
 			kl.laden();
 
@@ -194,6 +193,7 @@ public class LogIn extends JFrame {
 			
 			
 			
+			
 			super.add(nutzerPane);
 			validate();
 			repaint();
@@ -288,6 +288,7 @@ public class LogIn extends JFrame {
 			LogIn l = new LogIn();
 			l.setVisible(true);
 			l.setSize(400, 400);
+			l.setLocationRelativeTo(null);
 			l.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			l.setLocationRelativeTo(null);
 			/*

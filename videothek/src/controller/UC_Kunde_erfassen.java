@@ -19,6 +19,7 @@ public class UC_Kunde_erfassen {
 		ke = new Kunde_Erfassen(this);
 		ke.setVisible(true);
 		ke.setSize(400, 400);
+		ke.setLocationRelativeTo(null);
 		ke.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		this.kl = kl;

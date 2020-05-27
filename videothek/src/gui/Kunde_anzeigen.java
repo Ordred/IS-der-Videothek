@@ -48,9 +48,7 @@ public class Kunde_anzeigen extends JFrame {
 	public Kunde_anzeigen(Kunde k, Kundenliste kl) {
 		super("Kundeninformationen");
 		
-		setLocationRelativeTo(null);
 		
-		setLocationRelativeTo(null);
 		a = new ActionHandler();
 		
 		this.k = k;

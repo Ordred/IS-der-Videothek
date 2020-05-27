@@ -20,6 +20,7 @@ public class UC_Film_erfassen {
 		fe = new Film_Erfassen(this);
 		fe.setVisible(true);
 		fe.setSize(400, 400);
+		fe.setLocationRelativeTo(null);
 		fe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		this.fl = fl;

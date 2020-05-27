@@ -19,6 +19,7 @@ public class UC_Film_bearbeiten {
 		fb = new Film_Bearbeiten(this);
 		fb.setVisible(true);
 		fb.setSize(400, 400);
+		fb.setLocationRelativeTo(null);
 		fb.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		

@@ -135,19 +135,13 @@ public class Film_suchen extends suchFrame {
 		suchergebnisseP.add(titelleiste[1]);
 		suchergebnisseP.add(titelleiste[2]);
 
-		titelleiste[0].setBorder(BorderFactory.createLineBorder(Color.white));
-		titelleiste[1].setBorder(BorderFactory.createLineBorder(Color.white));
-		titelleiste[2].setBorder(BorderFactory.createLineBorder(Color.white));
-
-		titelleiste[0].setOpaque(true);
-		titelleiste[1].setOpaque(true);
-		titelleiste[2].setOpaque(true);
-
 		for (int i = 0; i < titelleiste.length; i++) {
 
 
-
-			titelleiste[i].setFont(new Font("Arial", 2, 30));
+			titelleiste[i].setOpaque(true);
+			titelleiste[i].setFont(new Font("Arial", 3, 40));
+			titelleiste[i].setBackground(Color.gray);
+			titelleiste[i].setForeground(Color.white);
 
 		}
 

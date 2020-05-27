@@ -32,7 +32,7 @@ public class Guthaben_aufladen extends JFrame {
 		super("Guthaben aufladen");
 		
 		
-		setLocationRelativeTo(null);
+		
 		this.uga = uga;
 		
 		a = new ActionHandler();

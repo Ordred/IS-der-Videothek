@@ -50,7 +50,7 @@ public class Film_Bearbeiten extends JFrame{
 		super("Film erfassen");
 		
 		
-		setLocationRelativeTo(null);
+	
 		this.ucfb = ucfb;
 		
 		a = new ActionHandler();

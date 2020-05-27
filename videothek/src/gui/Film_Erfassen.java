@@ -60,7 +60,7 @@ public class Film_Erfassen extends erfassFrame{
 		
 		super("Film erfassen");
 		
-		setLocationRelativeTo(null);
+		
 		
 		this.ufe = ufe;
 		
@@ -138,7 +138,7 @@ public class Film_Erfassen extends erfassFrame{
 				    ic = datei.getSelectedFile();
 				}
 				
-				System.out.println(ic.getName());
+
 				    
 				datei.setVisible(true);
 				datei.setSize(300, 300);
