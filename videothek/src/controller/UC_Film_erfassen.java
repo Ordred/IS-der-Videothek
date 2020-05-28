@@ -38,11 +38,7 @@ public class UC_Film_erfassen {
 
 	}
 
-	public void setHülle(Icon hülle) {
-
-		f.setHülle(hülle);
-
-	}
+	
 	public void setGenre(String genre) {
 
 		f.setGenre(genre);

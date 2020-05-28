@@ -11,7 +11,7 @@ public class erfassLabel extends JLabel {
 		setText(titel);
 		setOpaque(true);
 		setBackground(Color.black);
-		setForeground(Color.cyan);
+		setForeground(Color.white);
 
 		setHorizontalAlignment(position);
 
@@ -24,7 +24,7 @@ public class erfassLabel extends JLabel {
 		setOpaque(true);
 		setText(titel);
 		setBackground(Color.black);
-		setForeground(Color.cyan);
+		setForeground(Color.white);
 
 
 	}
@@ -34,7 +34,7 @@ public class erfassLabel extends JLabel {
 		setOpaque(true);
 		
 		setBackground(Color.black);
-		setForeground(Color.cyan);
+		setForeground(Color.white);
 
 
 	}

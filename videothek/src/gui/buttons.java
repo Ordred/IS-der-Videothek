@@ -14,7 +14,7 @@ public class buttons extends JButton {
 
 		setText(titel);
 		setOpaque(true);
-		setBackground(Color.red);
+		setBackground(Color.gray);
 		setForeground(Color.white);
 		
 	}
@@ -23,7 +23,7 @@ public class buttons extends JButton {
 
 
 		setOpaque(true);
-		setBackground(Color.red);
+		setBackground(Color.gray);
 		setForeground(Color.white);
 		
 
@@ -33,7 +33,7 @@ public class buttons extends JButton {
 
 		setIcon(icon);
 		setOpaque(false);
-		setBackground(Color.red);
+		setBackground(Color.gray);
 		setForeground(Color.white);
 
 	}

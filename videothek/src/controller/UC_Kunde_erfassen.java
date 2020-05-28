@@ -25,6 +25,17 @@ public class UC_Kunde_erfassen {
 		this.kl = kl;
 	}
 	
+	public void setAdresse(String adresse) {
+		k.setAdresse(adresse);
+	}
+	
+	public void setOrt(String ort) {
+		k.setOrt(ort);
+	}
+	
+	public void setTelefon(String telefon) {
+		k.setTelefon(telefon);
+	}
 	
 
 	public void setName(String name) {

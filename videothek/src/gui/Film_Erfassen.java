@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.UC_Film_erfassen;
@@ -54,6 +55,8 @@ public class Film_Erfassen extends erfassFrame{
 	private JFileChooser datei;
 	
 	private File ic;
+	
+
 	
 	
 	public Film_Erfassen(UC_Film_erfassen ufe) {
@@ -116,6 +119,7 @@ public class Film_Erfassen extends erfassFrame{
 		
 		add(form, BorderLayout.CENTER);
 		add(buttons, BorderLayout.SOUTH);
+		
 
 	}
 	

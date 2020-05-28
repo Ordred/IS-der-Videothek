@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -31,7 +33,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import controller.UC_Film_suchen;
+import controller.Hauptmenu_Kunde;
 import controller.UC_Guthaben_aufladen;
 import controller.UC_Kunde_suchen;
 import model.Filmliste;
@@ -77,7 +79,7 @@ public class LogIn extends JFrame {
 		
 		private Kunde k;
 		
-		private UC_Film_suchen ucfs;
+		private Hauptmenu_Kunde hk;
 		
 		private Filmliste fl;
 		
@@ -210,22 +212,23 @@ public class LogIn extends JFrame {
 
 				
 				if (e.getSource() == admin) {
-					hs = new Hauptmenu_Besitzer(k);
+					hs = new Hauptmenu_Besitzer(null);
 					hs.setVisible(true);
 					hs.setSize(500, 500);
 					hs.setLocationRelativeTo(null);
-					hs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					hs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();
 				}
 				
 				for (int i = 1; i < name.size(); i++) {
-					k = kl.getKundenliste().get(i-1);
-					fl = new Filmliste();
-					ml = new Medienliste();
-					fl.laden();
-					ml.laden();
 					if (e.getSource() == name.get(i)) {
-						ucfs = new UC_Film_suchen(fl, false, kl, ml, k);
+						k = kl.getKundenliste().get(i-1);
+						hk = new Hauptmenu_Kunde(k);
+						hk.setVisible(true);
+						hk.setSize(500, 500);
+						hk.setLocationRelativeTo(null);
+						hk.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						
 					}
 				}
 
@@ -235,7 +238,7 @@ public class LogIn extends JFrame {
 				/*
 						System.out.println("Titel Suche");
 						try {
-							fa = new Kunde_anzeigen(ucfs.titel(suchfeld.getText()));
+							fa = new Kunde_anzeigen(hk.titel(suchfeld.getText()));
 							fa.setVisible(true);
 							fa.setSize(400, 400);
 							fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -247,7 +250,7 @@ public class LogIn extends JFrame {
 					}
 
 					if (auswahl.getSelectedItem() == "Jahr") {
-						suchergebnisse = ucfs.jahr(Integer.parseInt(suchfeld.getText()));
+						suchergebnisse = hk.jahr(Integer.parseInt(suchfeld.getText()));
 						for (int i = 0; i < suchergebnisse.size(); i++) {
 
 							suchergebnisseL.add(new JButton(suchergebnisse.get(i).getJahr()+"\t"+
@@ -256,7 +259,7 @@ public class LogIn extends JFrame {
 						}
 
 						if (auswahl.getSelectedItem() == "Genre") {
-							suchergebnisse = ucfs.genre(suchfeld.getText());
+							suchergebnisse = hk.genre(suchfeld.getText());
 							for (int i = 0; i < suchergebnisse.size(); i++) {
 
 								suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
@@ -265,7 +268,7 @@ public class LogIn extends JFrame {
 							}
 
 							if (auswahl.getSelectedItem() == "Beschreibung") {
-								suchergebnisse = ucfs.beschreibung(suchfeld.getText());
+								suchergebnisse = hk.beschreibung(suchfeld.getText());
 								for (int i = 0; i < suchergebnisse.size(); i++) {
 
 									suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
@@ -281,6 +284,8 @@ public class LogIn extends JFrame {
 			}
 			
 		}
+		
+	
 		
 		
 		public static void main(String[] args) {

@@ -35,12 +35,18 @@ public class Kunde_anzeigen extends JFrame {
 	private erfassLabel geburtsdatum;
 	private erfassLabel lieblingsgenre;
 	private erfassLabel guthaben;
+	private erfassLabel adresse;
+	private erfassLabel ort;
+	private erfassLabel telefon;
 	
 	private erfassLabel nameT;
 	private erfassLabel vornameT;
 	private erfassLabel geburtsdatumT;
 	private erfassLabel lieblingsgenreT;
 	private erfassLabel guthabenT;
+	private erfassLabel adresseT;
+	private erfassLabel ortT;
+	private erfassLabel telefonT;
 	
 	private buttons guthabenaufladen;
 	private buttons abbrechen;
@@ -62,16 +68,22 @@ public class Kunde_anzeigen extends JFrame {
 		vorname = new erfassLabel("Vorname");
 		geburtsdatum = new erfassLabel("Geburtsdatum");
 		lieblingsgenre = new erfassLabel("Lieblingsgenre");
+		adresse = new erfassLabel("Adresse");
+		telefon = new erfassLabel("Telefon");
+		ort = new erfassLabel("Ort");
 		guthaben = new erfassLabel("Guthaben");
 		
 		nameT = new erfassLabel(k.getName());
 		vornameT = new erfassLabel(k.getVorname());
 		geburtsdatumT = new erfassLabel(k.getGeburtsdatum());
 		lieblingsgenreT = new erfassLabel(k.getLieblingsgenre());
+		adresseT = new erfassLabel(k.getAdresse());
+		ortT = new erfassLabel(k.getOrt());
+		telefonT = new erfassLabel(k.getTelefon());
 		guthabenT = new erfassLabel(Integer.toString(k.getGuthaben()));
 		
 		
-		gl = new GridLayout(5, 2);
+		gl = new GridLayout(8, 2);
 		fl = new FlowLayout();
 		
 		angaben.setLayout(gl);
@@ -91,16 +103,20 @@ public class Kunde_anzeigen extends JFrame {
 		angaben.add(geburtsdatumT);
 		angaben.add(lieblingsgenre);
 		angaben.add(lieblingsgenreT);
+		angaben.add(adresse);
+		angaben.add(adresseT);
+		angaben.add(ort);
+		angaben.add(ortT);
+		angaben.add(telefon);
+		angaben.add(telefonT);
 		angaben.add(guthaben);
 		angaben.add(guthabenT);
 		
 		buttons.add(abbrechen);
 		buttons.add(guthabenaufladen);
 		
-		add(angaben, BorderLayout.NORTH);
-		add(buttons, BorderLayout.SOUTH);
-		
-		
+		add(angaben, BorderLayout.CENTER);
+		add(buttons, BorderLayout.SOUTH);		
 		
 	}
 	

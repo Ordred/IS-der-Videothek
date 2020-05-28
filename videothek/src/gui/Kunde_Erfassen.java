@@ -23,12 +23,18 @@ public class Kunde_Erfassen extends erfassFrame{
 	private JTextField geburtsdatum;
 	private JTextField lieblingsgenre;
 	private JTextField guthaben;
+	private JTextField adresse;
+	private JTextField ort;
+	private JTextField telefon;
 	
 	private erfassLabel nameL;
 	private erfassLabel vornameL;
 	private erfassLabel geburtsdatumL;
 	private erfassLabel lieblingsgenreL;
 	private erfassLabel guthabenL;
+	private erfassLabel adresseL;
+	private erfassLabel ortL;
+	private erfassLabel telefonL;
 	
 	private erfassPanel buttons;
 	private erfassPanel form;
@@ -54,7 +60,7 @@ public class Kunde_Erfassen extends erfassFrame{
 		
 		a = new ActionHandler();
 		
-		gl1 = new GridLayout(5,2);
+		gl1 = new GridLayout(8,2);
 		fl = new FlowLayout();
 		
 		form = new erfassPanel(gl1);
@@ -69,12 +75,18 @@ public class Kunde_Erfassen extends erfassFrame{
 		geburtsdatum = new JTextField("Geburtsdatum");
 		lieblingsgenre = new JTextField("Lieblingsgenre");
 		guthaben = new JTextField("Guthaben");
+		adresse = new JTextField("Adresse");
+		ort = new JTextField("Ort");
+		telefon = new JTextField("Telefon");
 		
-		nameL = new erfassLabel("Name", SwingConstants.LEFT);
-		vornameL = new erfassLabel("Vorname", SwingConstants.LEFT);
-		geburtsdatumL = new erfassLabel("Geburtsdatum", SwingConstants.LEFT);
-		lieblingsgenreL = new erfassLabel("Lieblingsgenre", SwingConstants.LEFT);
-		guthabenL = new erfassLabel("Guthaben", SwingConstants.LEFT);
+		nameL = new erfassLabel("Name", SwingConstants.CENTER);
+		vornameL = new erfassLabel("Vorname", SwingConstants.CENTER);
+		geburtsdatumL = new erfassLabel("Geburtsdatum", SwingConstants.CENTER);
+		lieblingsgenreL = new erfassLabel("Lieblingsgenre", SwingConstants.CENTER);
+		guthabenL = new erfassLabel("Guthaben", SwingConstants.CENTER);
+		adresseL = new erfassLabel("Adresse", SwingConstants.CENTER);
+		ortL = new erfassLabel("Ort", SwingConstants.CENTER);
+		telefonL = new erfassLabel("Telefon", SwingConstants.CENTER);
 		
 		name.addActionListener(a);
 		vorname.addActionListener(a);
@@ -93,6 +105,12 @@ public class Kunde_Erfassen extends erfassFrame{
 		form.add(geburtsdatum);
 		form.add(lieblingsgenreL);
 		form.add(lieblingsgenre);
+		form.add(adresseL);
+		form.add(adresse);
+		form.add(ortL);
+		form.add(ort);
+		form.add(telefonL);
+		form.add(telefon);
 		form.add(guthabenL);
 		form.add(guthaben);
 		
@@ -115,7 +133,9 @@ public class Kunde_Erfassen extends erfassFrame{
 			}
 			
 			if (e.getSource() == speichern) {
-				
+				uke.setAdresse(adresse.getText());
+				uke.setOrt(ort.getText());
+				uke.setTelefon(telefon.getText());
 				uke.setName(name.getText());
 				uke.setVorname(vorname.getText());
 				uke.setGeburtsdatum(geburtsdatum.getText());

@@ -70,7 +70,7 @@ public class Kunde_suchen extends suchFrame {
 	private buttons ok;
 	private JPanel ngfPanel;
 
-	private String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Lieblingsgenre"};
+	private String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Ort", "Adresse", "Telefon", "Lieblingsgenre"};
 
 	private UC_Kunde_suchen ucks;
 
@@ -118,7 +118,7 @@ public class Kunde_suchen extends suchFrame {
 		titelleiste = new JLabel[3];
 		titelleiste[0] = new JLabel("Name", SwingConstants.CENTER);
 		titelleiste[1] = new JLabel("Vorname", SwingConstants.CENTER);
-		titelleiste[2] = new JLabel("Geburtadatum", SwingConstants.CENTER);
+		titelleiste[2] = new JLabel("Geburtsdatum", SwingConstants.CENTER);
 		suchergebnisseP = new JPanel();
 		sucheGL = new GridLayout(20, 3);
 
@@ -241,6 +241,7 @@ public class Kunde_suchen extends suchFrame {
 						ka = new Kunde_anzeigen(suchergebnisse.get(i), kl);
 						ka.setSize(400, 400);
 						ka.setVisible(true);
+						ka.setLocationRelativeTo(null);
 						ka.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
 				}
@@ -262,6 +263,87 @@ public class Kunde_suchen extends suchFrame {
 				System.out.println("Suchen");
 
 				if (auswahl.getSelectedItem() == "Name") {
+					suchergebnisse = ucks.name(suchfeld.getText());
+					System.out.println(suchergebnisse.get(0).getName());
+					for (int i = 0; i < suchergebnisse.size(); i++) {
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+
+						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+
+						suchergebnisseName.get(i).setSize(300, 10);
+
+						suchergebnisseName.get(i).setVisible(true);
+						suchergebnisseName.get(i).addActionListener(a);
+						suchergebnisseP.add(suchergebnisseName.get(i));
+						suchergebnisseP.add(suchergebnisseVorname.get(i));
+						suchergebnisseP.add(suchergebnisseGeburtsdatum.get(i));
+						suchergebnisseVorname.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseGeburtsdatum.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseP.setLayout(sucheGL);
+						suchergebnisseP.repaint();
+						sucheScroll.repaint();
+						repaint();
+						System.out.println(suchergebnisseName.get(i).getText());
+					}
+				}
+				
+				if (auswahl.getSelectedItem() == "Ort") {
+					suchergebnisse = ucks.name(suchfeld.getText());
+					System.out.println(suchergebnisse.get(0).getName());
+					for (int i = 0; i < suchergebnisse.size(); i++) {
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+
+						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+
+						suchergebnisseName.get(i).setSize(300, 10);
+
+						suchergebnisseName.get(i).setVisible(true);
+						suchergebnisseName.get(i).addActionListener(a);
+						suchergebnisseP.add(suchergebnisseName.get(i));
+						suchergebnisseP.add(suchergebnisseVorname.get(i));
+						suchergebnisseP.add(suchergebnisseGeburtsdatum.get(i));
+						suchergebnisseVorname.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseGeburtsdatum.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseP.setLayout(sucheGL);
+						suchergebnisseP.repaint();
+						sucheScroll.repaint();
+						repaint();
+						System.out.println(suchergebnisseName.get(i).getText());
+					}
+				}
+				
+				if (auswahl.getSelectedItem() == "Adresse") {
+					suchergebnisse = ucks.name(suchfeld.getText());
+					System.out.println(suchergebnisse.get(0).getName());
+					for (int i = 0; i < suchergebnisse.size(); i++) {
+						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
+
+						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+
+						suchergebnisseName.get(i).setSize(300, 10);
+
+						suchergebnisseName.get(i).setVisible(true);
+						suchergebnisseName.get(i).addActionListener(a);
+						suchergebnisseP.add(suchergebnisseName.get(i));
+						suchergebnisseP.add(suchergebnisseVorname.get(i));
+						suchergebnisseP.add(suchergebnisseGeburtsdatum.get(i));
+						suchergebnisseVorname.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseGeburtsdatum.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+						suchergebnisseP.setLayout(sucheGL);
+						suchergebnisseP.repaint();
+						sucheScroll.repaint();
+						repaint();
+						System.out.println(suchergebnisseName.get(i).getText());
+					}
+				}
+				
+				if (auswahl.getSelectedItem() == "Telefon") {
 					suchergebnisse = ucks.name(suchfeld.getText());
 					System.out.println(suchergebnisse.get(0).getName());
 					for (int i = 0; i < suchergebnisse.size(); i++) {
@@ -374,7 +456,8 @@ public class Kunde_suchen extends suchFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize(600, 400);;
+					suche2.setSize (850, 800);
+					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();
 				}

@@ -142,7 +142,7 @@ public class Film_anzeigen extends erfassFrame {
 		abbrechen2.addActionListener(a);
 		ok.addActionListener(a);
 		ok2.addActionListener(a);
-		ausws = new String [] {"DVD","Blu-Ray","VHS"};
+		ausws = new String [] {"Blu-Ray", "DVD", "VHS"};
 
 		auswahl = new JComboBox<String>(ausws);
 

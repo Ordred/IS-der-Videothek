@@ -57,6 +57,45 @@ public class UC_Kunde_suchen {
 		return suchergebnisse;
 
 	}
+	
+	public ArrayList<Kunde> adresse(String adresse) {
+
+		for (int i = 0; i < kl.getKundenliste().size(); i++) {
+
+			if (kl.getKundenliste().get(i).getName().contains(adresse)) {
+				suchergebnisse.add(kl.getKundenliste().get(i));
+				System.out.println(kl.getKundenliste().get(i).getName());
+			}
+		}
+		return suchergebnisse;
+
+	}
+	
+	public ArrayList<Kunde> telefo(String telefon) {
+
+		for (int i = 0; i < kl.getKundenliste().size(); i++) {
+
+			if (kl.getKundenliste().get(i).getName().contains(telefon)) {
+				suchergebnisse.add(kl.getKundenliste().get(i));
+				System.out.println(kl.getKundenliste().get(i).getName());
+			}
+		}
+		return suchergebnisse;
+
+	}
+	
+	public ArrayList<Kunde> ort(String ort) {
+
+		for (int i = 0; i < kl.getKundenliste().size(); i++) {
+
+			if (kl.getKundenliste().get(i).getName().contains(ort)) {
+				suchergebnisse.add(kl.getKundenliste().get(i));
+				System.out.println(kl.getKundenliste().get(i).getName());
+			}
+		}
+		return suchergebnisse;
+
+	}
 
 	public ArrayList<Kunde> geburtsdatum(String geburtsdatum) {
 

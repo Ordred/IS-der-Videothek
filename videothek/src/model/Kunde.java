@@ -14,6 +14,37 @@ public class Kunde implements Serializable {
 	private String geburtsdatum;
 	private String lieblingsgenre;
 	private int guthaben;
+	private String adresse;
+	private String ort;
+	private String telefon;
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+
+	public String getOrt() {
+		return ort;
+	}
+
+
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
+
+
+	public String getTelefon() {
+		return telefon;
+	}
+
+
+	public void setTelefon(String telefo) {
+		this.telefon = telefon;
+	}
 	private ArrayList<Medium> ausleihliste;
 	
 	public Kunde() {

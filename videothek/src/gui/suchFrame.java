@@ -8,6 +8,8 @@ public class suchFrame extends JFrame {
 
 	
 	public suchFrame(String titel) {
+		
+		
 		setBackground(Color.gray);
 		setForeground(Color.cyan);
 	}

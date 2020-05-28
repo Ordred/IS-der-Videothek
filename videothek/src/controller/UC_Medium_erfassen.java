@@ -28,7 +28,7 @@ public class UC_Medium_erfassen {
 		
 		me = new Medium_erfassen(this, ml);
 		me.setVisible(true);
-		me.setSize(300, 240);
+		me.setSize(350, 150);
 		me.setLocationRelativeTo(null);
 		me.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		

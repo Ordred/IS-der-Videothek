@@ -6,11 +6,13 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import controller.UC_Film_bearbeiten;
 import controller.UC_Film_erfassen;
@@ -44,12 +46,16 @@ public class Film_Bearbeiten extends JFrame{
 	
 	private ActionHandler a;
 	
+	private erfassPanel insets;
+	
 	
 	public Film_Bearbeiten(UC_Film_bearbeiten ucfb) {
 		
 		super("Film erfassen");
 		
-		
+		insets = new erfassPanel();
+		insets.setBorder(new EmptyBorder(50, 50, 50, 50));
+				
 	
 		this.ucfb = ucfb;
 		
@@ -98,9 +104,10 @@ public class Film_Bearbeiten extends JFrame{
 		buttons.add(löschen, BorderLayout.CENTER);
 		buttons.add(speichern, BorderLayout.EAST);
 		
+		insets.add(form);
+		insets.add(buttons);
 		
-		add(form, BorderLayout.CENTER);
-		add(buttons, BorderLayout.SOUTH);
+		add(insets);
 
 	}
 	

@@ -50,7 +50,8 @@ public class Kundenliste implements Serializable{
 		
 		kundenliste = (ArrayList<Kunde>)in.readObject();
 		} catch (FileNotFoundException e) {
-			
+			kundenliste = new ArrayList<Kunde>();
+			speichern();
 		}
 		catch (IOException e) {
 			System.out.println("iokunde");

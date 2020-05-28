@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -62,7 +62,7 @@ public class Medium_suchen extends suchFrame {
 
 	private JDialog nichtgefunden;
 	private JLabel nichtgefundenL;
-	private JButton ok;
+	private buttons ok;
 	private JPanel ngfPanel;
 
 	private String [] kriterien = {"ID", "Medium", "Titel", "Jahr", "Genre", "Beschreibung"};
@@ -76,8 +76,8 @@ public class Medium_suchen extends suchFrame {
 	private JTextField suchfeld;
 	private JLabel suchbegriffe;
 
-	private JButton suchen;
-	private JButton abbrechen;
+	private buttons suchen;
+	private buttons abbrechen;
 
 	private FlowLayout flow1;
 	private FlowLayout flow2;
@@ -177,7 +177,7 @@ public class Medium_suchen extends suchFrame {
 		sucheIc = new ImageIcon( newimg );
 
 		suchen = new buttons(sucheIc);
-		abbrechen = new JButton("Abbrechen");
+		abbrechen = new buttons("Abbrechen");
 
 		suchen.addActionListener(a);
 		abbrechen.addActionListener(a);
@@ -457,7 +457,7 @@ public class Medium_suchen extends suchFrame {
 					suchergebnisse = ucfs.jahr(Integer.parseInt(suchfeld.getText()));
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 
-						suchergebnisseL.add(new JButton(suchergebnisse.get(i).getJahr()+"\t"+
+						suchergebnisseL.add(new buttons(suchergebnisse.get(i).getJahr()+"\t"+
 								suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 					}
@@ -466,7 +466,7 @@ public class Medium_suchen extends suchFrame {
 						suchergebnisse = ucfs.genre(suchfeld.getText());
 						for (int i = 0; i < suchergebnisse.size(); i++) {
 
-							suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
+							suchergebnisseL.add(new buttons(suchergebnisse.get(i).getTitel()+"\t"+
 									suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 						}
@@ -475,7 +475,7 @@ public class Medium_suchen extends suchFrame {
 							suchergebnisse = ucfs.beschreibung(suchfeld.getText());
 							for (int i = 0; i < suchergebnisse.size(); i++) {
 
-								suchergebnisseL.add(new JButton(suchergebnisse.get(i).getTitel()+"\t"+
+								suchergebnisseL.add(new buttons(suchergebnisse.get(i).getTitel()+"\t"+
 										suchergebnisse.get(i).getGenre()+"\t"+suchergebnisse.get(i).getJahr()));
 
 							}		
