@@ -15,15 +15,6 @@ public class erfassFrame extends JFrame {
 		
 		setBackground(Color.black);
 		setForeground(Color.black);
-		
-		erfassPanel ef = new erfassPanel();
-		
-		Border padding = BorderFactory.createEmptyBorder(20, 20, 20, 20);
-		
-		ef.setBorder(padding);
-		
-		add(ef);
-		
 	}
 
 }

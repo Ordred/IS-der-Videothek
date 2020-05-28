@@ -12,19 +12,26 @@ public class UC_Film_bearbeiten {
 	private Filmliste fl;
 	private Film f;
 	private Film_Bearbeiten fb;
+	private UC_Film_suchen ucfs;
 
-	public UC_Film_bearbeiten(Filmliste fl, Film f) {
+	public UC_Film_bearbeiten(Filmliste fl) {
 		this.fl = fl;
-		this.f = f;
-		fb = new Film_Bearbeiten(this);
-		fb.setVisible(true);
-		fb.setSize(400, 400);
-		fb.setLocationRelativeTo(null);
-		fb.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		ucfs = new UC_Film_suchen(this, true, fl, true, null, null, null);
 		
 		
 	}
 
+	public void setFilm(Film f) {
+		
+		this.f = f;
+		fb = new Film_Bearbeiten(this);
+		fb.setVisible(true);
+		fb.setSize(400, 430);
+		fb.setLocationRelativeTo(null);
+		fb.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+	}
+	
 
 	public void setJahr(int jahr) {
 
@@ -32,11 +39,10 @@ public class UC_Film_bearbeiten {
 
 	}
 
-	public void setHülle(Icon hülle) {
-
+	public void setHülle(String hülle) {
 		f.setHülle(hülle);
-
 	}
+	
 	public void setGenre(String genre) {
 
 		f.setGenre(genre);

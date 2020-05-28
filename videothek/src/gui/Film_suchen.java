@@ -32,6 +32,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
+import controller.UC_Film_bearbeiten;
 import controller.UC_Film_suchen;
 import controller.UC_Kunde_suchen;
 import controller.UC_Medium_ausleihen;
@@ -95,8 +96,9 @@ public class Film_suchen extends suchFrame {
 	private Kunde k;
 	private Kundenliste kl;
 	private Medienliste ml;
+	private UC_Film_bearbeiten ucfb;
 
-	public Film_suchen (UC_Film_suchen ucsf, boolean medium, Kunde k, boolean admin, UC_Medium_erfassen ucme, Kundenliste kl, Medienliste ml) {
+	public Film_suchen (UC_Film_bearbeiten ucfb, UC_Film_suchen ucsf, boolean medium, Kunde k, boolean admin, UC_Medium_erfassen ucme, Kundenliste kl, Medienliste ml) {
 
 		super("Film suchen");
 		gl = new GridLayout(3, 1);
@@ -106,6 +108,7 @@ public class Film_suchen extends suchFrame {
 
 		this.medium = medium;
 		this.ucme = ucme;
+		this.ucfb = ucfb;
 		this.k = k;
 		this.admin = admin;
 		this.kl = kl;
@@ -249,8 +252,13 @@ public class Film_suchen extends suchFrame {
 			else {
 				for (int i = 0; i < suchergebnisseB.size(); i++) {
 					if (e.getSource() == suchergebnisseB.get(i)) {
+						
+						if (ucme != null) {
 						ucme.setFilm2(suchergebnisse.get(i));
-						System.out.println("film gesetzt");
+						}
+						else {
+							ucfb.setFilm(suchergebnisse.get(i));
+						}
 						suche2.dispose();
 						dispose();
 					}

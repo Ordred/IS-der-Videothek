@@ -26,22 +26,25 @@ public class UC_Film_suchen {
 	private Medienliste ml;
 	
 	private Kunde k;
+	private UC_Film_bearbeiten ucfb;
+	private boolean fb;
 
 
-	public UC_Film_suchen(Filmliste fl, boolean medium, Kundenliste kl, Medienliste ml, Kunde k) {
+	public UC_Film_suchen(UC_Film_bearbeiten ucfb, boolean fb, Filmliste fl, boolean medium, Kundenliste kl, Medienliste ml, Kunde k) {
 
 		this.fl = fl;
 		this.medium = medium;
 		this.kl = kl;
 		this.ml = ml;
 		this.k = k;
-		
+		this.ucfb = ucfb;
+		this.fb = fb;
 		
 		suchergebnisse = new ArrayList<Film>();
 		
-		if (!medium) {
+		if (!medium || fb) {
 
-		fs = new Film_suchen(this, medium, k,  k != null, null, kl, ml);
+		fs = new Film_suchen(ucfb, this, medium, k,  k != null, null, kl, ml);
 
 		fs.setVisible(true);
 		fs.setSize(300,150);

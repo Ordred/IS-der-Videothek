@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import controller.UC_Film_bearbeiten;
 import controller.UC_Film_erfassen;
 import controller.UC_Film_suchen;
 import controller.UC_Guthaben_aufladen;
@@ -34,6 +35,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 	private buttons guthabenaufladen;
 	private buttons mediumsuchen;
 	private buttons mediumerfassen;
+	private buttons filmbearbeiten;
 
 	private GridLayout gr;
 
@@ -44,6 +46,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 	private UC_Guthaben_aufladen uga;
 	private UC_Medium_suchen ucms;
 	private UC_Medium_erfassen ucme;
+	private UC_Film_bearbeiten ucfb;
 
 	private Filmliste fl;
 	private Kundenliste kl;
@@ -78,6 +81,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 		guthabenaufladen = new buttons("Guthaben aufladen");
 		mediumsuchen = new buttons("Medium suchen");
 		mediumerfassen = new buttons("Medium erfassen");
+		filmbearbeiten = new buttons("Film bearbeiten");
+		
 
 
 		filmerfassen.addActionListener(a);
@@ -87,8 +92,9 @@ public class Hauptmenu_Besitzer extends JFrame {
 		guthabenaufladen.addActionListener(a);
 		mediumsuchen.addActionListener(a);
 		mediumerfassen.addActionListener(a);
+		filmbearbeiten.addActionListener(a);
 
-		gr = new GridLayout(3, 3);
+		gr = new GridLayout(4, 3);
 
 		super.setLayout(gr);
 
@@ -98,6 +104,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 		add(kundesuchen);
 		add(mediumsuchen);
 		add(mediumerfassen);
+		add(filmbearbeiten);
 
 	}
 
@@ -132,6 +139,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 	public void setMl(Medienliste ml) {
 		this.ml = ml;
 	}
+	
+	
 
 	public class ActionHandler implements ActionListener{
 
@@ -154,7 +163,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 			if (e.getSource() == filmsuchen) {
 				fl.laden();
 				ml.laden();
-				ucsf = new UC_Film_suchen(fl, false, kl, ml, k);
+				ucsf = new UC_Film_suchen(null, false, fl, false, kl, ml, k);
 			}
 
 			if (e.getSource() == kundesuchen) {
@@ -172,6 +181,10 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ml.laden();
 				fl.laden();
 				ucme = new UC_Medium_erfassen(ml, fl);
+			}
+			
+			if (e.getSource() == filmbearbeiten) {
+				ucfb = new UC_Film_bearbeiten(fl);
 			}
 		}
 	}
