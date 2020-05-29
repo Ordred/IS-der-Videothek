@@ -11,65 +11,78 @@ import model.Medienliste;
 import model.Medium;
 
 public class UC_Medium_ausleihen {
-	
+
 	private String medium;
 	private LocalDate heute;
 	private Kunde k;
 	private Film f;
-	
-	
+
+
 	private Medienliste ml;
 	private Kundenliste kl;
-	
+
 	private Medium m;
-	
-	
+
+
 	public UC_Medium_ausleihen(String medium, Kunde k, Film f, Medienliste ml, Kundenliste kl, Medium m) {
-		
+
 		this.f = f;
 		this.medium = medium;
 		this.k = k;
 		this.ml = ml;
 		this.kl = kl;
 		this.m = m;
-		
+
 		heute = LocalDate.now();
+
 		
+
 	}
-	
-	
+
+
 	public void ausleihen() {
-		
+
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
 			
-			
-			if (ml.getMedienliste().get(i).getFilm().getTitel().toString().contains(f.getTitel().toString()) && ml.getMedienliste().get(i).getFilm().getJahr() == f.getJahr() && ml.getMedienliste().get(i).isLagernd() && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(medium)) {
-				System.out.println("geht2");
-				
-				if(m == null) {
-				m = ml.getMedienliste().get(i);
+			for (int j = 0; j < kl.getKundenliste().size(); j++) {
+				if (kl.getKundenliste().get(j).getName().equalsIgnoreCase(k.getName()) && 
+						kl.getKundenliste().get(j).getVorname().equalsIgnoreCase(k.getVorname()) && 
+						kl.getKundenliste().get(j).getGeburtsdatum().equalsIgnoreCase(k.getGeburtsdatum())) 
+				{
+					System.out.println("Geschafft klk");
+					k = kl.getKundenliste().get(j);
 				}
+			}
+
+
+
+			if (ml.getMedienliste().get(i).getFilm().getTitel().equalsIgnoreCase(m.getFilm().getTitel()) &&
+					ml.getMedienliste().get(i).getFilm().getJahr() == m.getFilm().getJahr() &&
+					ml.getMedienliste().get(i).isLagernd() && 
+					ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(medium)) {
+				System.out.println("geht2");
+
+				if(m == null) {
+					m = ml.getMedienliste().get(i);
+				}
+
+				
 				k.getAusleihliste().add(m);
 				k.setGuthaben(ml.getMedienliste().get(i).getPreis());
-				
-				for (int j = 0; j < kl.getKundenliste().size(); j++) {
-					if (kl.getKundenliste().get(j) == k) {
-						kl.getKundenliste().remove(j);
-						kl.getKundenliste().add(j, k);					}
-				}
 				kl.speichern();
+				kl.laden();
 				
-				
-				m.setLagernd(false);
 				m.setRückgabedatum(heute.plusDays(7));
+				m.setLagernd(false);
 				ml.speichern();
+				ml.laden();
 			}
-			
+
 			else if (ml.getMedienliste().get(i).getFilm() == f && !ml.getMedienliste().get(i).isLagernd()) {
-				
+
 			}
 		}
-		
+
 	}
 
 

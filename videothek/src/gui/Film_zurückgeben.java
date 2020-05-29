@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -48,6 +50,11 @@ public class Film_zurückgeben extends JFrame {
 	private JLabel [] titelleiste;
 
 	private Medium m;
+	
+	private buttons ok;
+	
+	private JDialog zurückgegeben;
+
 
 
 
@@ -59,6 +66,12 @@ public class Film_zurückgeben extends JFrame {
 		this.ucfz = ucfz;
 
 		System.out.println(ml);
+		
+		ok = new buttons("Ok");
+		
+		ActionHandler a = new ActionHandler();
+		
+		ok.addActionListener(a);
 
 
 		medienB = new ArrayList<suchButton>();
@@ -141,10 +154,25 @@ public class Film_zurückgeben extends JFrame {
 
 
 		public void actionPerformed(ActionEvent e) {
+			
+			if (e.getSource() == ok) {
+				zurückgegeben.dispose();
+			}
 
 			for (int i = 0; i < medienB.size(); i++) {
 				if (e.getSource() == medienB.get(i)) {
 					ucfz.zurückgeben(i);
+					
+					zurückgegeben = new JDialog();
+					
+					zurückgegeben.setTitle("Film zurückgegeben");
+					zurückgegeben.setVisible(true);
+					zurückgegeben.setSize(300, 150);
+					zurückgegeben.setBackground(Color.black);
+					zurückgegeben.setLocationRelativeTo(null);
+					zurückgegeben.add(new erfassLabel("Danke! Film erfolgreich zurückgegeben!"), BorderLayout.CENTER);
+					zurückgegeben.add(ok, BorderLayout.SOUTH);
+					dispose();
 				}
 			}
 

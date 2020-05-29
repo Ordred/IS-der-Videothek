@@ -142,7 +142,7 @@ public class Film_suchen extends suchFrame {
 
 
 			titelleiste[i].setOpaque(true);
-			titelleiste[i].setFont(new Font("Arial", 3, 40));
+			titelleiste[i].setFont(new Font("Arial", 3, 20));
 			titelleiste[i].setBackground(Color.gray);
 			titelleiste[i].setForeground(Color.white);
 
@@ -242,7 +242,7 @@ public class Film_suchen extends suchFrame {
 					if (e.getSource() == suchergebnisseB.get(i)) {
 						fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml, medium, null);
 						fa.setVisible(true);
-
+						fa.setSize(500, 400);
 						fa.setLocationRelativeTo(null);
 						fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}

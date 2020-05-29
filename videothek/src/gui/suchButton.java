@@ -12,7 +12,7 @@ public class suchButton extends JButton {
 	public suchButton( String titel) {
 		setText(titel);
 		
-		Font f = new Font("Arial",3,50);
+		Font f = new Font("Arial",3,16);
 		
 		setOpaque(true);
 		setBackground(Color.red);

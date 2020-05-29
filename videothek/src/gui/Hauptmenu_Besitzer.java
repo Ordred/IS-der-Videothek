@@ -184,7 +184,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 			}
 			
 			if (e.getSource() == filmbearbeiten) {
-				ucfb = new UC_Film_bearbeiten(fl);
+				ucfb = new UC_Film_bearbeiten(fl, ml, kl);
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package controller;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import gui.Film_zurückgeben;
@@ -13,15 +14,16 @@ public class UC_Film_zurückgeben {
 	private Medienliste ml;
 	private Kundenliste kl;
 	private Kunde k;
-	
+
 	private Film_zurückgeben fz;
-	
+
 	public UC_Film_zurückgeben(Medienliste ml, Kundenliste kl, Kunde k) {
 
 		this.ml = ml;
 		this.kl = kl;
+		kl.laden();
 		this.k = k;
-		
+
 		fz = new Film_zurückgeben(k, this);
 		fz.setVisible(true);
 		fz.setSize(800, 800);
@@ -30,24 +32,37 @@ public class UC_Film_zurückgeben {
 	}
 
 	public void zurückgeben(int i) {
+
+		kl.laden();
+		ml.laden();
 		
 		for (int j = 0; j < ml.getMedienliste().size(); j++) {
-			if (k.getAusleihliste().get(i) == ml.getMedienliste().get(j)) {
+			if (ml.getMedienliste().get(j) == k.getAusleihliste().get(i)) {
 				ml.getMedienliste().get(j).setLagernd(true);
-				ml.getMedienliste().get(j);
+				ml.speichern();
+				ml.laden();
 			}
-		}
-		k.getAusleihliste().remove(i);
+		}	
+
+
 		for (int j = 0; j < kl.getKundenliste().size(); j++) {
-			if (k == kl.getKundenliste().get(j)) {
-				kl.getKundenliste().remove(j);
-				kl.getKundenliste().add(j, k);
+			if (kl.getKundenliste().get(j).getName().equalsIgnoreCase(k.getName()) && 
+					kl.getKundenliste().get(j).getVorname().equalsIgnoreCase(k.getVorname()) && 
+					kl.getKundenliste().get(j).getGeburtsdatum().equalsIgnoreCase(k.getGeburtsdatum())) 
+			{
+				System.out.println("Geschafft");
+				k = kl.getKundenliste().get(j);
+				k.getAusleihliste().remove(i);
 				kl.speichern();
+				kl.laden();
 			}
 		}
+
+			
+
 		
-		
+		System.out.println("Medium weg");
 		
 	}
-
 }
+

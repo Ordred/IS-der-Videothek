@@ -132,7 +132,7 @@ public class Hauptmenu_Kunde extends JFrame {
 			if (e.getSource() == filmsuchen) {
 				fl.laden();
 				ml.laden();
-				ucsf = new UC_Film_suchen(fl, false, kl, ml, k);
+				ucsf = new UC_Film_suchen(null, false, fl, false, kl, ml, k);
 			}
 
 			

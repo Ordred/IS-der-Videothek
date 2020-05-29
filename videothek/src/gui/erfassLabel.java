@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.Icon;
@@ -28,6 +29,8 @@ public class erfassLabel extends JLabel {
 
 
 	}
+	
+	
 	
 	public erfassLabel(Icon icon) {
 		setIcon(icon);

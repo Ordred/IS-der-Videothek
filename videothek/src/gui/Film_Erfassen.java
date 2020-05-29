@@ -54,7 +54,11 @@ public class Film_Erfassen extends erfassFrame{
 	
 	private JFileChooser datei;
 	
-	private File ic;
+	private buttons ok;
+	
+	private JDialog zahl;
+	
+
 	
 
 	
@@ -68,17 +72,19 @@ public class Film_Erfassen extends erfassFrame{
 		this.ufe = ufe;
 		
 		
-		
+		ok = new buttons("Ok");
 		a = new ActionHandler();
 		
 		gl1 = new GridLayout(4,2);
 		fl = new FlowLayout();
 		
-		form = new erfassPanel(null);
-		buttons = new erfassPanel(null);
+		form = new erfassPanel();
+		buttons = new erfassPanel();
 		
 		form.setLayout(gl1);
 		buttons.setLayout(fl);
+		
+		ok.addActionListener(a);
 		
 		speichern = new buttons("Speichern");
 		abbrechen = new buttons("Abbrechen");
@@ -139,7 +145,7 @@ public class Film_Erfassen extends erfassFrame{
 				int result = datei.showOpenDialog(new JDialog());
 				
 				if (result == JFileChooser.APPROVE_OPTION) {
-				    ic = datei.getSelectedFile();
+				    dateiname = datei.getSelectedFile().getName();
 				}
 				
 
@@ -150,16 +156,40 @@ public class Film_Erfassen extends erfassFrame{
 				
 			}
 			
+			if (e.getSource() == ok) {
+				zahl.dispose();
+			}
+			
 			if (e.getSource() == speichern) {
-				dateiname = ic.getName();
-				ufe.setTitel(titel.getText());
-				ufe.setGenre(genre.getText());
-				ufe.setJahr(Integer.parseInt(jahr.getText()));
-				ufe.setBeschreibung(beschreibung.getText());
-				ufe.setHülle(ic.getName());
-				ufe.speichern();
+				try {
+					
+					ufe.setTitel(titel.getText());
+					ufe.setGenre(genre.getText());
+					ufe.setJahr(Integer.parseInt(jahr.getText()));
+					ufe.setBeschreibung(beschreibung.getText());
+					ufe.setHülle(dateiname);
+					ufe.speichern();
 
-				dispose();
+					dispose();
+					} catch (NumberFormatException exception) {
+						zahl = new JDialog();
+						zahl.setTitle("Bitte Zahl bei Jahr eingeben");
+						zahl.setVisible(true);
+						zahl.add(new erfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
+						zahl.add(ok, BorderLayout.SOUTH);
+						zahl.setSize(300, 150);
+						zahl.setLocationRelativeTo(null);
+						zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					} catch (NullPointerException exception) {
+						JDialog zahl = new JDialog();
+						zahl.setTitle("Bitte Datei für Hülle auswählen!");
+						zahl.setVisible(true);
+						zahl.add(new erfassLabel("Bitte Datei für Hülle auswählen!", SwingConstants.CENTER), BorderLayout.CENTER);
+						zahl.add(ok, SwingConstants.SOUTH);
+						zahl.setSize(300, 150);
+						zahl.setLocationRelativeTo(null);
+						zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					} 
 			}
 			
 		}

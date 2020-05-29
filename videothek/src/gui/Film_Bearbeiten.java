@@ -51,7 +51,10 @@ public class Film_Bearbeiten extends erfassFrame{
 	
 	private ActionHandler a;
 	private JFileChooser datei;
-	private File ic;
+	private String icS;
+	
+	private JDialog zahl;
+	private buttons ok;
 	
 
 	
@@ -64,6 +67,10 @@ public class Film_Bearbeiten extends erfassFrame{
 				
 	
 		this.ucfb = ucfb;
+		
+		ok = new buttons("Ok");
+		
+		
 		
 		a = new ActionHandler();
 		
@@ -81,10 +88,11 @@ public class Film_Bearbeiten extends erfassFrame{
 		löschen = new buttons("Löschen");
 		bildwählen = new buttons("Bild auswählen");
 		
-		titel = new JTextField("Titel");
-		jahr = new JTextField("Jahr");
-		genre = new JTextField("Genre");
-		beschreibung = new JTextField("Beschreibung");
+		titel = new JTextField(ucfb.getF().getTitel());
+		jahr = new JTextField(ucfb.getF().getJahr());
+		genre = new JTextField(ucfb.getF().getGenre());
+		beschreibung = new JTextField(ucfb.getF().getBeschreibung());
+		icS = ucfb.getF().getHülle();
 		
 		titelL = new erfassLabel("Titel", SwingConstants.CENTER);
 		jahrL = new erfassLabel("Jahr", SwingConstants.CENTER);
@@ -100,6 +108,8 @@ public class Film_Bearbeiten extends erfassFrame{
 		speichern.addActionListener(a);
 		abbrechen.addActionListener(a);
 		löschen.addActionListener(a);
+		
+		ok.addActionListener(a);
 		
 		form.add(titelL);
 		form.add(titel);
@@ -139,7 +149,7 @@ public class Film_Bearbeiten extends erfassFrame{
 				int result = datei.showOpenDialog(new JDialog());
 				
 				if (result == JFileChooser.APPROVE_OPTION) {
-				    ic = datei.getSelectedFile();
+				    icS = datei.getSelectedFile().getName();
 				}
 				
 
@@ -148,16 +158,32 @@ public class Film_Bearbeiten extends erfassFrame{
 				datei.setSize(300, 300);
 			}
 			
+			if (e.getSource() == ok) {
+				zahl.dispose();
+			}
+			
 			if (e.getSource() == speichern) {
+				
+				try {
 				
 				ucfb.setTitel(titel.getText());
 				ucfb.setGenre(genre.getText());
 				ucfb.setJahr(Integer.parseInt(jahr.getText()));
 				ucfb.setBeschreibung(beschreibung.getText());
-				ucfb.setHülle(ic.getName());
+				ucfb.setHülle(icS);
 				ucfb.speichern();
 
 				dispose();
+				} catch (NumberFormatException exception) {
+					zahl = new JDialog();
+					zahl.setTitle("Bitte Zahl bei Jahr eingeben");
+					zahl.setVisible(true);
+					zahl.add(new erfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
+					zahl.add(ok,SwingConstants.SOUTH);
+					zahl.setSize(300, 150);
+					zahl.setLocationRelativeTo(null);
+					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				} 
 			}
 			
 			if (e.getSource() == löschen) {

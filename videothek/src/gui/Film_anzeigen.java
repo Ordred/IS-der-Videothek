@@ -86,7 +86,7 @@ public class Film_anzeigen extends erfassFrame {
 
 	private String verf;
 	private erfassPanel bild;
-	
+
 	private buttons ok2;
 	private erfassFrame kG;
 
@@ -94,10 +94,10 @@ public class Film_anzeigen extends erfassFrame {
 
 	public Film_anzeigen(Film f, Kunde k, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
 		super("");
-		
-		
-		
-		setSize(500, 400);
+
+
+
+
 		if (media == null) {
 			super.setTitle("Filminformationen");
 		}
@@ -105,8 +105,8 @@ public class Film_anzeigen extends erfassFrame {
 		else {
 			super.setTitle("Medieninformationen");
 		}
-		
-		
+
+
 		a = new ActionHandler();
 
 		this.f = f;
@@ -119,22 +119,22 @@ public class Film_anzeigen extends erfassFrame {
 
 		this.mediumE = mediumE;
 
-		
+
 		ImageIcon icon = new ImageIcon(f.getHülle());
 
 		ok2 = new buttons();
 		ok2.setText("Ok");
-		
-		
+
+
 		Image img = icon.getImage() ;  
 		Image newimg = img.getScaledInstance( 200, 300,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
 
 		hülle = new erfassLabel(icon);
-		
-		
+
+
 		mediumL = new erfassLabel("Medium", SwingConstants.CENTER);
-	
+
 		abbrechen2 = new buttons("Abbrechen");
 
 		ok = new buttons ("Ok");
@@ -180,8 +180,8 @@ public class Film_anzeigen extends erfassFrame {
 
 
 		if (media != null) {
-			
-			
+
+
 			id = new erfassLabel(Integer.toString(media.getId()), SwingConstants.RIGHT);
 
 			if (media.isLagernd()) {
@@ -191,13 +191,13 @@ public class Film_anzeigen extends erfassFrame {
 				lager = new erfassLabel("Nein", SwingConstants.RIGHT);
 			}
 			if (media.getRückgabedatum() != null) {
-			verfügbarkeit = new erfassLabel (media.getRückgabedatum().toString(),SwingConstants.RIGHT);
+				verfügbarkeit = new erfassLabel (media.getRückgabedatum().toString(),SwingConstants.RIGHT);
 			}
 			else {
 				verfügbarkeit = new erfassLabel("Sofort", SwingConstants.RIGHT);
-				
+
 			}
-			
+
 			angaben.add(idL);
 			angaben.add(id);
 			angaben.add(lagerL);
@@ -205,7 +205,7 @@ public class Film_anzeigen extends erfassFrame {
 			angaben.add(verfügbarkeitL);
 			angaben.add(verfügbarkeit);
 		}
-		
+
 		angaben.add(titel);
 		angaben.add(titelT);
 		angaben.add(jahr);
@@ -214,16 +214,16 @@ public class Film_anzeigen extends erfassFrame {
 		angaben.add(genreT);
 		angaben.add(beschreibung);
 		angaben.add(beschreibungT);
-		
+
 
 		buttons.add(abbrechen);
 		if(!mediumE) {
 			buttons.add(ausleihen);
 		}
-		
+
 		bild.setLayout(new FlowLayout());
-		
-		
+
+
 
 		add(angaben, BorderLayout.WEST);
 		add(bild,BorderLayout.CENTER);
@@ -233,6 +233,10 @@ public class Film_anzeigen extends erfassFrame {
 
 	}
 
+
+	public void setMedia(Medium media) {
+		this.media = media;
+	}
 
 
 
@@ -253,28 +257,40 @@ public class Film_anzeigen extends erfassFrame {
 				m = auswahl.getSelectedItem().toString();
 				medium.setVisible(false);
 
+				if (media == null) {
+
+					for (int i = 0; i < ml.getMedienliste().size(); i++) {
+						if (ml.getMedienliste().get(i).getFilm().getTitel().equalsIgnoreCase(f.getTitel()) && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(m)) {
+							media = ml.getMedienliste().get(i);
+							System.out.println("medium gesetzt");
+						}
+					}
+				}
+
 				if (k == null) {
 					k = ucks.getKs().getK();
 				}
 				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
-				
-				
-				if (media != null) {
-					ucma.setM(media);
-				}
-				if( k != null && media != null && k.getGuthaben() >= media.getPreis()) {
-				ml.laden();
 
-				ucma.ausleihen();
+
+				if(k.getGuthaben() >= media.getPreis()) {
+					ml.laden();
+					ucma.ausleihen();
 				}
 				else {
 					kG = new erfassFrame("Zu wenig Guthaben");
-					kG.add(new erfassLabel("Zu wenig Guthaben!"));
-					kG.add(ok2);
+
+					kG.setVisible(true);
+					kG.setSize(300, 150);
+					kG.setLocationRelativeTo(null);
+					kG.add(new erfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
+					kG.add(ok2, BorderLayout.SOUTH);
 				}
 
+
+
 			}
-			
+
 			if (e.getSource() == ok2) {
 				kG.dispose();
 			}
@@ -304,11 +320,12 @@ public class Film_anzeigen extends erfassFrame {
 
 				medium.setVisible(true);
 				medium.setSize(300, 150);
-				
-				
+
+				medium.setLocationRelativeTo(null);
+
 				medium.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-				
+
 				setLocationRelativeTo(null);
 				if (k == null) {
 					ucks = new UC_Kunde_suchen(kl, true);
