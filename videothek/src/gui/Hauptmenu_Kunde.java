@@ -1,11 +1,15 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.SwingConstants;
 
 import controller.UC_Film_erfassen;
 import controller.UC_Film_suchen;
@@ -42,6 +46,9 @@ public class Hauptmenu_Kunde extends JFrame {
 	private Filmliste fl;
 	private Kundenliste kl;
 	private Medienliste ml;
+	private erfassLabel guthaben;
+	private erfassLabel guthabenL;
+	private erfassPanel guthabenP;
 
 	public Hauptmenu_Kunde(Kunde k) {
 
@@ -62,24 +69,33 @@ public class Hauptmenu_Kunde extends JFrame {
 		ml.laden();
 
 		a = new ActionHandler();
+		
+		guthabenP = new erfassPanel(new FlowLayout());
 
 		
 		filmzurückgeben = new buttons("Film zurückgeben");
 		filmsuchen = new buttons("Film suchen");
+		guthaben = new erfassLabel(Integer.toString(k.getGuthaben()));
+		guthabenL = new erfassLabel("Guthaben", SwingConstants.CENTER);
+		guthaben.setFont(new Font("Arial", 1, 20));
+		guthabenL.setFont(new Font("Arial", 1, 20));
 		
+		
+		guthabenP.add(guthabenL);
+		guthabenP.add(guthaben);
 
 
 		filmzurückgeben.addActionListener(a);
 		filmsuchen.addActionListener(a);
 		
-
-		gr = new GridLayout(2, 1);
-
-		super.setLayout(gr);
-
-	
-		add(filmzurückgeben);
-		add(filmsuchen);
+		erfassPanel buttons = new erfassPanel();
+		buttons.setLayout(new GridLayout(1, 2));
+		
+		buttons.add(filmsuchen);
+		buttons.add(filmzurückgeben);
+		
+		add(buttons, BorderLayout.CENTER);
+		add(guthabenP, BorderLayout.SOUTH);
 		
 
 	}
