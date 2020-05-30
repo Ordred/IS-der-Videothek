@@ -15,23 +15,23 @@ import javax.swing.SwingConstants;
 import controller.UC_Medium_erfassen;
 import model.Medienliste;
 
-public class Medium_erfassen extends suchFrame{
+public class Medium_erfassen extends SuchFrame{
 	
-	private erfassLabel mediumL;
+	private ErfassLabel mediumL;
 	private JComboBox<String> medium;
 	
 	private String [] mArten = {"Blu-Ray","DVD","VHS"};
-	private erfassLabel preisL;
+	private ErfassLabel preisL;
 	private JTextField preis;
 
-	private buttons filmerfassen;
+	private Buttons filmerfassen;
 	
-	private buttons speichern;
-	private buttons abbrechen;
+	private Buttons speichern;
+	private Buttons abbrechen;
 	
-	private erfassPanel buttons;
-	private erfassPanel preise;
-	private erfassPanel medien;
+	private ErfassPanel buttons;
+	private ErfassPanel preise;
+	private ErfassPanel medien;
 	
 	private ActionHandler a;
 	
@@ -51,9 +51,9 @@ public class Medium_erfassen extends suchFrame{
 		
 		
 		a = new ActionHandler();
-		buttons = new erfassPanel(new FlowLayout());
-		medien = new erfassPanel(new FlowLayout());
-		preise = new erfassPanel(new FlowLayout());
+		buttons = new ErfassPanel(new FlowLayout());
+		medien = new ErfassPanel(new FlowLayout());
+		preise = new ErfassPanel(new FlowLayout());
 		
 		
 		
@@ -61,16 +61,16 @@ public class Medium_erfassen extends suchFrame{
 		
 		
 		
-		mediumL = new erfassLabel("Medium", SwingConstants.LEFT);
+		mediumL = new ErfassLabel("Medium", SwingConstants.LEFT);
 		medium = new JComboBox<String>(mArten);
 		
-		preisL = new erfassLabel("Preis", SwingConstants.LEFT);
+		preisL = new ErfassLabel("Preis", SwingConstants.LEFT);
 		preis = new JTextField("Hier Preis eingeben");
 		
-		filmerfassen = new buttons("Film hinzufügen");
+		filmerfassen = new Buttons("Film hinzufügen");
 		
-		speichern = new buttons("Speichern");
-		abbrechen = new buttons("Abbrechen");
+		speichern = new Buttons("Speichern");
+		abbrechen = new Buttons("Abbrechen");
 		
 		filmerfassen.addActionListener(a);
 		speichern.addActionListener(a);

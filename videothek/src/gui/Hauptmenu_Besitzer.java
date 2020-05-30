@@ -28,13 +28,13 @@ public class Hauptmenu_Besitzer extends JFrame {
 	
 	private Kunde k;
 
-	private buttons filmerfassen;
-	private buttons kundeerfassen;
-	private buttons filmsuchen;
-	private buttons kundesuchen;
-	private buttons guthabenaufladen;
-	private buttons mediumsuchen;
-	private buttons mediumerfassen;
+	private Buttons filmerfassen;
+	private Buttons kundeerfassen;
+	private Buttons filmsuchen;
+	private Buttons kundesuchen;
+	private Buttons guthabenaufladen;
+	private Buttons mediumsuchen;
+	private Buttons mediumerfassen;
 
 
 	private GridLayout gr;
@@ -76,13 +76,13 @@ public class Hauptmenu_Besitzer extends JFrame {
 
 		a = new ActionHandler();
 
-		filmerfassen = new buttons("Film erfassen");
-		kundeerfassen = new buttons("Kunde erfassen");
-		filmsuchen = new buttons("Film suchen");
-		kundesuchen = new buttons("Kunde suchen");
-		guthabenaufladen = new buttons("Guthaben aufladen");
-		mediumsuchen = new buttons("Medium suchen");
-		mediumerfassen = new buttons("Medium erfassen");
+		filmerfassen = new Buttons("Film erfassen");
+		kundeerfassen = new Buttons("Kunde erfassen");
+		filmsuchen = new Buttons("Film suchen");
+		kundesuchen = new Buttons("Kunde suchen");
+		guthabenaufladen = new Buttons("Guthaben aufladen");
+		mediumsuchen = new Buttons("Medium suchen");
+		mediumerfassen = new Buttons("Medium erfassen");
 	
 		
 

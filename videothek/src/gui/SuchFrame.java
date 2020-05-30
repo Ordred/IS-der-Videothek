@@ -4,10 +4,10 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-public class suchFrame extends JFrame {
+public class SuchFrame extends JFrame {
 
 	
-	public suchFrame(String titel) {
+	public SuchFrame(String titel) {
 		
 		
 		setBackground(Color.gray);

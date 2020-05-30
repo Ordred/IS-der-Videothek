@@ -6,10 +6,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 
-public class suchButton extends JButton {
+public class SuchButton extends JButton {
 
 	
-	public suchButton( String titel) {
+	public SuchButton( String titel) {
 		setText(titel);
 		
 		Font f = new Font("Arial",3,16);

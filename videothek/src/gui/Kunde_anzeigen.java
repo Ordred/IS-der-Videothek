@@ -28,30 +28,30 @@ public class Kunde_anzeigen extends JFrame {
 	private GridLayout gl;
 	private FlowLayout fl;
 	
-	private erfassPanel angaben;
-	private erfassPanel buttons;
+	private ErfassPanel angaben;
+	private ErfassPanel buttons;
 	
-	private erfassLabel name;
-	private erfassLabel vorname;
-	private erfassLabel geburtsdatum;
-	private erfassLabel lieblingsgenre;
-	private erfassLabel guthaben;
-	private erfassLabel adresse;
-	private erfassLabel ort;
-	private erfassLabel telefon;
+	private ErfassLabel name;
+	private ErfassLabel vorname;
+	private ErfassLabel geburtsdatum;
+	private ErfassLabel lieblingsgenre;
+	private ErfassLabel guthaben;
+	private ErfassLabel adresse;
+	private ErfassLabel ort;
+	private ErfassLabel telefon;
 	
-	private erfassLabel nameT;
-	private erfassLabel vornameT;
-	private erfassLabel geburtsdatumT;
-	private erfassLabel lieblingsgenreT;
-	private erfassLabel guthabenT;
-	private erfassLabel adresseT;
-	private erfassLabel ortT;
-	private erfassLabel telefonT;
+	private ErfassLabel nameT;
+	private ErfassLabel vornameT;
+	private ErfassLabel geburtsdatumT;
+	private ErfassLabel lieblingsgenreT;
+	private ErfassLabel guthabenT;
+	private ErfassLabel adresseT;
+	private ErfassLabel ortT;
+	private ErfassLabel telefonT;
 	
-	private buttons guthabenaufladen;
-	private buttons abbrechen;
-	private buttons bearbeiten;
+	private Buttons guthabenaufladen;
+	private Buttons abbrechen;
+	private Buttons bearbeiten;
 	private UC_Kunde_erfassen uckb;
 	
 	
@@ -66,26 +66,26 @@ public class Kunde_anzeigen extends JFrame {
 		this.kl = kl;
 		ka = this;
 		
-		angaben = new erfassPanel();
-		buttons = new erfassPanel();
+		angaben = new ErfassPanel();
+		buttons = new ErfassPanel();
 		
-		name = new erfassLabel("Name");
-		vorname = new erfassLabel("Vorname");
-		geburtsdatum = new erfassLabel("Geburtsdatum");
-		lieblingsgenre = new erfassLabel("Lieblingsgenre");
-		adresse = new erfassLabel("Adresse");
-		telefon = new erfassLabel("Telefon");
-		ort = new erfassLabel("Ort");
-		guthaben = new erfassLabel("Guthaben");
+		name = new ErfassLabel("Name");
+		vorname = new ErfassLabel("Vorname");
+		geburtsdatum = new ErfassLabel("Geburtsdatum");
+		lieblingsgenre = new ErfassLabel("Lieblingsgenre");
+		adresse = new ErfassLabel("Adresse");
+		telefon = new ErfassLabel("Telefon");
+		ort = new ErfassLabel("Ort");
+		guthaben = new ErfassLabel("Guthaben");
 		
-		nameT = new erfassLabel(k.getName());
-		vornameT = new erfassLabel(k.getVorname());
-		geburtsdatumT = new erfassLabel(k.getGeburtsdatum());
-		lieblingsgenreT = new erfassLabel(k.getLieblingsgenre());
-		adresseT = new erfassLabel(k.getAdresse());
-		ortT = new erfassLabel(k.getOrt());
-		telefonT = new erfassLabel(k.getTelefon());
-		guthabenT = new erfassLabel(Integer.toString(k.getGuthaben()));
+		nameT = new ErfassLabel(k.getName());
+		vornameT = new ErfassLabel(k.getVorname());
+		geburtsdatumT = new ErfassLabel(k.getGeburtsdatum());
+		lieblingsgenreT = new ErfassLabel(k.getLieblingsgenre());
+		adresseT = new ErfassLabel(k.getAdresse());
+		ortT = new ErfassLabel(k.getOrt());
+		telefonT = new ErfassLabel(k.getTelefon());
+		guthabenT = new ErfassLabel(Integer.toString(k.getGuthaben()));
 		
 		
 		gl = new GridLayout(8, 2);
@@ -94,9 +94,9 @@ public class Kunde_anzeigen extends JFrame {
 		angaben.setLayout(gl);
 		buttons.setLayout(fl);
 		
-		abbrechen = new buttons("Abbrechen");
-		guthabenaufladen = new buttons("Guthaben aufladen");
-		bearbeiten = new buttons("Bearbeiten");
+		abbrechen = new Buttons("Abbrechen");
+		guthabenaufladen = new Buttons("Guthaben aufladen");
+		bearbeiten = new Buttons("Bearbeiten");
 		
 		abbrechen.addActionListener(a);
 		guthabenaufladen.addActionListener(a);

@@ -9,9 +9,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 
-public class erfassFrame extends JFrame {
+public class ErfassFrame extends JFrame {
 	
-	public erfassFrame (String titel) {
+	public ErfassFrame (String titel) {
 		
 		setBackground(Color.black);
 		setForeground(Color.black);

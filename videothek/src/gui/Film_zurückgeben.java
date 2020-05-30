@@ -33,13 +33,13 @@ public class Film_zurückgeben extends JFrame {
 
 	private ArrayList<Medium> ml;
 
-	private ArrayList<suchButton> medienB;
-	private ArrayList<suchLabel> medium;
-	private ArrayList<suchLabel> titel;
-	private ArrayList<suchLabel> genre;
-	private ArrayList<suchLabel> jahr;
+	private ArrayList<SuchButton> medienB;
+	private ArrayList<SuchLabel> medium;
+	private ArrayList<SuchLabel> titel;
+	private ArrayList<SuchLabel> genre;
+	private ArrayList<SuchLabel> jahr;
 
-	private erfassPanel mlPanel;
+	private ErfassPanel mlPanel;
 
 	private GridLayout gl;
 
@@ -51,7 +51,7 @@ public class Film_zurückgeben extends JFrame {
 
 	private Medium m;
 	
-	private buttons ok;
+	private Buttons ok;
 	
 	private JDialog zurückgegeben;
 
@@ -71,25 +71,25 @@ public class Film_zurückgeben extends JFrame {
 
 		System.out.println(ml);
 		
-		ok = new buttons("Ok");
+		ok = new Buttons("Ok");
 		
 		ActionHandler a = new ActionHandler();
 		
 		ok.addActionListener(a);
 
 
-		medienB = new ArrayList<suchButton>();
-		medium = new ArrayList<suchLabel>();
-		titel = new ArrayList<suchLabel>();
-		genre = new ArrayList<suchLabel>();
-		jahr = new ArrayList<suchLabel>();
+		medienB = new ArrayList<SuchButton>();
+		medium = new ArrayList<SuchLabel>();
+		titel = new ArrayList<SuchLabel>();
+		genre = new ArrayList<SuchLabel>();
+		jahr = new ArrayList<SuchLabel>();
 		titelleiste = new JLabel[5];
 		titelleiste[0] = new JLabel("ID", SwingConstants.CENTER);
 		titelleiste[1] = new JLabel("Medium", SwingConstants.CENTER);
 		titelleiste[2] = new JLabel("Titel", SwingConstants.CENTER);
 		titelleiste[3] = new JLabel("Genre", SwingConstants.CENTER);
 		titelleiste[4] = new JLabel("Jahr", SwingConstants.CENTER);
-		mlPanel = new erfassPanel();
+		mlPanel = new ErfassPanel();
 		gl = new GridLayout(20, 3);
 
 
@@ -120,11 +120,11 @@ public class Film_zurückgeben extends JFrame {
 			gl = new GridLayout(ml.size()+1, 5);
 
 
-			medienB.add(new suchButton(Integer.toString(ml.get(i).getId())));
-			medium.add(new suchLabel(ml.get(i).getMedium(), SwingConstants.CENTER));
-			titel.add(new suchLabel(ml.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-			genre.add(new suchLabel(ml.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-			jahr.add(new suchLabel(Integer.toString(ml.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+			medienB.add(new SuchButton(Integer.toString(ml.get(i).getId())));
+			medium.add(new SuchLabel(ml.get(i).getMedium(), SwingConstants.CENTER));
+			titel.add(new SuchLabel(ml.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+			genre.add(new SuchLabel(ml.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+			jahr.add(new SuchLabel(Integer.toString(ml.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 			medienB.get(i).setSize(300, 10);
 
@@ -174,7 +174,7 @@ public class Film_zurückgeben extends JFrame {
 					zurückgegeben.setSize(300, 150);
 					zurückgegeben.setBackground(Color.black);
 					zurückgegeben.setLocationRelativeTo(null);
-					zurückgegeben.add(new erfassLabel("Danke! Film erfolgreich zurückgegeben!"), BorderLayout.CENTER);
+					zurückgegeben.add(new ErfassLabel("Danke! Film erfolgreich zurückgegeben!"), BorderLayout.CENTER);
 					zurückgegeben.add(ok, BorderLayout.SOUTH);
 					dispose();
 				}

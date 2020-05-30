@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 import controller.UC_Film_bearbeiten;
 import controller.UC_Film_erfassen;
 
-public class Film_Bearbeiten extends erfassFrame{
+public class Film_Bearbeiten extends ErfassFrame{
 
 	/* JFilechooser */
 	
@@ -32,34 +32,34 @@ public class Film_Bearbeiten extends erfassFrame{
 	private JTextField genre;
 	private JTextField beschreibung;
 	
-	private erfassLabel titelL;
-	private erfassLabel jahrL;
-	private erfassLabel genreL;
-	private erfassLabel beschreibungL;
+	private ErfassLabel titelL;
+	private ErfassLabel jahrL;
+	private ErfassLabel genreL;
+	private ErfassLabel beschreibungL;
 	
-	private erfassPanel buttons;
-	private erfassPanel form;
+	private ErfassPanel buttons;
+	private ErfassPanel form;
 	
 	private GridLayout gl1;
 	
 	private FlowLayout fl;
 	
-	private buttons speichern;
-	private buttons abbrechen;
-	private buttons löschen;
-	private buttons bildwählen;
+	private Buttons speichern;
+	private Buttons abbrechen;
+	private Buttons löschen;
+	private Buttons bildwählen;
 	
-	private buttons ja;
-	private buttons nein;
+	private Buttons ja;
+	private Buttons nein;
 	
 	private ActionHandler a;
 	private JFileChooser datei;
 	private String icS;
 	
 	private JDialog zahl;
-	private buttons ok;
+	private Buttons ok;
 	
-	private JDialog löschen2;	
+	private LöschDialog löschen2;	
 	
 	public Film_Bearbeiten(UC_Film_bearbeiten ucfb) {
 		
@@ -70,14 +70,14 @@ public class Film_Bearbeiten extends erfassFrame{
 	
 		this.ucfb = ucfb;
 		
-		ok = new buttons("Ok");
+		ok = new Buttons("Ok");
 		
 		
 		
 		a = new ActionHandler();
 		
-		form = new erfassPanel(null);
-		buttons = new erfassPanel(null);
+		form = new ErfassPanel(null);
+		buttons = new ErfassPanel(null);
 		
 		gl1 = new GridLayout(4,2);
 		fl = new FlowLayout();
@@ -85,13 +85,13 @@ public class Film_Bearbeiten extends erfassFrame{
 		form.setLayout(gl1);
 		buttons.setLayout(fl);
 		
-		speichern = new buttons("Speichern");
-		abbrechen = new buttons("Abbrechen");
-		löschen = new buttons("Löschen");
-		bildwählen = new buttons("Bild auswählen");
+		speichern = new Buttons("Speichern");
+		abbrechen = new Buttons("Abbrechen");
+		löschen = new Buttons("Löschen");
+		bildwählen = new Buttons("Bild auswählen");
 		
-		ja = new buttons("Ja");
-		nein = new buttons("Nein");
+		ja = new Buttons("Ja");
+		nein = new Buttons("Nein");
 		
 		titel = new JTextField(ucfb.getF().getTitel());
 		jahr = new JTextField(ucfb.getF().getJahr());
@@ -99,10 +99,10 @@ public class Film_Bearbeiten extends erfassFrame{
 		beschreibung = new JTextField(ucfb.getF().getBeschreibung());
 		icS = ucfb.getF().getHülle();
 		
-		titelL = new erfassLabel("Titel", SwingConstants.CENTER);
-		jahrL = new erfassLabel("Jahr", SwingConstants.CENTER);
-		genreL = new erfassLabel("Genre", SwingConstants.CENTER);
-		beschreibungL = new erfassLabel("Beschreibung", SwingConstants.CENTER);
+		titelL = new ErfassLabel("Titel", SwingConstants.CENTER);
+		jahrL = new ErfassLabel("Jahr", SwingConstants.CENTER);
+		genreL = new ErfassLabel("Genre", SwingConstants.CENTER);
+		beschreibungL = new ErfassLabel("Beschreibung", SwingConstants.CENTER);
 		
 		titel.addActionListener(a);
 		jahr.addActionListener(a);
@@ -194,7 +194,7 @@ public class Film_Bearbeiten extends erfassFrame{
 					zahl = new JDialog();
 					zahl.setTitle("Bitte Zahl bei Jahr eingeben");
 					zahl.setVisible(true);
-					zahl.add(new erfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
+					zahl.add(new ErfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 					zahl.add(ok,SwingConstants.SOUTH);
 					zahl.setSize(300, 150);
 					zahl.setLocationRelativeTo(null);
@@ -204,13 +204,10 @@ public class Film_Bearbeiten extends erfassFrame{
 			
 			if (e.getSource() == löschen) {
 				
-				erfassPanel ll = new erfassPanel(new FlowLayout());
-				löschen2 = new JDialog();
-				löschen2.setTitle("Film löschen");
-				löschen2.setSize(300, 150);
+				ErfassPanel ll = new ErfassPanel(new FlowLayout());
+				löschen2 = new LöschDialog("Film löschen", "Sind Sie sicher, dass Sie diesen Film löschen möchten? "
+						+ "Damit gehen alle damit verbundenen Medien verloren.", SwingConstants.CENTER);
 				löschen2.setLocationRelativeTo(null);
-				löschen2.add(new erfassLabel("Sind Sie sicher, dass Sie diesen Film löschen möchten? "
-						+ "Damit gehen alle damit verbundenen Medien verloren.", SwingConstants.CENTER));
 				ll.add(ja);
 				ll.add(nein);
 				löschen2.add(ll, BorderLayout.CENTER);

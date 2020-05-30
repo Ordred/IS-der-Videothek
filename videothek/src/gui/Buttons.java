@@ -5,11 +5,11 @@ import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-public class buttons extends JButton {
+public class Buttons extends JButton {
 
 
 
-	public buttons(String titel) {
+	public Buttons(String titel) {
 
 
 		setText(titel);
@@ -19,7 +19,7 @@ public class buttons extends JButton {
 		
 	}
 
-	public buttons() {
+	public Buttons() {
 
 
 		setOpaque(true);
@@ -29,7 +29,7 @@ public class buttons extends JButton {
 
 	}
 
-	public buttons(Icon icon) {
+	public Buttons(Icon icon) {
 
 		setIcon(icon);
 		setOpaque(false);

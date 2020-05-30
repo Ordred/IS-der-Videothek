@@ -25,10 +25,10 @@ import model.Kundenliste;
 import model.Medienliste;
 import model.Medium;
 
-public class Film_anzeigen extends erfassFrame {
+public class Film_anzeigen extends ErfassFrame {
 
 	private JComboBox<String> auswahl;
-	private erfassLabel mediumL;
+	private ErfassLabel mediumL;
 
 	private Medienliste ml;
 
@@ -38,8 +38,8 @@ public class Film_anzeigen extends erfassFrame {
 
 	private String m;
 
-	private buttons abbrechen2;
-	private buttons ok;
+	private Buttons abbrechen2;
+	private Buttons ok;
 
 	private Kunde_suchen ks;
 
@@ -54,23 +54,23 @@ public class Film_anzeigen extends erfassFrame {
 	private GridLayout gl;
 	private FlowLayout fl;
 
-	private erfassPanel angaben;
-	private erfassPanel buttons;
+	private ErfassPanel angaben;
+	private ErfassPanel buttons;
 
-	private erfassLabel titel;
-	private erfassLabel jahr;
-	private erfassLabel genre;
-	private erfassLabel beschreibung;
-	private erfassLabel hülle;
+	private ErfassLabel titel;
+	private ErfassLabel jahr;
+	private ErfassLabel genre;
+	private ErfassLabel beschreibung;
+	private ErfassLabel hülle;
 
-	private erfassLabel titelT;
-	private erfassLabel jahrT;
-	private erfassLabel genreT;
-	private erfassLabel beschreibungT;
+	private ErfassLabel titelT;
+	private ErfassLabel jahrT;
+	private ErfassLabel genreT;
+	private ErfassLabel beschreibungT;
 
-	private buttons ausleihen;
-	private buttons abbrechen;
-	private buttons bearbeiten;
+	private Buttons ausleihen;
+	private Buttons abbrechen;
+	private Buttons bearbeiten;
 
 	private String [] ausws;
 
@@ -80,18 +80,18 @@ public class Film_anzeigen extends erfassFrame {
 
 	private Medium media;
 
-	private erfassLabel idL;
-	private erfassLabel id;
-	private erfassLabel lagerL;
-	private erfassLabel lager;
-	private erfassLabel verfügbarkeitL;
-	private erfassLabel verfügbarkeit;
+	private ErfassLabel idL;
+	private ErfassLabel id;
+	private ErfassLabel lagerL;
+	private ErfassLabel lager;
+	private ErfassLabel verfügbarkeitL;
+	private ErfassLabel verfügbarkeit;
 
 	private String verf;
-	private erfassPanel bild;
+	private ErfassPanel bild;
 
-	private buttons ok2;
-	private erfassFrame kG;
+	private Buttons ok2;
+	private ErfassFrame kG;
 	private UC_Film_bearbeiten ucfb;
 	private Filmliste fl2;
 
@@ -128,7 +128,7 @@ public class Film_anzeigen extends erfassFrame {
 
 		ImageIcon icon = new ImageIcon(f.getHülle());
 
-		ok2 = new buttons();
+		ok2 = new Buttons();
 		ok2.setText("Ok");
 
 
@@ -136,14 +136,14 @@ public class Film_anzeigen extends erfassFrame {
 		Image newimg = img.getScaledInstance( 200, 300,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
 
-		hülle = new erfassLabel(icon);
+		hülle = new ErfassLabel(icon);
 
 
-		mediumL = new erfassLabel("Medium", SwingConstants.CENTER);
+		mediumL = new ErfassLabel("Medium", SwingConstants.CENTER);
 
-		abbrechen2 = new buttons("Abbrechen");
+		abbrechen2 = new Buttons("Abbrechen");
 
-		ok = new buttons ("Ok");
+		ok = new Buttons ("Ok");
 
 		abbrechen2.addActionListener(a);
 		ok.addActionListener(a);
@@ -152,24 +152,24 @@ public class Film_anzeigen extends erfassFrame {
 
 		auswahl = new JComboBox<String>(ausws);
 
-		angaben = new erfassPanel();
-		buttons = new erfassPanel();
-		bild = new erfassPanel();
+		angaben = new ErfassPanel();
+		buttons = new ErfassPanel();
+		bild = new ErfassPanel();
 		bild.add(hülle, BorderLayout.CENTER);
 
-		idL = new erfassLabel("ID", SwingConstants.CENTER);
-		lagerL = new erfassLabel("Lager",  SwingConstants.CENTER);
-		verfügbarkeitL = new erfassLabel("Verfügbar ab", SwingConstants.CENTER);
+		idL = new ErfassLabel("ID", SwingConstants.CENTER);
+		lagerL = new ErfassLabel("Lager",  SwingConstants.CENTER);
+		verfügbarkeitL = new ErfassLabel("Verfügbar ab", SwingConstants.CENTER);
 
-		titel = new erfassLabel("Titel", SwingConstants.CENTER);
-		jahr = new erfassLabel("Jahr",  SwingConstants.CENTER);
-		genre = new erfassLabel("Genre", SwingConstants.CENTER);
-		beschreibung = new erfassLabel("Beschreibung",  SwingConstants.CENTER);
+		titel = new ErfassLabel("Titel", SwingConstants.CENTER);
+		jahr = new ErfassLabel("Jahr",  SwingConstants.CENTER);
+		genre = new ErfassLabel("Genre", SwingConstants.CENTER);
+		beschreibung = new ErfassLabel("Beschreibung",  SwingConstants.CENTER);
 
-		titelT = new erfassLabel(f.getTitel(),  SwingConstants.CENTER);
-		jahrT = new erfassLabel(Integer.toString(f.getJahr()),  SwingConstants.CENTER);
-		genreT = new erfassLabel(f.getGenre(),  SwingConstants.CENTER);
-		beschreibungT = new erfassLabel(f.getBeschreibung(),  SwingConstants.CENTER);
+		titelT = new ErfassLabel(f.getTitel(),  SwingConstants.CENTER);
+		jahrT = new ErfassLabel(Integer.toString(f.getJahr()),  SwingConstants.CENTER);
+		genreT = new ErfassLabel(f.getGenre(),  SwingConstants.CENTER);
+		beschreibungT = new ErfassLabel(f.getBeschreibung(),  SwingConstants.CENTER);
 		
 
 
@@ -179,9 +179,9 @@ public class Film_anzeigen extends erfassFrame {
 		angaben.setLayout(gl);
 		buttons.setLayout(fl);
 
-		abbrechen = new buttons("Abbrechen");
-		ausleihen = new buttons("Ausleihen");
-		bearbeiten = new buttons("Bearbeiten");
+		abbrechen = new Buttons("Abbrechen");
+		ausleihen = new Buttons("Ausleihen");
+		bearbeiten = new Buttons("Bearbeiten");
 
 		abbrechen.addActionListener(a);
 		ausleihen.addActionListener(a);
@@ -191,19 +191,19 @@ public class Film_anzeigen extends erfassFrame {
 		if (media != null) {
 
 
-			id = new erfassLabel(Integer.toString(media.getId()), SwingConstants.CENTER);
+			id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.CENTER);
 
 			if (media.isLagernd()) {
-				lager = new erfassLabel("Ja", SwingConstants.CENTER);
+				lager = new ErfassLabel("Ja", SwingConstants.CENTER);
 			}
 			else {
-				lager = new erfassLabel("Nein", SwingConstants.CENTER);
+				lager = new ErfassLabel("Nein", SwingConstants.CENTER);
 			}
 			if (media.getRückgabedatum() != null) {
-				verfügbarkeit = new erfassLabel (media.getRückgabedatum().toString(),SwingConstants.CENTER);
+				verfügbarkeit = new ErfassLabel (media.getRückgabedatum().toString(),SwingConstants.CENTER);
 			}
 			else {
-				verfügbarkeit = new erfassLabel("Sofort", SwingConstants.CENTER);
+				verfügbarkeit = new ErfassLabel("Sofort", SwingConstants.CENTER);
 
 			}
 
@@ -295,12 +295,12 @@ public class Film_anzeigen extends erfassFrame {
 				}
 				
 				else {
-					kG = new erfassFrame("Zu wenig Guthaben");
+					kG = new ErfassFrame("Zu wenig Guthaben");
 
 					kG.setVisible(true);
 					kG.setSize(300, 150);
 					kG.setLocationRelativeTo(null);
-					kG.add(new erfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
+					kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
 					kG.add(ok2, BorderLayout.SOUTH);
 				}
 
@@ -318,8 +318,8 @@ public class Film_anzeigen extends erfassFrame {
 
 				medium = new JDialog();
 
-				erfassPanel suche = new erfassPanel();
-				erfassPanel buttons = new erfassPanel();
+				ErfassPanel suche = new ErfassPanel();
+				ErfassPanel buttons = new ErfassPanel();
 				suche.setLayout(new FlowLayout());
 				buttons.setLayout(new FlowLayout());
 

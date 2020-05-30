@@ -36,8 +36,8 @@ public class Hauptmenu_Kunde extends JFrame {
 	private Kunde k;
 
 	
-	private buttons filmzurückgeben;
-	private buttons filmsuchen;
+	private Buttons filmzurückgeben;
+	private Buttons filmsuchen;
 	
 	
 	private GridLayout gr;
@@ -49,11 +49,11 @@ public class Hauptmenu_Kunde extends JFrame {
 	private Filmliste fl;
 	private Kundenliste kl;
 	private Medienliste ml;
-	private erfassLabel guthaben;
-	private erfassLabel guthabenL;
-	private erfassPanel guthabenP;
+	private ErfassLabel guthaben;
+	private ErfassLabel guthabenL;
+	private ErfassPanel guthabenP;
 	
-	private buttons ok;
+	private Buttons ok;
 	
 	private JDialog keineFilme;
 
@@ -77,15 +77,15 @@ public class Hauptmenu_Kunde extends JFrame {
 
 		a = new ActionHandler();
 		
-		guthabenP = new erfassPanel(new FlowLayout());
+		guthabenP = new ErfassPanel(new FlowLayout());
 
-		ok = new buttons("Ok");
+		ok = new Buttons("Ok");
 		ok.addActionListener(a);
 		
-		filmzurückgeben = new buttons("Film zurückgeben");
-		filmsuchen = new buttons("Film suchen");
-		guthaben = new erfassLabel(Integer.toString(k.getGuthaben()));
-		guthabenL = new erfassLabel("Guthaben", SwingConstants.CENTER);
+		filmzurückgeben = new Buttons("Film zurückgeben");
+		filmsuchen = new Buttons("Film suchen");
+		guthaben = new ErfassLabel(Integer.toString(k.getGuthaben()));
+		guthabenL = new ErfassLabel("Guthaben", SwingConstants.CENTER);
 		guthaben.setFont(new Font("Arial", 1, 20));
 		guthabenL.setFont(new Font("Arial", 1, 20));
 		
@@ -97,7 +97,7 @@ public class Hauptmenu_Kunde extends JFrame {
 		filmzurückgeben.addActionListener(a);
 		filmsuchen.addActionListener(a);
 		
-		erfassPanel buttons = new erfassPanel();
+		ErfassPanel buttons = new ErfassPanel();
 		buttons.setLayout(new GridLayout(1, 2));
 		
 		buttons.add(filmsuchen);
@@ -184,7 +184,7 @@ public class Hauptmenu_Kunde extends JFrame {
 					keineFilme = new JDialog();
 					keineFilme.setSize(300, 150);
 					keineFilme.setLocationRelativeTo(null);
-					keineFilme.add(new erfassLabel("Sie haben keine Filme ausgeliehen", SwingConstants.CENTER), BorderLayout.CENTER);
+					keineFilme.add(new ErfassLabel("Sie haben keine Filme ausgeliehen", SwingConstants.CENTER), BorderLayout.CENTER);
 					keineFilme.add(ok, BorderLayout.SOUTH);
 					keineFilme.setVisible(true);
 					

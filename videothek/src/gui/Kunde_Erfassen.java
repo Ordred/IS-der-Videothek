@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 import controller.UC_Kunde_erfassen;
 import model.Kunde;
 
-public class Kunde_Erfassen extends erfassFrame{
+public class Kunde_Erfassen extends ErfassFrame{
 
 	private UC_Kunde_erfassen uke;
 
@@ -29,38 +29,38 @@ public class Kunde_Erfassen extends erfassFrame{
 	private JTextField ort;
 	private JTextField telefon;
 
-	private erfassLabel nameL;
-	private erfassLabel vornameL;
-	private erfassLabel geburtsdatumL;
-	private erfassLabel lieblingsgenreL;
-	private erfassLabel guthabenL;
-	private erfassLabel adresseL;
-	private erfassLabel ortL;
-	private erfassLabel telefonL;
+	private ErfassLabel nameL;
+	private ErfassLabel vornameL;
+	private ErfassLabel geburtsdatumL;
+	private ErfassLabel lieblingsgenreL;
+	private ErfassLabel guthabenL;
+	private ErfassLabel adresseL;
+	private ErfassLabel ortL;
+	private ErfassLabel telefonL;
 
-	private erfassPanel buttons;
-	private erfassPanel form;
+	private ErfassPanel buttons;
+	private ErfassPanel form;
 
 	private GridLayout gl1;
 
 
 	private FlowLayout fl;
 
-	private buttons speichern;
-	private buttons abbrechen;
+	private Buttons speichern;
+	private Buttons abbrechen;
 
 	private ActionHandler a;
 	
 	private JDialog zahl;
 	
-	private buttons ok;
+	private Buttons ok;
 
 
-	private buttons löschen;
-	private JDialog löschen2;
+	private Buttons löschen;
+	private LöschDialog löschen2;
 	
-	private buttons ja;
-	private buttons nein;
+	private Buttons ja;
+	private Buttons nein;
 	
 	private Kunde k;
 
@@ -73,12 +73,12 @@ public class Kunde_Erfassen extends erfassFrame{
 		this.k = k;
 	
 		
-		löschen = new buttons("Löschen");
+		löschen = new Buttons("Löschen");
 		
 		
-		ok = new buttons("Ok");
-		ja = new buttons("Ja");
-		nein = new buttons("Nein");
+		ok = new Buttons("Ok");
+		ja = new Buttons("Ja");
+		nein = new Buttons("Nein");
 
 		a = new ActionHandler();
 		
@@ -89,11 +89,11 @@ public class Kunde_Erfassen extends erfassFrame{
 		gl1 = new GridLayout(8,2);
 		fl = new FlowLayout();
 
-		form = new erfassPanel(gl1);
-		buttons = new erfassPanel(fl);
+		form = new ErfassPanel(gl1);
+		buttons = new ErfassPanel(fl);
 
-		speichern = new buttons("Speichern");
-		abbrechen = new buttons("Abbrechen");
+		speichern = new Buttons("Speichern");
+		abbrechen = new Buttons("Abbrechen");
 
 
 		if (k.getName() == null) {
@@ -117,14 +117,14 @@ public class Kunde_Erfassen extends erfassFrame{
 			telefon = new JTextField(k.getTelefon());
 		}
 
-		nameL = new erfassLabel("Name", SwingConstants.CENTER);
-		vornameL = new erfassLabel("Vorname", SwingConstants.CENTER);
-		geburtsdatumL = new erfassLabel("Geburtsdatum", SwingConstants.CENTER);
-		lieblingsgenreL = new erfassLabel("Lieblingsgenre", SwingConstants.CENTER);
-		guthabenL = new erfassLabel("Guthaben", SwingConstants.CENTER);
-		adresseL = new erfassLabel("Adresse", SwingConstants.CENTER);
-		ortL = new erfassLabel("Ort", SwingConstants.CENTER);
-		telefonL = new erfassLabel("Telefon", SwingConstants.CENTER);
+		nameL = new ErfassLabel("Name", SwingConstants.CENTER);
+		vornameL = new ErfassLabel("Vorname", SwingConstants.CENTER);
+		geburtsdatumL = new ErfassLabel("Geburtsdatum", SwingConstants.CENTER);
+		lieblingsgenreL = new ErfassLabel("Lieblingsgenre", SwingConstants.CENTER);
+		guthabenL = new ErfassLabel("Guthaben", SwingConstants.CENTER);
+		adresseL = new ErfassLabel("Adresse", SwingConstants.CENTER);
+		ortL = new ErfassLabel("Ort", SwingConstants.CENTER);
+		telefonL = new ErfassLabel("Telefon", SwingConstants.CENTER);
 
 		name.addActionListener(a);
 		vorname.addActionListener(a);
@@ -169,11 +169,11 @@ public class Kunde_Erfassen extends erfassFrame{
 
 	}
 
-	public erfassPanel getButtons() {
+	public ErfassPanel getButtons() {
 		return buttons;
 	}
 
-	public void setButtons(erfassPanel buttons) {
+	public void setButtons(ErfassPanel buttons) {
 		this.buttons = buttons;
 	}
 
@@ -257,12 +257,9 @@ public class Kunde_Erfassen extends erfassFrame{
 			}
 			
 			if (e.getSource() == löschen) {
-				erfassPanel ll = new erfassPanel(new FlowLayout());
-				löschen2 = new JDialog();
-				löschen2.setTitle("Film löschen");
-				löschen2.setSize(300, 150);
+				ErfassPanel ll = new ErfassPanel(new FlowLayout());
+				löschen2 = new LöschDialog("Kunde löschen", "Sind Sie sicher, dass Sie diesen Kunden löschen möchten?", SwingConstants.CENTER);
 				löschen2.setLocationRelativeTo(null);
-				löschen2.add(new erfassLabel("Sind Sie sicher, dass Sie diesen Kunden löschen möchten?", SwingConstants.CENTER));
 				ll.add(ja);
 				ll.add(nein);
 				löschen2.add(ll, BorderLayout.CENTER);
@@ -298,7 +295,7 @@ public class Kunde_Erfassen extends erfassFrame{
 					zahl = new JDialog();
 					zahl.setTitle("Bitte Zahl bei Guthaben eingeben");
 					zahl.setVisible(true);
-					zahl.add(new erfassLabel("Bitte Zahl bei Guthaben eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
+					zahl.add(new ErfassLabel("Bitte Zahl bei Guthaben eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 					zahl.add(ok, BorderLayout.SOUTH);
 					zahl.setSize(300, 150);
 					zahl.setLocationRelativeTo(null);

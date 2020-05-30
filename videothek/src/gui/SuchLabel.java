@@ -7,10 +7,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class suchLabel extends JLabel {
+public class SuchLabel extends JLabel {
 
 	
-	public suchLabel( String titel, int position) {
+	public SuchLabel( String titel, int position) {
 		setText(titel);
 		setHorizontalAlignment(position);
 		

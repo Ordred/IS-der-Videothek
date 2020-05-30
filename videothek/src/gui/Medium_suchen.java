@@ -40,14 +40,14 @@ import model.Kundenliste;
 import model.Medienliste;
 import model.Medium;
 
-public class Medium_suchen extends suchFrame {
+public class Medium_suchen extends SuchFrame {
 
 	private ArrayList<Medium> suchergebnisse;
-	private ArrayList<suchButton> suchergebnisseB;
-	private ArrayList<suchLabel> suchergebnisseMedium;
-	private ArrayList<suchLabel> suchergebnisseTitel;	
-	private ArrayList<suchLabel> suchergebnisseGenre;
-	private ArrayList<suchLabel> suchergebnisseJahr;
+	private ArrayList<SuchButton> suchergebnisseB;
+	private ArrayList<SuchLabel> suchergebnisseMedium;
+	private ArrayList<SuchLabel> suchergebnisseTitel;	
+	private ArrayList<SuchLabel> suchergebnisseGenre;
+	private ArrayList<SuchLabel> suchergebnisseJahr;
 	private JPanel suchergebnisseP;
 	private JScrollPane sucheScroll;
 	private GridLayout sucheGL;
@@ -62,7 +62,7 @@ public class Medium_suchen extends suchFrame {
 
 	private JDialog nichtgefunden;
 	private JLabel nichtgefundenL;
-	private buttons ok;
+	private Buttons ok;
 	private JPanel ngfPanel;
 
 	private String [] kriterien = {"ID", "Medium", "Titel", "Jahr", "Genre", "Beschreibung"};
@@ -76,8 +76,8 @@ public class Medium_suchen extends suchFrame {
 	private JTextField suchfeld;
 	private JLabel suchbegriffe;
 
-	private buttons suchen;
-	private buttons abbrechen;
+	private Buttons suchen;
+	private Buttons abbrechen;
 
 	private FlowLayout flow1;
 	private FlowLayout flow2;
@@ -86,9 +86,9 @@ public class Medium_suchen extends suchFrame {
 
 	private GridLayout gl;
 
-	private erfassPanel menu;
-	private erfassPanel suche;
-	private erfassPanel buttons;
+	private ErfassPanel menu;
+	private ErfassPanel suche;
+	private ErfassPanel buttons;
 	
 	private Kundenliste kl;
 	private Medienliste ml;
@@ -110,11 +110,11 @@ public class Medium_suchen extends suchFrame {
 	
 
 		suchergebnisse = new ArrayList<Medium>();
-		suchergebnisseB = new ArrayList<suchButton>();
-		suchergebnisseMedium = new ArrayList<suchLabel>();
-		suchergebnisseTitel = new ArrayList<suchLabel>();
-		suchergebnisseGenre = new ArrayList<suchLabel>();
-		suchergebnisseJahr = new ArrayList<suchLabel>();
+		suchergebnisseB = new ArrayList<SuchButton>();
+		suchergebnisseMedium = new ArrayList<SuchLabel>();
+		suchergebnisseTitel = new ArrayList<SuchLabel>();
+		suchergebnisseGenre = new ArrayList<SuchLabel>();
+		suchergebnisseJahr = new ArrayList<SuchLabel>();
 		titelleiste = new JLabel[5];
 		titelleiste[0] = new JLabel("ID", SwingConstants.CENTER);
 		titelleiste[1] = new JLabel("Medium", SwingConstants.CENTER);
@@ -159,9 +159,9 @@ public class Medium_suchen extends suchFrame {
 		
 		auswahlL.setForeground(Color.white);
 
-		menu = new erfassPanel();
-		suche = new erfassPanel();
-		buttons = new erfassPanel();
+		menu = new ErfassPanel();
+		suche = new ErfassPanel();
+		buttons = new ErfassPanel();
 
 		flow1 = new FlowLayout();
 		flow2 = new FlowLayout();
@@ -178,8 +178,8 @@ public class Medium_suchen extends suchFrame {
 		Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
 		sucheIc = new ImageIcon( newimg );
 
-		suchen = new buttons(sucheIc);
-		abbrechen = new buttons("Abbrechen");
+		suchen = new Buttons(sucheIc);
+		abbrechen = new Buttons("Abbrechen");
 
 		suchen.addActionListener(a);
 		abbrechen.addActionListener(a);
@@ -206,10 +206,10 @@ public class Medium_suchen extends suchFrame {
 
 
 		nichtgefunden = new JDialog();
-		nichtgefundenL = new erfassLabel("Es konnte kein Film mit diesen Angaben gefunden werden");
+		nichtgefundenL = new ErfassLabel("Es konnte kein Film mit diesen Angaben gefunden werden");
 		nichtgFL = new FlowLayout();
-		ok = new buttons ("Ok");
-		ngfPanel = new erfassPanel();
+		ok = new Buttons ("Ok");
+		ngfPanel = new ErfassPanel();
 		ngfPanel.setLayout(nichtgFL);
 		ngfPanel.add(ok, BorderLayout.CENTER);
 		ok.addActionListener(a);
@@ -251,11 +251,11 @@ public class Medium_suchen extends suchFrame {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new suchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new suchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new suchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -284,11 +284,11 @@ public class Medium_suchen extends suchFrame {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new suchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new suchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new suchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -317,11 +317,11 @@ public class Medium_suchen extends suchFrame {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new suchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new suchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new suchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -350,11 +350,11 @@ public class Medium_suchen extends suchFrame {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new suchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new suchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new suchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 
@@ -383,11 +383,11 @@ public class Medium_suchen extends suchFrame {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new suchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new suchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new suchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new suchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new suchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
 						suchergebnisseB.get(i).setSize(300, 10);
 

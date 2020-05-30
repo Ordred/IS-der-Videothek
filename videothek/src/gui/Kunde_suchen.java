@@ -40,7 +40,7 @@ import model.Kunde;
 import model.Kundenliste;
 
 
-public class Kunde_suchen extends suchFrame {
+public class Kunde_suchen extends SuchFrame {
 
 	private boolean admin;
 
@@ -48,9 +48,9 @@ public class Kunde_suchen extends suchFrame {
 
 
 	private ArrayList<Kunde> suchergebnisse;
-	private ArrayList<suchButton> suchergebnisseName;
-	private ArrayList<suchLabel> suchergebnisseVorname;
-	private ArrayList<suchLabel> suchergebnisseGeburtsdatum;
+	private ArrayList<SuchButton> suchergebnisseName;
+	private ArrayList<SuchLabel> suchergebnisseVorname;
+	private ArrayList<SuchLabel> suchergebnisseGeburtsdatum;
 	private JPanel suchergebnisseP;
 	private JScrollPane sucheScroll;
 	private GridLayout sucheGL;
@@ -67,7 +67,7 @@ public class Kunde_suchen extends suchFrame {
 
 	private JDialog nichtgefunden;
 	private JLabel nichtgefundenL;
-	private buttons ok;
+	private Buttons ok;
 	private JPanel ngfPanel;
 
 	private String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Ort", "Adresse", "Telefon", "Lieblingsgenre"};
@@ -79,10 +79,10 @@ public class Kunde_suchen extends suchFrame {
 	private JLabel auswahlL;
 
 	private JTextField suchfeld;
-	private erfassLabel suchbegriffe;
+	private ErfassLabel suchbegriffe;
 
-	private buttons suchen;
-	private buttons abbrechen;
+	private Buttons suchen;
+	private Buttons abbrechen;
 
 	private FlowLayout flow1;
 	private FlowLayout flow2;
@@ -91,9 +91,9 @@ public class Kunde_suchen extends suchFrame {
 
 	private GridLayout gl;
 
-	private erfassPanel menu;
-	private erfassPanel suche;
-	private erfassPanel buttons;
+	private ErfassPanel menu;
+	private ErfassPanel suche;
+	private ErfassPanel buttons;
 
 	public Kunde_suchen (UC_Kunde_suchen ucks, Kundenliste kl, boolean admin) {
 
@@ -112,9 +112,9 @@ public class Kunde_suchen extends suchFrame {
 
 
 		suchergebnisse = new ArrayList<Kunde>();
-		suchergebnisseName = new ArrayList<suchButton>();
-		suchergebnisseVorname = new ArrayList<suchLabel>();
-		suchergebnisseGeburtsdatum = new ArrayList<suchLabel>();
+		suchergebnisseName = new ArrayList<SuchButton>();
+		suchergebnisseVorname = new ArrayList<SuchLabel>();
+		suchergebnisseGeburtsdatum = new ArrayList<SuchLabel>();
 		titelleiste = new JLabel[3];
 		titelleiste[0] = new JLabel("Name", SwingConstants.CENTER);
 		titelleiste[1] = new JLabel("Vorname", SwingConstants.CENTER);
@@ -149,11 +149,11 @@ public class Kunde_suchen extends suchFrame {
 
 		auswahl.addActionListener(a);
 
-		auswahlL = new erfassLabel("Auswahl");
+		auswahlL = new ErfassLabel("Auswahl");
 
-		menu = new erfassPanel(null);
-		suche = new erfassPanel(null);
-		buttons = new erfassPanel(null);
+		menu = new ErfassPanel(null);
+		suche = new ErfassPanel(null);
+		buttons = new ErfassPanel(null);
 
 		flow1 = new FlowLayout();
 		flow2 = new FlowLayout();
@@ -170,14 +170,14 @@ public class Kunde_suchen extends suchFrame {
 		Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
 		sucheIc = new ImageIcon( newimg );
 
-		suchen = new buttons(sucheIc);
-		abbrechen = new buttons("Abbrechen");
+		suchen = new Buttons(sucheIc);
+		abbrechen = new Buttons("Abbrechen");
 
 		suchen.addActionListener(a);
 		abbrechen.addActionListener(a);
 
 		suchfeld = new JTextField("Suchbegriff eingeben");
-		suchbegriffe = new erfassLabel("Suchbegriffe", SwingConstants.LEFT);
+		suchbegriffe = new ErfassLabel("Suchbegriffe", SwingConstants.LEFT);
 
 		suche.add(suchbegriffe, BorderLayout.WEST);
 		suche.add(suchfeld, BorderLayout.CENTER);
@@ -196,10 +196,10 @@ public class Kunde_suchen extends suchFrame {
 
 
 		nichtgefunden = new JDialog();
-		nichtgefundenL = new erfassLabel("Es konnte kein Kunde mit diesen Angaben gefunden werden");
+		nichtgefundenL = new ErfassLabel("Es konnte kein Kunde mit diesen Angaben gefunden werden");
 		nichtgFL = new FlowLayout();
-		ok = new buttons ("Ok");
-		ngfPanel = new erfassPanel();
+		ok = new Buttons ("Ok");
+		ngfPanel = new ErfassPanel();
 		ngfPanel.setLayout(nichtgFL);
 		ngfPanel.add(ok, BorderLayout.CENTER);
 		ok.addActionListener(a);
@@ -268,9 +268,9 @@ public class Kunde_suchen extends suchFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new SuchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new SuchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new SuchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -295,9 +295,9 @@ public class Kunde_suchen extends suchFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new SuchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new SuchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new SuchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -322,9 +322,9 @@ public class Kunde_suchen extends suchFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new SuchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new SuchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new SuchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -349,9 +349,9 @@ public class Kunde_suchen extends suchFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new SuchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new SuchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new SuchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -376,9 +376,9 @@ public class Kunde_suchen extends suchFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new SuchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new SuchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new SuchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -403,9 +403,9 @@ public class Kunde_suchen extends suchFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new SuchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new SuchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new SuchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 
@@ -429,9 +429,9 @@ public class Kunde_suchen extends suchFrame {
 					for (int i = 0; i < suchergebnisse.size(); i++) {
 						sucheGL = new GridLayout(suchergebnisse.size()+1, 3);
 
-						suchergebnisseName.add(new suchButton(suchergebnisse.get(i).getName()));
-						suchergebnisseVorname.add(new suchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
-						suchergebnisseGeburtsdatum.add(new suchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
+						suchergebnisseName.add(new SuchButton(suchergebnisse.get(i).getName()));
+						suchergebnisseVorname.add(new SuchLabel(suchergebnisse.get(i).getVorname(), SwingConstants.CENTER));
+						suchergebnisseGeburtsdatum.add(new SuchLabel(suchergebnisse.get(i).getGeburtsdatum(), SwingConstants.CENTER));
 
 						suchergebnisseName.get(i).setSize(300, 10);
 

@@ -4,9 +4,9 @@ import java.awt.Color;
 
 import javax.swing.JButton;
 
-public class hmButtons extends JButton {
+public class HmButtons extends JButton {
 
-	public hmButtons(String titel) {
+	public HmButtons(String titel) {
 
 		setText(titel);
 		setOpaque(true);

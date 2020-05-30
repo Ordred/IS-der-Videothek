@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 
 import com.sun.tools.javac.util.LayoutCharacters;
 
-public class erfassPanel extends JPanel {
+public class ErfassPanel extends JPanel {
 	
-	public erfassPanel (LayoutManager l) {
+	public ErfassPanel (LayoutManager l) {
 		
 		setLayout(l);
 		setBackground(Color.black);
@@ -18,7 +18,7 @@ public class erfassPanel extends JPanel {
 		
 	}
 	
-	public erfassPanel() {
+	public ErfassPanel() {
 
 		
 		setBackground(Color.black);

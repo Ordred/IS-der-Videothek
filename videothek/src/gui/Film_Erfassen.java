@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.UC_Film_erfassen;
 
-public class Film_Erfassen extends erfassFrame{
+public class Film_Erfassen extends ErfassFrame{
 
 	/* JFilechooser */
 	
@@ -30,23 +30,23 @@ public class Film_Erfassen extends erfassFrame{
 	private JTextField jahr;
 	private JTextField genre;
 	private JTextField beschreibung;
-	private buttons hülle;
+	private Buttons hülle;
 	
-	private erfassLabel titelL;
-	private erfassLabel jahrL;
-	private erfassLabel genreL;
-	private erfassLabel beschreibungL;
-	private erfassLabel hülleL;
+	private ErfassLabel titelL;
+	private ErfassLabel jahrL;
+	private ErfassLabel genreL;
+	private ErfassLabel beschreibungL;
+	private ErfassLabel hülleL;
 	
-	private erfassPanel buttons;
-	private erfassPanel form;
+	private ErfassPanel buttons;
+	private ErfassPanel form;
 	
 	private GridLayout gl1;
 	
 	private FlowLayout fl;
 	
-	private buttons speichern;
-	private buttons abbrechen;
+	private Buttons speichern;
+	private Buttons abbrechen;
 	
 	private ActionHandler a;
 	
@@ -54,7 +54,7 @@ public class Film_Erfassen extends erfassFrame{
 	
 	private JFileChooser datei;
 	
-	private buttons ok;
+	private Buttons ok;
 	
 	private JDialog zahl;
 	
@@ -72,34 +72,34 @@ public class Film_Erfassen extends erfassFrame{
 		this.ufe = ufe;
 		
 		
-		ok = new buttons("Ok");
+		ok = new Buttons("Ok");
 		a = new ActionHandler();
 		
 		gl1 = new GridLayout(4,2);
 		fl = new FlowLayout();
 		
-		form = new erfassPanel();
-		buttons = new erfassPanel();
+		form = new ErfassPanel();
+		buttons = new ErfassPanel();
 		
 		form.setLayout(gl1);
 		buttons.setLayout(fl);
 		
 		ok.addActionListener(a);
 		
-		speichern = new buttons("Speichern");
-		abbrechen = new buttons("Abbrechen");
+		speichern = new Buttons("Speichern");
+		abbrechen = new Buttons("Abbrechen");
 		
 		
 		titel = new JTextField("Titel");
 		jahr = new JTextField("Jahr");
 		genre = new JTextField("Genre");
 		beschreibung = new JTextField("Beschreibung");
-		hülle = new buttons("Bild wählen");
+		hülle = new Buttons("Bild wählen");
 		
-		titelL = new erfassLabel("Titel", SwingConstants.CENTER);
-		jahrL = new erfassLabel("Jahr", SwingConstants.CENTER);
-		genreL = new erfassLabel("Genre", SwingConstants.CENTER);
-		beschreibungL = new erfassLabel("Beschreibung", SwingConstants.CENTER);
+		titelL = new ErfassLabel("Titel", SwingConstants.CENTER);
+		jahrL = new ErfassLabel("Jahr", SwingConstants.CENTER);
+		genreL = new ErfassLabel("Genre", SwingConstants.CENTER);
+		beschreibungL = new ErfassLabel("Beschreibung", SwingConstants.CENTER);
 		
 		titel.addActionListener(a);
 		jahr.addActionListener(a);
@@ -175,7 +175,7 @@ public class Film_Erfassen extends erfassFrame{
 						zahl = new JDialog();
 						zahl.setTitle("Bitte Zahl bei Jahr eingeben");
 						zahl.setVisible(true);
-						zahl.add(new erfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
+						zahl.add(new ErfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 						zahl.add(ok, BorderLayout.SOUTH);
 						zahl.setSize(300, 150);
 						zahl.setLocationRelativeTo(null);
@@ -184,7 +184,7 @@ public class Film_Erfassen extends erfassFrame{
 						JDialog zahl = new JDialog();
 						zahl.setTitle("Bitte Datei für Hülle auswählen!");
 						zahl.setVisible(true);
-						zahl.add(new erfassLabel("Bitte Datei für Hülle auswählen!", SwingConstants.CENTER), BorderLayout.CENTER);
+						zahl.add(new ErfassLabel("Bitte Datei für Hülle auswählen!", SwingConstants.CENTER), BorderLayout.CENTER);
 						zahl.add(ok, SwingConstants.SOUTH);
 						zahl.setSize(300, 150);
 						zahl.setLocationRelativeTo(null);
