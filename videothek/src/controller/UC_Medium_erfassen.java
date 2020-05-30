@@ -65,7 +65,7 @@ public class UC_Medium_erfassen {
 	}
 	
 	public void setFilm() {
-		fs = new Film_suchen(null, new UC_Film_suchen(null, false, fl, true, kl, ml, null), true, null, true, this, kl, ml);
+		fs = new Film_suchen(new UC_Film_suchen(false, fl, true, kl, ml, null), true, null, true, this, fl, kl, ml);
 		fs.setVisible(true);
 		fs.setSize(300, 200);
 		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

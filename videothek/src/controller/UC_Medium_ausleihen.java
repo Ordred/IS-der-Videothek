@@ -60,7 +60,7 @@ public class UC_Medium_ausleihen {
 
 			for (int j = 0; j < kl.getKundenliste().size(); j++) {
 
-				if (k.getId() == kl.getKundenliste().get(j).getId())
+				if (k.getId().equalsIgnoreCase(kl.getKundenliste().get(j).getId()))
 				{
 					System.out.println("Geschafft klk");
 					k = kl.getKundenliste().get(j);

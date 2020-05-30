@@ -59,18 +59,6 @@ public class LogIn extends JFrame {
 		
 		private Kundenliste kl;
 
-
-
-		private String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Lieblingsgenre"};
-
-
-
-
-		private JComboBox<String> auswahl = new JComboBox<String>(kriterien);
-
-
-
-
 		private GridLayout gl;
 		
 		private Hauptmenu_Besitzer hs;
@@ -102,7 +90,7 @@ public class LogIn extends JFrame {
 			titelleiste = new JLabel[3];
 			titelleiste[0] = new JLabel("Name", SwingConstants.CENTER);
 			titelleiste[1] = new JLabel("Vorname", SwingConstants.CENTER);
-			titelleiste[2] = new JLabel("Geburtadatum", SwingConstants.CENTER);
+			titelleiste[2] = new JLabel("Geburtsdatum", SwingConstants.CENTER);
 			nutzerP = new JPanel();
 			loginGL = new GridLayout(20, 3);
 

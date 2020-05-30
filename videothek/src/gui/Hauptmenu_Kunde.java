@@ -35,19 +35,19 @@ public class Hauptmenu_Kunde extends JFrame {
 
 
 	private	ActionHandler a;
-	
+
 	private Kunde k;
 
-	
+
 	private Buttons filmzurückgeben;
 	private Buttons filmsuchen;
-	
-	
+
+
 	private GridLayout gr;
 
 	private UC_Film_zurückgeben ucfz;
 	private UC_Film_suchen ucsf;
-	
+
 
 	private Filmliste fl;
 	private Kundenliste kl;
@@ -55,15 +55,15 @@ public class Hauptmenu_Kunde extends JFrame {
 	private ErfassLabel guthaben;
 	private ErfassLabel guthabenL;
 	private ErfassPanel guthabenP;
-	
+
 	private Buttons ok;
-	
+
 	private JDialog keineFilme;
 
 	public Hauptmenu_Kunde(Kunde k) {
 
 		super("Herzlich Willkommen");
-		
+
 		this.k = k;
 
 		fl = new Filmliste();
@@ -79,36 +79,36 @@ public class Hauptmenu_Kunde extends JFrame {
 		ml.laden();
 
 		a = new ActionHandler();
-		
+
 		guthabenP = new ErfassPanel(new FlowLayout());
 
 		ok = new Buttons("Ok");
 		ok.addActionListener(a);
-		
+
 		filmzurückgeben = new Buttons("Film zurückgeben");
 		filmsuchen = new Buttons("Film suchen");
 		guthaben = new ErfassLabel(Integer.toString(k.getGuthaben()));
 		guthabenL = new ErfassLabel("Guthaben", SwingConstants.CENTER);
 		guthaben.setFont(new Font("Arial", 1, 20));
 		guthabenL.setFont(new Font("Arial", 1, 20));
-		
-		
+
+
 		guthabenP.add(guthabenL);
 		guthabenP.add(guthaben);
 
 
 		filmzurückgeben.addActionListener(a);
 		filmsuchen.addActionListener(a);
-		
+
 		ErfassPanel buttons = new ErfassPanel();
 		buttons.setLayout(new GridLayout(1, 2));
-		
+
 		buttons.add(filmsuchen);
 		buttons.add(filmzurückgeben);
-		
+
 		add(buttons, BorderLayout.CENTER);
 		add(guthabenP, BorderLayout.SOUTH);
-		
+
 
 	}
 
@@ -153,9 +153,10 @@ public class Hauptmenu_Kunde extends JFrame {
 			if (e.getSource() == ok) {
 				keineFilme.dispose();
 			}
-			
+
 
 			if (e.getSource() == filmzurückgeben) {
+
 				kl = new Kundenliste();
 				ml = new Medienliste();
 				fl = new Filmliste();
@@ -165,24 +166,25 @@ public class Hauptmenu_Kunde extends JFrame {
 				kl.speichern();
 				ml.speichern();
 				fl.speichern();
-				
-				for (int i = 0; i < kl.getKundenliste().size(); i++) {
-					if (kl.getKundenliste().get(i).getId() == k.getId())
-						k = kl.getKundenliste().get(i);
-				}
-				
 
-				
-				
+				for (int i = 0; i < kl.getKundenliste().size(); i++) {
+					if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(k.getId())) {
+						k = kl.getKundenliste().get(i);
+						validate();
+						repaint();
+					}
+				}				
+
 				ucsf = null;
 				ucfz = null;
-				
+				System.out.println(k.getAusleihliste().size());
+
 				if (k.getAusleihliste().size() > 0) {
-				
-				ucfz = new UC_Film_zurückgeben(ml, kl, k);
-				
+
+					ucfz = new UC_Film_zurückgeben(ml, kl, k);
+
 				}
-				
+
 				else {
 					keineFilme = new JDialog();
 					keineFilme.setSize(300, 150);
@@ -190,7 +192,7 @@ public class Hauptmenu_Kunde extends JFrame {
 					keineFilme.add(new ErfassLabel("Sie haben keine Filme ausgeliehen", SwingConstants.CENTER), BorderLayout.CENTER);
 					keineFilme.add(ok, BorderLayout.SOUTH);
 					keineFilme.setVisible(true);
-					
+
 				}
 			}
 
@@ -204,33 +206,36 @@ public class Hauptmenu_Kunde extends JFrame {
 				kl.speichern();
 				ml.speichern();
 				fl.speichern();
-				
+
 				for (int i = 0; i < kl.getKundenliste().size(); i++) {
-					if (kl.getKundenliste().get(i).getId() == k.getId())
+					if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(k.getId())) {
 						k = kl.getKundenliste().get(i);
+						validate();
+						repaint();
+					}
 				}
-				
-				
+
+
 
 				ucsf = null;
 				ucfz = null;
-				
+
 				ucsf = new UC_Film_suchen(false, fl, false, kl, ml, k);
-				
+
 			}
 
-			
+
 		}
 	}
 
 	/*
-	
+
 	public static void main(String[] args) {
 		Hauptmenu_Besitzer hb = new Hauptmenu_Besitzer(null);
 
 		hb.setVisible(true);
 		hb.setSize(400, 400);
 		hb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-*/
-	
+	 */
+
 }

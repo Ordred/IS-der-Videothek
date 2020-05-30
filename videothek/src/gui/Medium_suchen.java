@@ -98,9 +98,10 @@ public class Medium_suchen extends SuchFrame {
 	
 	private Kundenliste kl;
 	private Medienliste ml;
+	private Filmliste fl;
 
 
-	public Medium_suchen (UC_Medium_suchen ucms, Kundenliste kl, Medienliste ml) {
+	public Medium_suchen (UC_Medium_suchen ucms, Filmliste fl, Kundenliste kl, Medienliste ml) {
 
 		super("Medium suchen");
 		gl = new GridLayout(3, 1);
@@ -113,6 +114,7 @@ public class Medium_suchen extends SuchFrame {
 		
 		this.kl = kl;
 		this.ml = ml;
+		this.fl =fl;
 	
 
 		suchergebnisse = new ArrayList<Medium>();
@@ -239,7 +241,7 @@ public class Medium_suchen extends SuchFrame {
 			for (int i = 0; i < suchergebnisseB.size(); i++) {
 
 				if (e.getSource() == suchergebnisseB.get(i)) {
-					fa = new Film_anzeigen(suchergebnisse.get(i).getFilm(),null,kl,ml, false, suchergebnisse.get(i));
+					fa = new Film_anzeigen(suchergebnisse.get(i).getFilm(),null, fl, kl,ml, false, suchergebnisse.get(i));
 					fa.setSize(500, 400);
 					fa.setLocationRelativeTo(null);
 					fa.setVisible(true);

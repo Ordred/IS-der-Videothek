@@ -242,7 +242,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 				fl.laden();
 				ml.laden();
 				
-				ucms = new UC_Medium_suchen(ml, kl);
+				ucms = new UC_Medium_suchen(fl, ml, kl);
 			}
 
 			if (e.getSource() == mediumerfassen) {

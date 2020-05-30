@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import gui.Film_suchen;
 import gui.Medium_suchen;
+import model.Filmliste;
 import model.Kundenliste;
 import model.Medienliste;
 import model.Medium;
@@ -20,17 +21,20 @@ public class UC_Medium_suchen {
 	private ArrayList<Medium> suchergebnisse;
 	
 	private Kundenliste kl;
+	
+	private Filmliste fl;
 
 
 
-	public UC_Medium_suchen(Medienliste ml, Kundenliste kl) {
+	public UC_Medium_suchen(Filmliste fl, Medienliste ml, Kundenliste kl) {
 
 		this.ml = ml;
 		this.kl = kl;
+		this.fl = fl;
 
 		suchergebnisse = new ArrayList<Medium>();
 
-		ms = new Medium_suchen(this, kl, ml);
+		ms = new Medium_suchen( this, fl, kl, ml);
 
 		ms.setVisible(true);
 		ms.setSize(300,150);
