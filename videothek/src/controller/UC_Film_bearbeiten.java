@@ -18,22 +18,18 @@ public class UC_Film_bearbeiten {
 	private Medienliste ml;
 	private Kundenliste kl;
 
-	public UC_Film_bearbeiten(Filmliste fl, Medienliste ml, Kundenliste kl) {
+	public UC_Film_bearbeiten(Filmliste fl, Medienliste ml, Kundenliste kl, Film f) {
 		this.fl = fl;
 		this.ml = ml;
-		ucfs = new UC_Film_suchen(this, true, fl, true, null, null, null);
-		
-		
-	}
-
-	public void setFilm(Film f) {
-		
+		this.kl = kl;
 		this.f = f;
 		fb = new Film_Bearbeiten(this);
 		fb.setVisible(true);
-		fb.setSize(400, 430);
+		fb.setSize(500, 430);
 		fb.setLocationRelativeTo(null);
 		fb.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		
 		
 	}
 	
@@ -100,6 +96,7 @@ public class UC_Film_bearbeiten {
 						}
 						
 					}
+					
 					for (int j = 0; j < ml.getMedienliste().size(); j++) {
 						if (ml.getMedienliste().get(j).getFilm().getId() == f.getId()) {
 							ml.getMedienliste().remove(j);
@@ -107,6 +104,7 @@ public class UC_Film_bearbeiten {
 					}
 					fl.getFilmliste().remove(i);
 					fl.speichern();
+					fb.dispose();
 				}
 			}
 		}

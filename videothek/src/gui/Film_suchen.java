@@ -96,9 +96,10 @@ public class Film_suchen extends suchFrame {
 	private Kunde k;
 	private Kundenliste kl;
 	private Medienliste ml;
-	private UC_Film_bearbeiten ucfb;
+	private Filmliste fl;
 
-	public Film_suchen (UC_Film_bearbeiten ucfb, UC_Film_suchen ucsf, boolean medium, Kunde k, boolean admin, UC_Medium_erfassen ucme, Kundenliste kl, Medienliste ml) {
+
+	public Film_suchen (UC_Film_suchen ucsf, boolean medium, Kunde k, boolean admin, UC_Medium_erfassen ucme, Filmliste fl, Kundenliste kl, Medienliste ml) {
 
 		super("Film suchen");
 		gl = new GridLayout(3, 1);
@@ -108,11 +109,11 @@ public class Film_suchen extends suchFrame {
 
 		this.medium = medium;
 		this.ucme = ucme;
-		this.ucfb = ucfb;
 		this.k = k;
 		this.admin = admin;
 		this.kl = kl;
 		this.ml = ml;
+		this.fl = fl;
 
 		suche2 = new JDialog();
 
@@ -240,11 +241,12 @@ public class Film_suchen extends suchFrame {
 
 				for (int i = 0; i < suchergebnisseB.size(); i++) {
 					if (e.getSource() == suchergebnisseB.get(i)) {
-						fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml, medium, null);
+						fa = new Film_anzeigen(suchergebnisse.get(i), k, fl, kl, ml, medium, null);
 						fa.setVisible(true);
 						fa.setSize(600, 400);
 						fa.setLocationRelativeTo(null);
 						fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						dispose();
 					}
 				}
 			}
@@ -255,9 +257,6 @@ public class Film_suchen extends suchFrame {
 						
 						if (ucme != null) {
 						ucme.setFilm2(suchergebnisse.get(i));
-						}
-						else {
-							ucfb.setFilm(suchergebnisse.get(i));
 						}
 						suche2.dispose();
 						dispose();
@@ -392,6 +391,7 @@ public class Film_suchen extends suchFrame {
 				}
 
 				else {
+					nichtgefunden.setLocationRelativeTo(null);
 					nichtgefunden.setVisible(true);
 				}
 			}

@@ -261,7 +261,7 @@ public class Kunde_suchen extends suchFrame {
 
 			if (e.getSource() == suchen) {
 				System.out.println("Suchen");
-
+				try {
 				if (auswahl.getSelectedItem() == "Name") {
 					suchergebnisse = ucks.name(suchfeld.getText());
 					System.out.println(suchergebnisse.get(0).getName());
@@ -449,6 +449,9 @@ public class Kunde_suchen extends suchFrame {
 						System.out.println(suchergebnisseName.get(i).getText());
 					}
 				}
+				} catch (IndexOutOfBoundsException exception) {
+					
+				}
 
 				if (suchergebnisse.size() > 0) {
 
@@ -463,6 +466,7 @@ public class Kunde_suchen extends suchFrame {
 				}
 
 				else {
+					nichtgefunden.setLocationRelativeTo(null);
 					nichtgefunden.setVisible(true);
 				}
 			}

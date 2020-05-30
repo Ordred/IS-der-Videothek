@@ -15,9 +15,11 @@ import javax.swing.JFrame;
 
 import javax.swing.SwingConstants;
 
+import controller.UC_Film_bearbeiten;
 import controller.UC_Kunde_suchen;
 import controller.UC_Medium_ausleihen;
 import model.Film;
+import model.Filmliste;
 import model.Kunde;
 import model.Kundenliste;
 import model.Medienliste;
@@ -68,6 +70,7 @@ public class Film_anzeigen extends erfassFrame {
 
 	private buttons ausleihen;
 	private buttons abbrechen;
+	private buttons bearbeiten;
 
 	private String [] ausws;
 
@@ -89,10 +92,12 @@ public class Film_anzeigen extends erfassFrame {
 
 	private buttons ok2;
 	private erfassFrame kG;
+	private UC_Film_bearbeiten ucfb;
+	private Filmliste fl2;
 
 
 
-	public Film_anzeigen(Film f, Kunde k, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
+	public Film_anzeigen(Film f, Kunde k, Filmliste fl2, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
 		super("");
 
 
@@ -114,6 +119,7 @@ public class Film_anzeigen extends erfassFrame {
 
 		this.kl = kl;
 		this.ml = ml;
+		this.fl2 = fl2;
 
 		this.media = media;
 
@@ -175,9 +181,11 @@ public class Film_anzeigen extends erfassFrame {
 
 		abbrechen = new buttons("Abbrechen");
 		ausleihen = new buttons("Ausleihen");
+		bearbeiten = new buttons("Bearbeiten");
 
 		abbrechen.addActionListener(a);
 		ausleihen.addActionListener(a);
+		bearbeiten.addActionListener(a);
 
 
 		if (media != null) {
@@ -220,6 +228,7 @@ public class Film_anzeigen extends erfassFrame {
 		buttons.add(abbrechen);
 		if(!mediumE) {
 			buttons.add(ausleihen);
+			buttons.add(bearbeiten);
 		}
 
 		bild.setLayout(new FlowLayout());
@@ -252,6 +261,11 @@ public class Film_anzeigen extends erfassFrame {
 
 			if (e.getSource() == abbrechen2) {
 				medium.dispose();
+			}
+			
+			if (e.getSource() == bearbeiten) {
+				ucfb = new UC_Film_bearbeiten(fl2, ml, kl, f);
+				dispose();
 			}
 
 			if (e.getSource() == ok) {

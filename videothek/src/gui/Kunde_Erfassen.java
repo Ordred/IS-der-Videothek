@@ -57,7 +57,10 @@ public class Kunde_Erfassen extends erfassFrame{
 
 
 	private buttons löschen;
+	private JDialog löschen2;
 	
+	private buttons ja;
+	private buttons nein;
 	
 	private Kunde k;
 
@@ -74,6 +77,8 @@ public class Kunde_Erfassen extends erfassFrame{
 		
 		
 		ok = new buttons("Ok");
+		ja = new buttons("Ja");
+		nein = new buttons("Nein");
 
 		a = new ActionHandler();
 		
@@ -129,6 +134,9 @@ public class Kunde_Erfassen extends erfassFrame{
 
 		speichern.addActionListener(a);
 		abbrechen.addActionListener(a);
+		
+		ja.addActionListener(a);
+		nein.addActionListener(a);
 
 		form.add(nameL);
 		form.add(name);
@@ -240,8 +248,27 @@ public class Kunde_Erfassen extends erfassFrame{
 				zahl.dispose();
 			}
 			
-			if (e.getSource() == löschen) {
+			if (e.getSource() == ja) {
 				uke.löschen(Integer.parseInt(k.getId()));
+			}
+			
+			if (e.getSource() == nein) {
+				löschen2.dispose();
+			}
+			
+			if (e.getSource() == löschen) {
+				erfassPanel ll = new erfassPanel(new FlowLayout());
+				löschen2 = new JDialog();
+				löschen2.setTitle("Film löschen");
+				löschen2.setSize(300, 150);
+				löschen2.setLocationRelativeTo(null);
+				löschen2.add(new erfassLabel("Sind Sie sicher, dass Sie diesen Kunden löschen möchten?", SwingConstants.CENTER));
+				ll.add(ja);
+				ll.add(nein);
+				löschen2.add(ll, BorderLayout.CENTER);
+				löschen2.setVisible(true);
+				
+				
 			}
 			
 			

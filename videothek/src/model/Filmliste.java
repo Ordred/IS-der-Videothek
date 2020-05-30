@@ -79,7 +79,7 @@ public class Filmliste implements Serializable{
 
 	public ArrayList<Film> getFilmliste() {
 		System.out.println("filmliste holen");
-		System.out.println(filmliste.get(0).getTitel());
+
 		return filmliste;
 	}
 

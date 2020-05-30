@@ -49,6 +49,9 @@ public class Film_Bearbeiten extends erfassFrame{
 	private buttons löschen;
 	private buttons bildwählen;
 	
+	private buttons ja;
+	private buttons nein;
+	
 	private ActionHandler a;
 	private JFileChooser datei;
 	private String icS;
@@ -56,8 +59,7 @@ public class Film_Bearbeiten extends erfassFrame{
 	private JDialog zahl;
 	private buttons ok;
 	
-
-	
+	private JDialog löschen2;	
 	
 	public Film_Bearbeiten(UC_Film_bearbeiten ucfb) {
 		
@@ -88,6 +90,9 @@ public class Film_Bearbeiten extends erfassFrame{
 		löschen = new buttons("Löschen");
 		bildwählen = new buttons("Bild auswählen");
 		
+		ja = new buttons("Ja");
+		nein = new buttons("Nein");
+		
 		titel = new JTextField(ucfb.getF().getTitel());
 		jahr = new JTextField(ucfb.getF().getJahr());
 		genre = new JTextField(ucfb.getF().getGenre());
@@ -108,6 +113,9 @@ public class Film_Bearbeiten extends erfassFrame{
 		speichern.addActionListener(a);
 		abbrechen.addActionListener(a);
 		löschen.addActionListener(a);
+		
+		ja.addActionListener(a);
+		nein.addActionListener(a);
 		
 		ok.addActionListener(a);
 		
@@ -140,6 +148,14 @@ public class Film_Bearbeiten extends erfassFrame{
 			
 			if (e.getSource() == abbrechen) {
 				dispose();
+			}
+			
+			if (e.getSource() == nein) {
+				löschen2.dispose();
+			}
+			
+			if (e.getSource() == ja) {
+				ucfb.löschen();
 			}
 			
 			if (e.getSource() == bildwählen) {
@@ -187,7 +203,20 @@ public class Film_Bearbeiten extends erfassFrame{
 			}
 			
 			if (e.getSource() == löschen) {
-				ucfb.löschen();
+				
+				erfassPanel ll = new erfassPanel(new FlowLayout());
+				löschen2 = new JDialog();
+				löschen2.setTitle("Film löschen");
+				löschen2.setSize(300, 150);
+				löschen2.setLocationRelativeTo(null);
+				löschen2.add(new erfassLabel("Sind Sie sicher, dass Sie diesen Film löschen möchten? "
+						+ "Damit gehen alle damit verbundenen Medien verloren.", SwingConstants.CENTER));
+				ll.add(ja);
+				ll.add(nein);
+				löschen2.add(ll, BorderLayout.CENTER);
+				löschen2.setVisible(true);
+				
+				
 			}
 			
 		}

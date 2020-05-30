@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
@@ -51,6 +52,10 @@ public class Hauptmenu_Kunde extends JFrame {
 	private erfassLabel guthaben;
 	private erfassLabel guthabenL;
 	private erfassPanel guthabenP;
+	
+	private buttons ok;
+	
+	private JDialog keineFilme;
 
 	public Hauptmenu_Kunde(Kunde k) {
 
@@ -74,6 +79,8 @@ public class Hauptmenu_Kunde extends JFrame {
 		
 		guthabenP = new erfassPanel(new FlowLayout());
 
+		ok = new buttons("Ok");
+		ok.addActionListener(a);
 		
 		filmzurückgeben = new buttons("Film zurückgeben");
 		filmsuchen = new buttons("Film suchen");
@@ -140,6 +147,10 @@ public class Hauptmenu_Kunde extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 
+			if (e.getSource() == ok) {
+				keineFilme.dispose();
+			}
+			
 
 			if (e.getSource() == filmzurückgeben) {
 				kl = new Kundenliste();
@@ -163,10 +174,21 @@ public class Hauptmenu_Kunde extends JFrame {
 				ucsf = null;
 				ucfz = null;
 				
+				if (k.getAusleihliste().size() > 0) {
 				
 				ucfz = new UC_Film_zurückgeben(ml, kl, k);
 				
+				}
 				
+				else {
+					keineFilme = new JDialog();
+					keineFilme.setSize(300, 150);
+					keineFilme.setLocationRelativeTo(null);
+					keineFilme.add(new erfassLabel("Sie haben keine Filme ausgeliehen", SwingConstants.CENTER), BorderLayout.CENTER);
+					keineFilme.add(ok, BorderLayout.SOUTH);
+					keineFilme.setVisible(true);
+					
+				}
 			}
 
 			if (e.getSource() == filmsuchen) {
@@ -185,11 +207,12 @@ public class Hauptmenu_Kunde extends JFrame {
 						k = kl.getKundenliste().get(i);
 				}
 				
+				
 
 				ucsf = null;
 				ucfz = null;
 				
-				ucsf = new UC_Film_suchen(null, false, fl, false, kl, ml, k);
+				ucsf = new UC_Film_suchen(false, fl, false, kl, ml, k);
 				
 			}
 

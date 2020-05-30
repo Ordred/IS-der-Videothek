@@ -430,6 +430,7 @@ public class Medium_suchen extends suchFrame {
 				}
 
 				else {
+					nichtgefunden.setLocationRelativeTo(null);
 					nichtgefunden.setVisible(true);
 				}
 			}
