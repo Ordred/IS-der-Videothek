@@ -160,7 +160,9 @@ public class Film_Bearbeiten extends ErfassFrame{
 			}
 			
 			if (e.getSource() == ja) {
-				ucfb.löschen();
+				löschen2.dispose();
+				ucfb.löschen();				
+				dispose();
 			}
 			
 			if (e.getSource() == bildwählen) {
@@ -215,7 +217,7 @@ public class Film_Bearbeiten extends ErfassFrame{
 				löschen2.setLocationRelativeTo(null);
 				ll.add(ja);
 				ll.add(nein);
-				löschen2.add(ll, BorderLayout.CENTER);
+				löschen2.add(ll, BorderLayout.SOUTH);
 				löschen2.setVisible(true);
 				
 				

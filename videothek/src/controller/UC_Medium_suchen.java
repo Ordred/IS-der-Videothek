@@ -37,7 +37,7 @@ public class UC_Medium_suchen {
 		ms = new Medium_suchen( this, fl, kl, ml);
 
 		ms.setVisible(true);
-		ms.setSize(300,150);
+		ms.setSize(300,200);
 		ms.setLocationRelativeTo(null);
 		ms.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

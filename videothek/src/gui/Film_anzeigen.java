@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import controller.UC_Film_bearbeiten;
 import controller.UC_Kunde_suchen;
@@ -24,6 +25,7 @@ import gui_elemente.ErfassLabel;
 import gui_elemente.ErfassPanel;
 import model.Film;
 import model.Filmliste;
+import model.Geschäftseinnahmen;
 import model.Kunde;
 import model.Kundenliste;
 import model.Medienliste;
@@ -387,7 +389,9 @@ public class Film_anzeigen extends ErfassFrame {
 				}
 
 				if (k == null) {
-					ucks = new UC_Kunde_suchen(kl, true);
+					Geschäftseinnahmen ge = new Geschäftseinnahmen();
+					ge.laden();
+					ucks = new UC_Kunde_suchen(ge, kl, true);
 				}
 
 				dispose();

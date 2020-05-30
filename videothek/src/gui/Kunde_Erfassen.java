@@ -19,6 +19,7 @@ import gui_elemente.ErfassFrame;
 import gui_elemente.ErfassLabel;
 import gui_elemente.ErfassPanel;
 import gui_elemente.LöschDialog;
+import model.Geschäftseinnahmen;
 import model.Kunde;
 
 public class Kunde_Erfassen extends ErfassFrame{
@@ -68,14 +69,17 @@ public class Kunde_Erfassen extends ErfassFrame{
 	private Buttons nein;
 	
 	private Kunde k;
+	private Geschäftseinnahmen ge;
 
-	public Kunde_Erfassen(UC_Kunde_erfassen uke, String titel, Kunde k) {
+	public Kunde_Erfassen(Geschäftseinnahmen ge, UC_Kunde_erfassen uke, String titel, Kunde k) {
 
 		super(titel);		
 		
 		this.uke = uke;
 		
 		this.k = k;
+		
+		this.ge = ge;
 	
 		
 		löschen = new Buttons("Löschen");
@@ -254,7 +258,16 @@ public class Kunde_Erfassen extends ErfassFrame{
 			}
 			
 			if (e.getSource() == ja) {
-				uke.löschen(Integer.parseInt(k.getId()));
+				ge.setGesamteinnahmen(-k.getGuthaben());
+				ge.setJahreseinnahmen(-k.getGuthaben());
+				ge.setMonatseinnahmen(-k.getGuthaben());
+				ge.setWocheneinnahmen(-k.getGuthaben());
+				
+				ge.speichern();
+				
+				uke.löschen(k.getId());
+				löschen2.dispose();
+				dispose();
 			}
 			
 			if (e.getSource() == nein) {
@@ -267,7 +280,7 @@ public class Kunde_Erfassen extends ErfassFrame{
 				löschen2.setLocationRelativeTo(null);
 				ll.add(ja);
 				ll.add(nein);
-				löschen2.add(ll, BorderLayout.CENTER);
+				löschen2.add(ll, BorderLayout.SOUTH);
 				löschen2.setVisible(true);
 				
 				
@@ -292,6 +305,11 @@ public class Kunde_Erfassen extends ErfassFrame{
 					uke.setLieblingsgenre(lieblingsgenre.getText());
 					if (k.getId() == null) {
 					uke.setGuthaben(Integer.parseInt(guthaben.getText()));
+					ge.setWocheneinnahmen(Integer.parseInt(guthaben.getText()));
+					ge.setMonatseinnahmen(Integer.parseInt(guthaben.getText()));
+					ge.setJahreseinnahmen(Integer.parseInt(guthaben.getText()));
+					ge.setGesamteinnahmen(Integer.parseInt(guthaben.getText()));
+					ge.speichern();
 					}
 					uke.speichern(k.getId() != null);
 					dispose();

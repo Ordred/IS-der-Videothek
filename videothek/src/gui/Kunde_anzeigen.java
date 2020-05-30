@@ -14,6 +14,7 @@ import controller.UC_Kunde_erfassen;
 import gui_elemente.Buttons;
 import gui_elemente.ErfassLabel;
 import gui_elemente.ErfassPanel;
+import model.Geschäftseinnahmen;
 import model.Kunde;
 import model.Kundenliste;
 
@@ -56,12 +57,14 @@ public class Kunde_anzeigen extends JFrame {
 	private Buttons abbrechen;
 	private Buttons bearbeiten;
 	private UC_Kunde_erfassen uckb;
+	private Geschäftseinnahmen ge;
 	
 	
 	
-	public Kunde_anzeigen(Kunde k, Kundenliste kl) {
+	public Kunde_anzeigen(Geschäftseinnahmen ge, Kunde k, Kundenliste kl) {
 		super("Kundeninformationen");
 		
+		this.ge = ge;
 		
 		a = new ActionHandler();
 		
@@ -142,13 +145,13 @@ public class Kunde_anzeigen extends JFrame {
 			}
 			
 			if (e.getSource() == guthabenaufladen) {
-				uga = new UC_Guthaben_aufladen(k, kl, ka);
+				uga = new UC_Guthaben_aufladen(ge, k, kl, ka);
 				validate();
 				repaint();
 			}
 			
 			if (e.getSource() == bearbeiten) {
-				uckb = new UC_Kunde_erfassen(kl,"Kunde bearbeiten", k);
+				uckb = new UC_Kunde_erfassen(ge, kl,"Kunde bearbeiten", k);
 			}
 			
 			

@@ -42,6 +42,7 @@ import gui_elemente.ErfassPanel;
 import gui_elemente.SuchButton;
 import gui_elemente.SuchFrame;
 import gui_elemente.SuchLabel;
+import model.Geschäftseinnahmen;
 import model.Kunde;
 import model.Kundenliste;
 
@@ -72,9 +73,9 @@ public class Kunde_suchen extends SuchFrame {
 	private Kundenliste kl;
 
 	private JDialog nichtgefunden;
-	private JLabel nichtgefundenL;
+	private ErfassLabel nichtgefundenL;
 	private Buttons ok;
-	private JPanel ngfPanel;
+	private ErfassPanel ngfPanel;
 
 	private String [] kriterien = {"Name", "Vorname", "Geburtsdatum", "Ort", "Adresse", "Telefon", "Lieblingsgenre"};
 
@@ -100,12 +101,16 @@ public class Kunde_suchen extends SuchFrame {
 	private ErfassPanel menu;
 	private ErfassPanel suche;
 	private ErfassPanel buttons;
+	
+	private Geschäftseinnahmen ge;
 
-	public Kunde_suchen (UC_Kunde_suchen ucks, Kundenliste kl, boolean admin) {
+	public Kunde_suchen (Geschäftseinnahmen ge, UC_Kunde_suchen ucks, Kundenliste kl, boolean admin) {
 
 		super("Kunde suchen");
 		gl = new GridLayout(3, 1);
 		super.setLayout(gl);
+		
+		this.ge = ge;
 
 
 	
@@ -244,8 +249,8 @@ public class Kunde_suchen extends SuchFrame {
 
 				for (int i = 0; i < suchergebnisseName.size(); i++) {
 					if (e.getSource() == suchergebnisseName.get(i)) {
-						ka = new Kunde_anzeigen(suchergebnisse.get(i), kl);
-						ka.setSize(400, 400);
+						ka = new Kunde_anzeigen(ge, suchergebnisse.get(i), kl);
+						ka.setSize(400, 450);
 						ka.setVisible(true);
 						ka.setLocationRelativeTo(null);
 						ka.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import gui.Film_Erfassen;
 import gui.Kunde_Erfassen;
+import model.Geschäftseinnahmen;
 import model.Kunde;
 import model.Kundenliste;
 
@@ -13,12 +14,14 @@ public class UC_Kunde_erfassen {
 	private Kunde k;
 	private Kundenliste kl;
 	private Kunde_Erfassen ke;
+	private Geschäftseinnahmen ge;
 
-	public UC_Kunde_erfassen (Kundenliste kl, String titel, Kunde k) {
+	public UC_Kunde_erfassen (Geschäftseinnahmen ge, Kundenliste kl, String titel, Kunde k) {
 
 		this.k = k;
+		this.ge = ge;
 
-		ke = new Kunde_Erfassen(this, titel, k);
+		ke = new Kunde_Erfassen(ge, this, titel, k);
 		ke.setVisible(true);
 		ke.setSize(400, 400);
 		ke.setLocationRelativeTo(null);
@@ -27,10 +30,10 @@ public class UC_Kunde_erfassen {
 		this.kl = kl;
 	}
 
-	public void löschen(int id) {
+	public void löschen(String id) {
 
 		for (int i = 0; i < kl.getKundenliste().size(); i++) {
-			if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(Integer.toString(id))) {
+			if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(id)) {
 				kl.getKundenliste().remove(i);
 				kl.speichern();
 			}

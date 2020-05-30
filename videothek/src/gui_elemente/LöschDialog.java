@@ -9,7 +9,7 @@ public class LöschDialog  extends JDialog{
 	public LöschDialog(String titel, String text, int position) {
 		super();
 		setTitle(titel);
-		setSize(300, 150);
+		setSize(350, 180);
 		add(new ErfassLabel(text, position), BorderLayout.CENTER);
 		
 	}

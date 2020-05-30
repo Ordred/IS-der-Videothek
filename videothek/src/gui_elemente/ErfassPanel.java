@@ -5,6 +5,7 @@ import java.awt.LayoutManager;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import com.sun.tools.javac.util.LayoutCharacters;
 
@@ -15,6 +16,7 @@ public class ErfassPanel extends JPanel {
 		setLayout(l);
 		setBackground(Color.black);
 		setForeground(Color.white);
+		setBorder(new EmptyBorder(20, 20, 20, 20));
 		
 	}
 	
@@ -23,6 +25,7 @@ public class ErfassPanel extends JPanel {
 		
 		setBackground(Color.black);
 		setForeground(Color.white);
+		setBorder(new EmptyBorder(20, 20, 20, 20));
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import gui.Hauptmenu_Besitzer;
 import gui.Kunde_suchen;
+import model.Geschäftseinnahmen;
 import model.Kunde;
 import model.Kundenliste;
 
@@ -19,19 +20,21 @@ public class UC_Kunde_suchen {
 	
 	private Hauptmenu_Besitzer hb;
 
+	private Geschäftseinnahmen ge;
 
 
 
-	public UC_Kunde_suchen(Kundenliste kl, boolean admin) {
+	public UC_Kunde_suchen(Geschäftseinnahmen ge, Kundenliste kl, boolean admin) {
 
 		this.kl = kl;
+		this.ge = ge;
 		
 		suchergebnisse = new ArrayList<Kunde>();
 
-		ks = new Kunde_suchen(this, kl, admin);
+		ks = new Kunde_suchen(ge, this, kl, admin);
 
 		ks.setVisible(true);
-		ks.setSize(300,150);
+		ks.setSize(300,200);
 		ks.setLocationRelativeTo(null);
 		ks.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

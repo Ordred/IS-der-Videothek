@@ -24,7 +24,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
@@ -55,7 +55,7 @@ public class Film_suchen extends SuchFrame {
 	private ArrayList<SuchButton> suchergebnisseB;
 	private ArrayList<SuchLabel> suchergebnisseGenre;
 	private ArrayList<SuchLabel> suchergebnisseJahr;
-	private JPanel suchergebnisseP;
+	private ErfassPanel suchergebnisseP;
 	private JScrollPane sucheScroll;
 	private GridLayout sucheGL;
 	private boolean medium;
@@ -94,9 +94,9 @@ public class Film_suchen extends SuchFrame {
 
 	private GridLayout gl;
 
-	private JPanel menu;
-	private JPanel suche;
-	private JPanel buttons;
+	private ErfassPanel menu;
+	private ErfassPanel suche;
+	private ErfassPanel buttons;
 
 	private boolean admin;
 	private Kunde k;
@@ -132,7 +132,7 @@ public class Film_suchen extends SuchFrame {
 		titelleiste[0] = new ErfassLabel("Titel", SwingConstants.CENTER);
 		titelleiste[1] = new ErfassLabel("Genre", SwingConstants.CENTER);
 		titelleiste[2] = new ErfassLabel("Jahr", SwingConstants.CENTER);
-		suchergebnisseP = new JPanel();
+		suchergebnisseP = new ErfassPanel();
 		sucheGL = new GridLayout(20, 3);
 
 		suchergebnisseP.setBackground(Color.black);
@@ -249,7 +249,7 @@ public class Film_suchen extends SuchFrame {
 					if (e.getSource() == suchergebnisseB.get(i)) {
 						fa = new Film_anzeigen(suchergebnisse.get(i), k, fl, kl, ml, medium, null);
 						fa.setVisible(true);
-						fa.setSize(600, 400);
+						fa.setSize(600, 500);
 						fa.setLocationRelativeTo(null);
 						fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						dispose();

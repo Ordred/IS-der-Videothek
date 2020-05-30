@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import gui.Guthaben_aufladen;
 import gui.Kunde_anzeigen;
+import model.Geschäftseinnahmen;
 import model.Kunde;
 import model.Kundenliste;
 
@@ -15,12 +16,15 @@ public class UC_Guthaben_aufladen {
 	
 	private Kunde_anzeigen ka;
 	
+	private Geschäftseinnahmen ge;
 	
-	public UC_Guthaben_aufladen(Kunde k, Kundenliste kl, Kunde_anzeigen ka) {
+	
+	public UC_Guthaben_aufladen(Geschäftseinnahmen ge, Kunde k, Kundenliste kl, Kunde_anzeigen ka) {
 		
 		this.k = k;
 		this.kl = kl;
 		this.ka = ka;
+		this.ge = ge;
 		
 		ga = new Guthaben_aufladen(this);
 		ga.setVisible(true);
@@ -42,6 +46,12 @@ public class UC_Guthaben_aufladen {
 
 
 	public void aufladen(int betrag) {
+		
+		ge.setGesamteinnahmen(betrag);
+		ge.setJahreseinnahmen(betrag);
+		ge.setMonatseinnahmen(betrag);
+		ge.setWocheneinnahmen(betrag);
+		ge.speichern();
 		
 		k.setGuthaben(betrag);
 		kl.kundeBearbeiten(k);
