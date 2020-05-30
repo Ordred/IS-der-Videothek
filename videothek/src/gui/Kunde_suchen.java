@@ -32,6 +32,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import controller.UC_Guthaben_aufladen;
 import controller.UC_Kunde_suchen;
@@ -58,7 +59,7 @@ public class Kunde_suchen extends SuchFrame {
 	private ArrayList<SuchButton> suchergebnisseName;
 	private ArrayList<SuchLabel> suchergebnisseVorname;
 	private ArrayList<SuchLabel> suchergebnisseGeburtsdatum;
-	private JPanel suchergebnisseP;
+	private ErfassPanel suchergebnisseP;
 	private JScrollPane sucheScroll;
 	private GridLayout sucheGL;
 
@@ -130,7 +131,7 @@ public class Kunde_suchen extends SuchFrame {
 		titelleiste[0] = new JLabel("Name", SwingConstants.CENTER);
 		titelleiste[1] = new JLabel("Vorname", SwingConstants.CENTER);
 		titelleiste[2] = new JLabel("Geburtsdatum", SwingConstants.CENTER);
-		suchergebnisseP = new JPanel();
+		suchergebnisseP = new ErfassPanel();
 		sucheGL = new GridLayout(20, 3);
 
 
@@ -183,6 +184,8 @@ public class Kunde_suchen extends SuchFrame {
 
 		suchen = new Buttons(sucheIc);
 		abbrechen = new Buttons("Abbrechen");
+		
+		suchen.setBorder(new EmptyBorder(5,5,5,5));
 
 		suchen.addActionListener(a);
 		abbrechen.addActionListener(a);
@@ -250,7 +253,7 @@ public class Kunde_suchen extends SuchFrame {
 				for (int i = 0; i < suchergebnisseName.size(); i++) {
 					if (e.getSource() == suchergebnisseName.get(i)) {
 						ka = new Kunde_anzeigen(ge, suchergebnisse.get(i), kl);
-						ka.setSize(400, 450);
+						ka.setSize(450, 450);
 						ka.setVisible(true);
 						ka.setLocationRelativeTo(null);
 						ka.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -470,7 +473,7 @@ public class Kunde_suchen extends SuchFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize (850, 800);
+					suche2.setSize (900, 800);
 					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();

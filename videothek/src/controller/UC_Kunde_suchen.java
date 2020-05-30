@@ -34,7 +34,7 @@ public class UC_Kunde_suchen {
 		ks = new Kunde_suchen(ge, this, kl, admin);
 
 		ks.setVisible(true);
-		ks.setSize(300,200);
+		ks.setSize(300,240);
 		ks.setLocationRelativeTo(null);
 		ks.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

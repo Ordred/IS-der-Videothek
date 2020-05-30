@@ -46,7 +46,7 @@ public class UC_Film_suchen {
 		fs = new Film_suchen(this, medium, k,  k != null, null, fl, kl, ml);
 
 		fs.setVisible(true);
-		fs.setSize(300,200);
+		fs.setSize(300,240);
 		fs.setLocationRelativeTo(null);
 		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}

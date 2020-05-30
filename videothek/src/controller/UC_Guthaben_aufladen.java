@@ -28,7 +28,7 @@ public class UC_Guthaben_aufladen {
 		
 		ga = new Guthaben_aufladen(this);
 		ga.setVisible(true);
-		ga.setSize(300, 100);
+		ga.setSize(300, 150);
 		ga.setLocationRelativeTo(null);
 		ga.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		

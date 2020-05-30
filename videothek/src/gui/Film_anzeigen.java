@@ -138,13 +138,13 @@ public class Film_anzeigen extends ErfassFrame {
 
 		this.mediumE = mediumE;
 		
-		brL = new ErfassLabel("Blu-Ray", SwingConstants.CENTER);
-		dvdL = new ErfassLabel("DVD", SwingConstants.CENTER);
-		vhsL = new ErfassLabel("VHS", SwingConstants.CENTER);
+		brL = new ErfassLabel("Blu-Ray", SwingConstants.LEFT);
+		dvdL = new ErfassLabel("DVD", SwingConstants.LEFT);
+		vhsL = new ErfassLabel("VHS", SwingConstants.LEFT);
 		
-		br = new ErfassLabel("Nein", SwingConstants.RIGHT);
-		dvd = new ErfassLabel("Nein", SwingConstants.RIGHT);
-		vhs = new ErfassLabel("Nein", SwingConstants.RIGHT);
+		br = new ErfassLabel("Nein", SwingConstants.LEFT);
+		dvd = new ErfassLabel("Nein", SwingConstants.LEFT);
+		vhs = new ErfassLabel("Nein", SwingConstants.LEFT);
 		
 		oben = new ErfassPanel(new GridLayout(1, 2));
 
@@ -192,19 +192,19 @@ public class Film_anzeigen extends ErfassFrame {
 		bild = new ErfassPanel();
 		bild.add(hülle, BorderLayout.CENTER);
 
-		idL = new ErfassLabel("ID", SwingConstants.CENTER);
-		lagerL = new ErfassLabel("Lager",  SwingConstants.CENTER);
-		verfügbarkeitL = new ErfassLabel("Verfügbar ab", SwingConstants.CENTER);
+		idL = new ErfassLabel("ID", SwingConstants.LEFT);
+		lagerL = new ErfassLabel("Lager",  SwingConstants.LEFT);
+		verfügbarkeitL = new ErfassLabel("Verfügbar ab", SwingConstants.LEFT);
 
-		titel = new ErfassLabel("Titel", SwingConstants.CENTER);
-		jahr = new ErfassLabel("Jahr",  SwingConstants.CENTER);
-		genre = new ErfassLabel("Genre", SwingConstants.CENTER);
-		beschreibung = new ErfassLabel("Beschreibung",  SwingConstants.CENTER);
+		titel = new ErfassLabel("Titel", SwingConstants.LEFT);
+		jahr = new ErfassLabel("Jahr",  SwingConstants.LEFT);
+		genre = new ErfassLabel("Genre", SwingConstants.LEFT);
+		beschreibung = new ErfassLabel("Beschreibung",  SwingConstants.LEFT);
 
-		titelT = new ErfassLabel(f.getTitel(),  SwingConstants.RIGHT);
-		jahrT = new ErfassLabel(Integer.toString(f.getJahr()),  SwingConstants.RIGHT);
-		genreT = new ErfassLabel(f.getGenre(),  SwingConstants.RIGHT);
-		beschreibungT = new ErfassLabel(f.getBeschreibung(),  SwingConstants.RIGHT);
+		titelT = new ErfassLabel(f.getTitel(),  SwingConstants.LEFT);
+		jahrT = new ErfassLabel(Integer.toString(f.getJahr()),  SwingConstants.LEFT);
+		genreT = new ErfassLabel(f.getGenre(),  SwingConstants.LEFT);
+		beschreibungT = new ErfassLabel(f.getBeschreibung(),  SwingConstants.LEFT);
 
 
 
@@ -226,19 +226,19 @@ public class Film_anzeigen extends ErfassFrame {
 		if (media != null) {
 
 
-			id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.RIGHT);
+			id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.LEFT);
 
 			if (media.isLagernd()) {
-				lager = new ErfassLabel("Ja", SwingConstants.RIGHT);
+				lager = new ErfassLabel("Ja", SwingConstants.LEFT);
 			}
 			else {
-				lager = new ErfassLabel("Nein", SwingConstants.RIGHT);
+				lager = new ErfassLabel("Nein", SwingConstants.LEFT);
 			}
 			if (media.getRückgabedatum() != null) {
-				verfügbarkeit = new ErfassLabel (media.getRückgabedatum().toString(),SwingConstants.RIGHT);
+				verfügbarkeit = new ErfassLabel (media.getRückgabedatum().toString(),SwingConstants.LEFT);
 			}
 			else {
-				verfügbarkeit = new ErfassLabel("Sofort", SwingConstants.RIGHT);
+				verfügbarkeit = new ErfassLabel("Sofort", SwingConstants.LEFT);
 
 			}
 

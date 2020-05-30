@@ -30,6 +30,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import controller.UC_Film_suchen;
 import controller.UC_Medium_ausleihen;
@@ -54,7 +55,7 @@ public class Medium_suchen extends SuchFrame {
 	private ArrayList<SuchLabel> suchergebnisseTitel;	
 	private ArrayList<SuchLabel> suchergebnisseGenre;
 	private ArrayList<SuchLabel> suchergebnisseJahr;
-	private JPanel suchergebnisseP;
+	private ErfassPanel suchergebnisseP;
 	private JScrollPane sucheScroll;
 	private GridLayout sucheGL;
 
@@ -67,9 +68,9 @@ public class Medium_suchen extends SuchFrame {
 	private Film_anzeigen fa;
 
 	private JDialog nichtgefunden;
-	private JLabel nichtgefundenL;
+	private ErfassLabel nichtgefundenL;
 	private Buttons ok;
-	private JPanel ngfPanel;
+	private ErfassPanel ngfPanel;
 
 	private String [] kriterien = {"ID", "Medium", "Titel", "Jahr", "Genre", "Beschreibung"};
 
@@ -129,7 +130,7 @@ public class Medium_suchen extends SuchFrame {
 		titelleiste[2] = new JLabel("Titel", SwingConstants.CENTER);
 		titelleiste[3] = new JLabel("Genre", SwingConstants.CENTER);
 		titelleiste[4] = new JLabel("Jahr", SwingConstants.CENTER);
-		suchergebnisseP = new JPanel();
+		suchergebnisseP = new ErfassPanel();
 		sucheGL = new GridLayout(20, 3);
 
 
@@ -206,7 +207,7 @@ public class Medium_suchen extends SuchFrame {
 		menu.add(auswahlL);
 		menu.add(auswahl);
 
-
+		suchen.setBorder(new EmptyBorder(5,5,5,5));
 
 		add(menu, BorderLayout.NORTH);
 		add(suche, BorderLayout.CENTER);
@@ -214,7 +215,7 @@ public class Medium_suchen extends SuchFrame {
 
 
 		nichtgefunden = new JDialog();
-		nichtgefundenL = new ErfassLabel("Es konnte kein Film mit diesen Angaben gefunden werden");
+		nichtgefundenL = new ErfassLabel("Es konnte kein Film mit diesen Angaben gefunden werden", SwingConstants.CENTER);
 		nichtgFL = new FlowLayout();
 		ok = new Buttons ("Ok");
 		ngfPanel = new ErfassPanel();
@@ -225,7 +226,7 @@ public class Medium_suchen extends SuchFrame {
 		nichtgefunden.add(nichtgefundenL, BorderLayout.CENTER);
 		nichtgefunden.add(ngfPanel, BorderLayout.SOUTH);
 
-		nichtgefunden.pack();
+		nichtgefunden.setSize(400, 150);
 		nichtgefunden.setVisible(false);
 		nichtgefunden.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
@@ -242,7 +243,7 @@ public class Medium_suchen extends SuchFrame {
 
 				if (e.getSource() == suchergebnisseB.get(i)) {
 					fa = new Film_anzeigen(suchergebnisse.get(i).getFilm(),null, fl, kl,ml, false, suchergebnisse.get(i));
-					fa.setSize(500, 400);
+					fa.setSize(600, 500);
 					fa.setLocationRelativeTo(null);
 					fa.setVisible(true);
 					fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -431,7 +432,7 @@ public class Medium_suchen extends SuchFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize(800,800);
+					suche2.setSize(900,800);
 					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();

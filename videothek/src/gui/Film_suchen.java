@@ -31,6 +31,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import controller.UC_Film_bearbeiten;
 import controller.UC_Film_suchen;
@@ -210,7 +211,7 @@ public class Film_suchen extends SuchFrame {
 
 		menu.add(auswahlL);
 		menu.add(auswahl);
-
+		suchen.setBorder(new EmptyBorder(5,5,5,5));
 		suchergebnisseP.setBackground(Color.black);
 
 		add(menu, BorderLayout.NORTH);
@@ -231,7 +232,7 @@ public class Film_suchen extends SuchFrame {
 		nichtgefunden.add(nichtgefundenL, BorderLayout.CENTER);
 		nichtgefunden.add(ngfPanel, BorderLayout.SOUTH);
 
-		nichtgefunden.pack();
+		nichtgefunden.setSize(400, 150);
 		nichtgefunden.setVisible(false);
 		nichtgefunden.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
@@ -389,7 +390,7 @@ public class Film_suchen extends SuchFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize(800,600);
+					suche2.setSize(900,800);
 					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();

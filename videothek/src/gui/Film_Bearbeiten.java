@@ -212,8 +212,7 @@ public class Film_Bearbeiten extends ErfassFrame{
 			if (e.getSource() == löschen) {
 				
 				ErfassPanel ll = new ErfassPanel(new FlowLayout());
-				löschen2 = new LöschDialog("Film löschen", "Sind Sie sicher, dass Sie diesen Film löschen möchten? "
-						+ "Damit gehen alle damit verbundenen Medien verloren.", SwingConstants.CENTER);
+				löschen2 = new LöschDialog("Film löschen", "Sind Sie sicher, dass Sie diesen Film löschen möchten?", SwingConstants.CENTER);
 				löschen2.setLocationRelativeTo(null);
 				ll.add(ja);
 				ll.add(nein);
