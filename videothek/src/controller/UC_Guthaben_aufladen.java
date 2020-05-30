@@ -31,6 +31,16 @@ public class UC_Guthaben_aufladen {
 	}
 	
 	
+	public Guthaben_aufladen getGa() {
+		return ga;
+	}
+
+
+	public void setGa(Guthaben_aufladen ga) {
+		this.ga = ga;
+	}
+
+
 	public void aufladen(int betrag) {
 		
 		k.setGuthaben(betrag);

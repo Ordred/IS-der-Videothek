@@ -38,6 +38,14 @@ public class UC_Film_bearbeiten {
 	}
 	
 
+	public Film_Bearbeiten getFb() {
+		return fb;
+	}
+
+	public void setFb(Film_Bearbeiten fb) {
+		this.fb = fb;
+	}
+
 	public Film getF() {
 		return f;
 	}

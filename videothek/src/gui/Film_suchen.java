@@ -242,7 +242,7 @@ public class Film_suchen extends suchFrame {
 					if (e.getSource() == suchergebnisseB.get(i)) {
 						fa = new Film_anzeigen(suchergebnisse.get(i), k, kl, ml, medium, null);
 						fa.setVisible(true);
-						fa.setSize(500, 400);
+						fa.setSize(600, 400);
 						fa.setLocationRelativeTo(null);
 						fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					}
@@ -384,7 +384,7 @@ public class Film_suchen extends suchFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize(800,800);
+					suche2.setSize(800,600);
 					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();

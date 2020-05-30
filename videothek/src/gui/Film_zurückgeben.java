@@ -62,8 +62,12 @@ public class Film_zurückgeben extends JFrame {
 
 		this.k = k;
 
+		
+		
 		ml = k.getAusleihliste();
 		this.ucfz = ucfz;
+		
+		
 
 		System.out.println(ml);
 		

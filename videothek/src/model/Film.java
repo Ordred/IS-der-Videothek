@@ -12,9 +12,16 @@ public class Film implements Serializable {
 	private String hülle;
 	private String beschreibung;
 	private String genre;
+	private int id;
 	
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getHülle() {
 		return hülle;
 	}

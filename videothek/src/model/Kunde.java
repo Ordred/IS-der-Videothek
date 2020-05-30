@@ -17,6 +17,18 @@ public class Kunde implements Serializable {
 	private String adresse;
 	private String ort;
 	private String telefon;
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public String getAdresse() {
 		return adresse;
 	}

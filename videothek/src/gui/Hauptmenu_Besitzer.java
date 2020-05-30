@@ -51,6 +51,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 	private Filmliste fl;
 	private Kundenliste kl;
 	private Medienliste ml;
+	
+
 
 	public Hauptmenu_Besitzer(Kunde k) {
 
@@ -94,16 +96,16 @@ public class Hauptmenu_Besitzer extends JFrame {
 		mediumerfassen.addActionListener(a);
 		filmbearbeiten.addActionListener(a);
 
-		gr = new GridLayout(4, 3);
+		gr = new GridLayout(3, 3);
 
 		super.setLayout(gr);
 
 		add(filmerfassen);
 		add(kundeerfassen);
+		add(mediumerfassen);
 		add(filmsuchen);
 		add(kundesuchen);
-		add(mediumsuchen);
-		add(mediumerfassen);
+		add(mediumsuchen);		
 		add(filmbearbeiten);
 
 	}
@@ -115,6 +117,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 	public void setK(Kunde k) {
 		this.k = k;
 	}
+
+
 
 	public Filmliste getFl() {
 		return fl;
@@ -149,41 +153,125 @@ public class Hauptmenu_Besitzer extends JFrame {
 			// TODO Auto-generated method stub
 
 			if (e.getSource() == filmerfassen) {
+				ucf = null;
+				uck = null;
+				ucsf = null;
+				ucks = null;
+				ucms = null;
+				ucme = null;
+				ucfb = null;
 				fl.laden();
 				ucf = new UC_Film_erfassen(fl);
 				fl.laden();
+				
 			}
 
 			if (e.getSource() == kundeerfassen) {
+				ucf = null;
+				uck = null;
+				ucsf = null;
+				ucks = null;
+				ucms = null;
+				ucme = null;
+				ucfb = null;
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
 				kl.laden();
+				fl.laden();
+				ml.laden();
+				
 				uck = new UC_Kunde_erfassen(kl);
-				kl.laden();
+				
+				
 			}
 
 			if (e.getSource() == filmsuchen) {
+				ucf = null;
+				uck = null;
+				ucsf = null;
+				ucks = null;
+				ucms = null;
+				ucme = null;
+				ucfb = null;
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
+				kl.laden();
 				fl.laden();
 				ml.laden();
+				
 				ucsf = new UC_Film_suchen(null, false, fl, false, kl, ml, k);
 			}
 
 			if (e.getSource() == kundesuchen) {
+				ucf = null;
+				uck = null;
+				ucsf = null;
+				ucks = null;
+				ucms = null;
+				ucme = null;
+				ucfb = null;
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
 				kl.laden();
+				fl.laden();
+				ml.laden();
+				
 				ucks = new UC_Kunde_suchen(kl, false);
 			}
 
 			if (e.getSource() == mediumsuchen) {
-
+				ucf = null;
+				uck = null;
+				ucsf = null;
+				ucks = null;
+				ucms = null;
+				ucme = null;
+				ucfb = null;
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
+				kl.laden();
+				fl.laden();
 				ml.laden();
+				
 				ucms = new UC_Medium_suchen(ml, kl);
 			}
 
 			if (e.getSource() == mediumerfassen) {
-				ml.laden();
+				ucf = null;
+				uck = null;
+				ucsf = null;
+				ucks = null;
+				ucms = null;
+				ucme = null;
+				ucfb = null;
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
+				kl.laden();
 				fl.laden();
+				ml.laden();
+				
 				ucme = new UC_Medium_erfassen(ml, fl);
 			}
 			
 			if (e.getSource() == filmbearbeiten) {
+				ucf = null;
+				uck = null;
+				ucsf = null;
+				ucks = null;
+				ucms = null;
+				ucme = null;
+				ucfb = null;
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
+				kl.laden();
+				fl.laden();
+				ml.laden();
 				ucfb = new UC_Film_bearbeiten(fl, ml, kl);
 			}
 		}

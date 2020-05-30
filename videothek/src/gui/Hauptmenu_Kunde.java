@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -140,15 +142,55 @@ public class Hauptmenu_Kunde extends JFrame {
 
 
 			if (e.getSource() == filmzurückgeben) {
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
 				kl.laden();
+				fl.laden();
+				ml.laden();
+				kl.speichern();
+				ml.speichern();
+				fl.speichern();
+				
+				for (int i = 0; i < kl.getKundenliste().size(); i++) {
+					if (kl.getKundenliste().get(i).getId() == k.getId())
+						k = kl.getKundenliste().get(i);
+				}
+				
+
+				
+				
+				ucsf = null;
+				ucfz = null;
+				
+				
 				ucfz = new UC_Film_zurückgeben(ml, kl, k);
-				kl.laden();
+				
+				
 			}
 
 			if (e.getSource() == filmsuchen) {
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
+				kl.laden();
 				fl.laden();
 				ml.laden();
+				kl.speichern();
+				ml.speichern();
+				fl.speichern();
+				
+				for (int i = 0; i < kl.getKundenliste().size(); i++) {
+					if (kl.getKundenliste().get(i).getId() == k.getId())
+						k = kl.getKundenliste().get(i);
+				}
+				
+
+				ucsf = null;
+				ucfz = null;
+				
 				ucsf = new UC_Film_suchen(null, false, fl, false, kl, ml, k);
+				
 			}
 
 			

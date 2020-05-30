@@ -39,6 +39,26 @@ public class UC_Medium_suchen {
 	}
 
 
+	public Medium_suchen getMs() {
+		return ms;
+	}
+
+
+	public void setMs(Medium_suchen ms) {
+		this.ms = ms;
+	}
+
+
+	public ArrayList<Medium> getSuchergebnisse() {
+		return suchergebnisse;
+	}
+
+
+	public void setSuchergebnisse(ArrayList<Medium> suchergebnisse) {
+		this.suchergebnisse = suchergebnisse;
+	}
+
+
 	public ArrayList<Medium> titel(String titel) {
 
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {

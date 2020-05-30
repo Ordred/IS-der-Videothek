@@ -36,6 +36,26 @@ public class UC_Medium_erfassen {
 	}
 	
 	
+	public Film_suchen getFs() {
+		return fs;
+	}
+
+
+	public void setFs(Film_suchen fs) {
+		this.fs = fs;
+	}
+
+
+	public Medium_erfassen getMe() {
+		return me;
+	}
+
+
+	public void setMe(Medium_erfassen me) {
+		this.me = me;
+	}
+
+
 	public void setID(int id) {
 		m.setId(id);
 	}
@@ -62,7 +82,13 @@ public class UC_Medium_erfassen {
 	}
 	
 	public void speichern() {
+		m.setId(ml.getMedienliste().size()+1);
 		
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
+			if (i != ml.getMedienliste().get(i).getId()) {
+				m.setId(i);
+			}
+		}
 		
 		ml.mediumHinzufügen(m);
 		

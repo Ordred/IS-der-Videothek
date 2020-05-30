@@ -4,6 +4,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.swing.JDialog;
+
 import model.Film;
 import model.Kunde;
 import model.Kundenliste;
@@ -35,51 +37,63 @@ public class UC_Medium_ausleihen {
 
 		heute = LocalDate.now();
 
-		
 
+
+	}
+
+
+	public Kundenliste getKl() {
+		return kl;
+	}
+
+
+	public void setKl(Kundenliste kl) {
+		this.kl = kl;
 	}
 
 
 	public void ausleihen() {
 
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
-			
+
+
+
 			for (int j = 0; j < kl.getKundenliste().size(); j++) {
-				if (kl.getKundenliste().get(j).getName().equalsIgnoreCase(k.getName()) && 
-						kl.getKundenliste().get(j).getVorname().equalsIgnoreCase(k.getVorname()) && 
-						kl.getKundenliste().get(j).getGeburtsdatum().equalsIgnoreCase(k.getGeburtsdatum())) 
+
+				if (k.getId() == kl.getKundenliste().get(j).getId())
 				{
 					System.out.println("Geschafft klk");
 					k = kl.getKundenliste().get(j);
 				}
 			}
 
+			System.out.println((ml.getMedienliste().get(i).getFilm().getTitel().equalsIgnoreCase(m.getFilm().getTitel())));
+			System.out.println(ml.getMedienliste().get(i).isLagernd());
+			System.out.println(medium.equalsIgnoreCase(ml.getMedienliste().get(i).getMedium()));
 
 
 			if (ml.getMedienliste().get(i).getFilm().getTitel().equalsIgnoreCase(m.getFilm().getTitel()) &&
 					ml.getMedienliste().get(i).getFilm().getJahr() == m.getFilm().getJahr() &&
 					ml.getMedienliste().get(i).isLagernd() && 
-					ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(medium)) {
+					medium.equalsIgnoreCase(ml.getMedienliste().get(i).getMedium())){
 				System.out.println("geht2");
 
-				if(m == null) {
-					m = ml.getMedienliste().get(i);
-				}
-
 				
+
+
 				k.getAusleihliste().add(m);
 				k.setGuthaben(ml.getMedienliste().get(i).getPreis());
 				kl.speichern();
 				kl.laden();
-				
-				m.setRückgabedatum(heute.plusDays(7));
-				m.setLagernd(false);
+
+				ml.getMedienliste().get(i).setRückgabedatum(heute.plusDays(7));
+				ml.getMedienliste().get(i).setLagernd(false);
 				ml.speichern();
 				ml.laden();
 			}
 
 			else if (ml.getMedienliste().get(i).getFilm() == f && !ml.getMedienliste().get(i).isLagernd()) {
-
+				JDialog nichtLager = new JDialog();
 			}
 		}
 

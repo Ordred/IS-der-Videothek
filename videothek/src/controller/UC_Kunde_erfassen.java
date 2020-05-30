@@ -33,6 +33,14 @@ public class UC_Kunde_erfassen {
 		k.setOrt(ort);
 	}
 	
+	public Kunde_Erfassen getKe() {
+		return ke;
+	}
+
+	public void setKe(Kunde_Erfassen ke) {
+		this.ke = ke;
+	}
+
 	public void setTelefon(String telefon) {
 		k.setTelefon(telefon);
 	}
@@ -69,7 +77,14 @@ public class UC_Kunde_erfassen {
 	}
 	
 	public void speichern() {
-
+		k.setId(kl.getKundenliste().size()+1);
+		
+		for (int i = 0; i < kl.getKundenliste().size(); i++) {
+			if (kl.getKundenliste().get(i).getId() != i) {
+				k.setId(i);
+			}
+		}
+		
 		kl.kundeHinzufügen(k);
 	}
 }

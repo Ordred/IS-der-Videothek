@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import gui.Hauptmenu_Besitzer;
 import gui.Kunde_suchen;
 import model.Kunde;
 import model.Kundenliste;
@@ -15,6 +16,8 @@ public class UC_Kunde_suchen {
 	private Kunde_suchen ks;
 
 	private ArrayList<Kunde> suchergebnisse;
+	
+	private Hauptmenu_Besitzer hb;
 
 
 
@@ -22,8 +25,7 @@ public class UC_Kunde_suchen {
 	public UC_Kunde_suchen(Kundenliste kl, boolean admin) {
 
 		this.kl = kl;
-
-
+		
 		suchergebnisse = new ArrayList<Kunde>();
 
 		ks = new Kunde_suchen(this, kl, admin);
@@ -32,6 +34,36 @@ public class UC_Kunde_suchen {
 		ks.setSize(300,150);
 		ks.setLocationRelativeTo(null);
 		ks.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+
+
+	public Kundenliste getKl() {
+		return kl;
+	}
+
+
+	public void setKl(Kundenliste kl) {
+		this.kl = kl;
+	}
+
+
+	public ArrayList<Kunde> getSuchergebnisse() {
+		return suchergebnisse;
+	}
+
+
+	public void setSuchergebnisse(ArrayList<Kunde> suchergebnisse) {
+		this.suchergebnisse = suchergebnisse;
+	}
+
+
+	public Hauptmenu_Besitzer getHb() {
+		return hb;
+	}
+
+
+	public void setHb(Hauptmenu_Besitzer hb) {
+		this.hb = hb;
 	}
 
 

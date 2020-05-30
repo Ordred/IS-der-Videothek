@@ -23,6 +23,8 @@ public class UC_Film_zurückgeben {
 		this.kl = kl;
 		kl.laden();
 		this.k = k;
+		
+	
 
 		fz = new Film_zurückgeben(k, this);
 		fz.setVisible(true);
@@ -31,14 +33,21 @@ public class UC_Film_zurückgeben {
 		fz.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
+	public Film_zurückgeben getFz() {
+		return fz;
+	}
+
+	public void setFz(Film_zurückgeben fz) {
+		this.fz = fz;
+	}
+
 	public void zurückgeben(int i) {
 
-		kl.laden();
-		ml.laden();
 		
 		for (int j = 0; j < ml.getMedienliste().size(); j++) {
-			if (ml.getMedienliste().get(j) == k.getAusleihliste().get(i)) {
+			if (ml.getMedienliste().get(j).getId() == k.getAusleihliste().get(i).getId()) {
 				ml.getMedienliste().get(j).setLagernd(true);
+				ml.getMedienliste().get(j).setRückgabedatum(null);
 				ml.speichern();
 				ml.laden();
 			}
@@ -46,15 +55,17 @@ public class UC_Film_zurückgeben {
 
 
 		for (int j = 0; j < kl.getKundenliste().size(); j++) {
-			if (kl.getKundenliste().get(j).getName().equalsIgnoreCase(k.getName()) && 
-					kl.getKundenliste().get(j).getVorname().equalsIgnoreCase(k.getVorname()) && 
-					kl.getKundenliste().get(j).getGeburtsdatum().equalsIgnoreCase(k.getGeburtsdatum())) 
+			if (kl.getKundenliste().get(i).getId() == k.getId()) 
 			{
 				System.out.println("Geschafft");
-				k = kl.getKundenliste().get(j);
-				k.getAusleihliste().remove(i);
+				try {
+				kl.getKundenliste().get(j).getAusleihliste().remove(i);
+				} catch (IndexOutOfBoundsException e) {
+				
+				}
 				kl.speichern();
 				kl.laden();
+				k = kl.getKundenliste().get(j);
 			}
 		}
 

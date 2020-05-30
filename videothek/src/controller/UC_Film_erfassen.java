@@ -27,6 +27,16 @@ public class UC_Film_erfassen {
 	}
 	
 	
+	public Film_Erfassen getFe() {
+		return fe;
+	}
+
+
+	public void setFe(Film_Erfassen fe) {
+		this.fe = fe;
+	}
+
+
 	public void setHülle(String datei) {
 		f.setHülle(datei);
 	}
@@ -56,6 +66,14 @@ public class UC_Film_erfassen {
 	}
 	
 	public void speichern() {
+		
+		f.setId(fl.getFilmliste().size()+1);
+		
+		for (int i = 0; i < fl.getFilmliste().size(); i++) {
+			if (fl.getFilmliste().get(i).getId() != i) {
+				f.setId(i);
+			}
+		}
 
 		fl.filmHinzufügen(f);
 	}

@@ -54,6 +54,16 @@ public class UC_Film_suchen {
 	}
 
 
+	public Film_suchen getFs() {
+		return fs;
+	}
+
+
+	public void setFs(Film_suchen fs) {
+		this.fs = fs;
+	}
+
+
 	public ArrayList<Film> titel(String titel) {
 
 		for (int i = 0; i < fl.getFilmliste().size(); i++) {
