@@ -98,14 +98,21 @@ public class Film_anzeigen extends ErfassFrame {
 	private ErfassFrame kG;
 	private UC_Film_bearbeiten ucfb;
 	private Filmliste fl2;
+	
+	private ErfassLabel brL;
+	private ErfassLabel dvdL;
+	private ErfassLabel vhsL;
+	
+	private ErfassLabel br;
+	private ErfassLabel dvd;
+	private ErfassLabel vhs;
+	
+	private ErfassPanel oben;
 
 
 
 	public Film_anzeigen(Film f, Kunde k, Filmliste fl2, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
 		super("");
-
-
-
 
 		if (media == null) {
 			super.setTitle("Filminformationen");
@@ -128,6 +135,28 @@ public class Film_anzeigen extends ErfassFrame {
 		this.media = media;
 
 		this.mediumE = mediumE;
+		
+		brL = new ErfassLabel("Blu-Ray", SwingConstants.CENTER);
+		dvdL = new ErfassLabel("DVD", SwingConstants.CENTER);
+		vhsL = new ErfassLabel("VHS", SwingConstants.CENTER);
+		
+		br = new ErfassLabel("Nein", SwingConstants.RIGHT);
+		dvd = new ErfassLabel("Nein", SwingConstants.RIGHT);
+		vhs = new ErfassLabel("Nein", SwingConstants.RIGHT);
+		
+		oben = new ErfassPanel(new GridLayout(1, 2));
+
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
+			if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("Blu-Ray") && ml.getMedienliste().get(i).isLagernd()) {
+				br.setText("Ja");
+			}
+			if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("DVD") && ml.getMedienliste().get(i).isLagernd()) {
+				dvd.setText("Ja");
+			}
+			if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("VHS") && ml.getMedienliste().get(i).isLagernd()) {
+				vhs.setText("Ja");
+			}
+		}
 
 
 		ImageIcon icon = new ImageIcon(f.getHülle());
@@ -170,14 +199,14 @@ public class Film_anzeigen extends ErfassFrame {
 		genre = new ErfassLabel("Genre", SwingConstants.CENTER);
 		beschreibung = new ErfassLabel("Beschreibung",  SwingConstants.CENTER);
 
-		titelT = new ErfassLabel(f.getTitel(),  SwingConstants.CENTER);
-		jahrT = new ErfassLabel(Integer.toString(f.getJahr()),  SwingConstants.CENTER);
-		genreT = new ErfassLabel(f.getGenre(),  SwingConstants.CENTER);
-		beschreibungT = new ErfassLabel(f.getBeschreibung(),  SwingConstants.CENTER);
-		
+		titelT = new ErfassLabel(f.getTitel(),  SwingConstants.RIGHT);
+		jahrT = new ErfassLabel(Integer.toString(f.getJahr()),  SwingConstants.RIGHT);
+		genreT = new ErfassLabel(f.getGenre(),  SwingConstants.RIGHT);
+		beschreibungT = new ErfassLabel(f.getBeschreibung(),  SwingConstants.RIGHT);
 
 
-		gl = new GridLayout(7, 2);
+
+		gl = new GridLayout(10, 2);
 		fl = new FlowLayout();
 
 		angaben.setLayout(gl);
@@ -195,19 +224,19 @@ public class Film_anzeigen extends ErfassFrame {
 		if (media != null) {
 
 
-			id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.CENTER);
+			id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.RIGHT);
 
 			if (media.isLagernd()) {
-				lager = new ErfassLabel("Ja", SwingConstants.CENTER);
+				lager = new ErfassLabel("Ja", SwingConstants.RIGHT);
 			}
 			else {
-				lager = new ErfassLabel("Nein", SwingConstants.CENTER);
+				lager = new ErfassLabel("Nein", SwingConstants.RIGHT);
 			}
 			if (media.getRückgabedatum() != null) {
-				verfügbarkeit = new ErfassLabel (media.getRückgabedatum().toString(),SwingConstants.CENTER);
+				verfügbarkeit = new ErfassLabel (media.getRückgabedatum().toString(),SwingConstants.RIGHT);
 			}
 			else {
-				verfügbarkeit = new ErfassLabel("Sofort", SwingConstants.CENTER);
+				verfügbarkeit = new ErfassLabel("Sofort", SwingConstants.RIGHT);
 
 			}
 
@@ -227,6 +256,12 @@ public class Film_anzeigen extends ErfassFrame {
 		angaben.add(genreT);
 		angaben.add(beschreibung);
 		angaben.add(beschreibungT);
+		angaben.add(brL);
+		angaben.add(br);
+		angaben.add(dvdL);
+		angaben.add(dvd);
+		angaben.add(vhsL);
+		angaben.add(vhs);
 
 
 		buttons.add(abbrechen);
@@ -237,10 +272,11 @@ public class Film_anzeigen extends ErfassFrame {
 
 		bild.setLayout(new FlowLayout());
 
-
-
-		add(angaben, BorderLayout.WEST);
-		add(bild,BorderLayout.CENTER);
+		oben.add(angaben);
+		oben.add(bild);
+		
+		
+		add(oben,BorderLayout.CENTER);
 		add(buttons, BorderLayout.SOUTH);
 
 
@@ -266,7 +302,7 @@ public class Film_anzeigen extends ErfassFrame {
 			if (e.getSource() == abbrechen2) {
 				medium.dispose();
 			}
-			
+
 			if (e.getSource() == bearbeiten) {
 				ucfb = new UC_Film_bearbeiten(fl2, ml, kl, f);
 				dispose();
@@ -289,7 +325,7 @@ public class Film_anzeigen extends ErfassFrame {
 				if (k == null) {
 					k = ucks.getKs().getK();
 				}
-				
+
 				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
 
 
@@ -297,7 +333,7 @@ public class Film_anzeigen extends ErfassFrame {
 					ml.laden();
 					ucma.ausleihen();
 				}
-				
+
 				else {
 					kG = new ErfassFrame("Zu wenig Guthaben");
 
@@ -334,22 +370,22 @@ public class Film_anzeigen extends ErfassFrame {
 				buttons.add(ok);
 
 				if (media == null) {
-				medium.setTitle("Medium auswählen");
-				medium.setLayout(new GridLayout(2,1));
-				medium.add(suche);
-				medium.add(buttons);
+					medium.setTitle("Medium auswählen");
+					medium.setLayout(new GridLayout(2,1));
+					medium.add(suche);
+					medium.add(buttons);
 
-				medium.setVisible(true);
-				medium.setSize(300, 150);
+					medium.setVisible(true);
+					medium.setSize(300, 150);
 
-				medium.setLocationRelativeTo(null);
+					medium.setLocationRelativeTo(null);
 
-				medium.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					medium.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
-				setLocationRelativeTo(null);
+					setLocationRelativeTo(null);
 				}
-				
+
 				if (k == null) {
 					ucks = new UC_Kunde_suchen(kl, true);
 				}

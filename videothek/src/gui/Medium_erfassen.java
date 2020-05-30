@@ -32,6 +32,8 @@ public class Medium_erfassen extends SuchFrame{
 	
 	private Buttons speichern;
 	private Buttons abbrechen;
+	private Buttons löschen;
+	private Buttons bearbeiten;
 	
 	private ErfassPanel buttons;
 	private ErfassPanel preise;
@@ -57,11 +59,7 @@ public class Medium_erfassen extends SuchFrame{
 		a = new ActionHandler();
 		buttons = new ErfassPanel(new FlowLayout());
 		medien = new ErfassPanel(new FlowLayout());
-		preise = new ErfassPanel(new FlowLayout());
-		
-		
-		
-		
+		preise = new ErfassPanel(new FlowLayout());	
 		
 		
 		
@@ -75,6 +73,8 @@ public class Medium_erfassen extends SuchFrame{
 		
 		speichern = new Buttons("Speichern");
 		abbrechen = new Buttons("Abbrechen");
+		löschen = new Buttons("Löschen");
+		bearbeiten = new Buttons("Bearbeiten");
 		
 		filmerfassen.addActionListener(a);
 		speichern.addActionListener(a);

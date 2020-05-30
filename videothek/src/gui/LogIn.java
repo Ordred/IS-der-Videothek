@@ -33,7 +33,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import controller.Hauptmenu_Kunde;
+
 import controller.UC_Guthaben_aufladen;
 import controller.UC_Kunde_suchen;
 import model.Filmliste;
@@ -119,8 +119,7 @@ public class LogIn extends JFrame {
 
 			a = new ActionHandler();
 
-			auswahl.addActionListener(a);
-			
+				
 			loginGL = new GridLayout(kl.getKundenliste().size()+2, 3);
 			
 			admin = new JButton("Admin");
