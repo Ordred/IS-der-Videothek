@@ -261,7 +261,7 @@ public class Film_anzeigen extends erfassFrame {
 				if (media == null) {
 
 					for (int i = 0; i < ml.getMedienliste().size(); i++) {
-						if (ml.getMedienliste().get(i).getFilm().getTitel().equalsIgnoreCase(f.getTitel()) && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(m)) {
+						if (ml.getMedienliste().get(i).getFilm().getId() == f.getId() && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(m)) {
 							media = ml.getMedienliste().get(i);
 							System.out.println("medium gesetzt");
 						}

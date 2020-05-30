@@ -59,7 +59,7 @@ public class Medium_erfassen extends suchFrame{
 		
 		
 		
-		ume.setID(ml.getMedienliste().size());
+		
 		
 		mediumL = new erfassLabel("Medium", SwingConstants.LEFT);
 		medium = new JComboBox<String>(mArten);

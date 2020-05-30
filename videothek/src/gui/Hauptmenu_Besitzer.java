@@ -160,7 +160,12 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ucms = null;
 				ucme = null;
 				ucfb = null;
+				kl = new Kundenliste();
+				ml = new Medienliste();
+				fl = new Filmliste();
+				kl.laden();
 				fl.laden();
+				ml.laden();
 				ucf = new UC_Film_erfassen(fl);
 				fl.laden();
 				
