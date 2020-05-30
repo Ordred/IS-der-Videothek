@@ -186,7 +186,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 				fl.laden();
 				ml.laden();
 				
-				uck = new UC_Kunde_erfassen(kl);
+				uck = new UC_Kunde_erfassen(kl, "Kunde erfassen", new Kunde());
 				
 				
 			}

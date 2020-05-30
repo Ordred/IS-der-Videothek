@@ -12,7 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+
 import controller.UC_Kunde_erfassen;
+import model.Kunde;
 
 public class Kunde_Erfassen extends erfassFrame{
 
@@ -54,19 +56,30 @@ public class Kunde_Erfassen extends erfassFrame{
 	private buttons ok;
 
 
-	public Kunde_Erfassen(UC_Kunde_erfassen uke) {
+	private buttons löschen;
+	
+	
+	private Kunde k;
 
-		super("Kunde erfassen");
+	public Kunde_Erfassen(UC_Kunde_erfassen uke, String titel, Kunde k) {
 
-
-
+		super(titel);		
+		
 		this.uke = uke;
+		
+		this.k = k;
+	
+		
+		löschen = new buttons("Löschen");
+		
 		
 		ok = new buttons("Ok");
 
 		a = new ActionHandler();
 		
 		ok.addActionListener(a);
+		
+		löschen.addActionListener(a);
 
 		gl1 = new GridLayout(8,2);
 		fl = new FlowLayout();
@@ -78,6 +91,7 @@ public class Kunde_Erfassen extends erfassFrame{
 		abbrechen = new buttons("Abbrechen");
 
 
+		if (k.getName() == null) {
 		name = new JTextField("Name");
 		vorname = new JTextField("Vorname");
 		geburtsdatum = new JTextField("Geburtsdatum");
@@ -86,6 +100,17 @@ public class Kunde_Erfassen extends erfassFrame{
 		adresse = new JTextField("Adresse");
 		ort = new JTextField("Ort");
 		telefon = new JTextField("Telefon");
+		}
+		else {
+			name = new JTextField(k.getName());
+			vorname = new JTextField(k.getVorname());
+			geburtsdatum = new JTextField(k.getGeburtsdatum());
+			lieblingsgenre = new JTextField(k.getLieblingsgenre());
+			guthaben = new JTextField(k.getGuthaben());
+			adresse = new JTextField(k.getAdresse());
+			ort = new JTextField(k.getOrt());
+			telefon = new JTextField(k.getTelefon());
+		}
 
 		nameL = new erfassLabel("Name", SwingConstants.CENTER);
 		vornameL = new erfassLabel("Vorname", SwingConstants.CENTER);
@@ -119,15 +144,91 @@ public class Kunde_Erfassen extends erfassFrame{
 		form.add(ort);
 		form.add(telefonL);
 		form.add(telefon);
+		if (k.getId() == null) {
 		form.add(guthabenL);
 		form.add(guthaben);
-
+		}
+		
 		buttons.add(abbrechen, BorderLayout.WEST);
 		buttons.add(speichern, BorderLayout.EAST);
+		
+		if (k.getName() != null) {
+			buttons.add(löschen, BorderLayout.CENTER);
+		}
 
 		add(form, BorderLayout.CENTER);
 		add(buttons, BorderLayout.SOUTH);
 
+	}
+
+	public erfassPanel getButtons() {
+		return buttons;
+	}
+
+	public void setButtons(erfassPanel buttons) {
+		this.buttons = buttons;
+	}
+
+	
+
+	public void setName(JTextField name) {
+		this.name = name;
+	}
+
+	public JTextField getVorname() {
+		return vorname;
+	}
+
+	public void setVorname(JTextField vorname) {
+		this.vorname = vorname;
+	}
+
+	public JTextField getGeburtsdatum() {
+		return geburtsdatum;
+	}
+
+	public void setGeburtsdatum(JTextField geburtsdatum) {
+		this.geburtsdatum = geburtsdatum;
+	}
+
+	public JTextField getLieblingsgenre() {
+		return lieblingsgenre;
+	}
+
+	public void setLieblingsgenre(JTextField lieblingsgenre) {
+		this.lieblingsgenre = lieblingsgenre;
+	}
+
+	public JTextField getGuthaben() {
+		return guthaben;
+	}
+
+	public void setGuthaben(JTextField guthaben) {
+		this.guthaben = guthaben;
+	}
+
+	public JTextField getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(JTextField adresse) {
+		this.adresse = adresse;
+	}
+
+	public JTextField getOrt() {
+		return ort;
+	}
+
+	public void setOrt(JTextField ort) {
+		this.ort = ort;
+	}
+
+	public JTextField getTelefon() {
+		return telefon;
+	}
+
+	public void setTelefon(JTextField telefon) {
+		this.telefon = telefon;
 	}
 
 	public class ActionHandler implements ActionListener {
@@ -137,6 +238,10 @@ public class Kunde_Erfassen extends erfassFrame{
 			
 			if (e.getSource() == ok) {
 				zahl.dispose();
+			}
+			
+			if (e.getSource() == löschen) {
+				uke.löschen(Integer.parseInt(k.getId()));
 			}
 			
 			
@@ -156,8 +261,10 @@ public class Kunde_Erfassen extends erfassFrame{
 					uke.setVorname(vorname.getText());
 					uke.setGeburtsdatum(geburtsdatum.getText());
 					uke.setLieblingsgenre(lieblingsgenre.getText());
+					if (k.getId() == null) {
 					uke.setGuthaben(Integer.parseInt(guthaben.getText()));
-					uke.speichern();
+					}
+					uke.speichern(k.getId() != null);
 					dispose();
 
 				} catch (NumberFormatException exception) {

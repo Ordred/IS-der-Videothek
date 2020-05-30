@@ -17,15 +17,15 @@ public class Kunde implements Serializable {
 	private String adresse;
 	private String ort;
 	private String telefon;
-	private int id;
+	private String id;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 
 	public void setId(int id) {
-		this.id = id;
+		this.id = Integer.toString(id);
 	}
 
 
@@ -54,7 +54,7 @@ public class Kunde implements Serializable {
 	}
 
 
-	public void setTelefon(String telefo) {
+	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
 	private ArrayList<Medium> ausleihliste;

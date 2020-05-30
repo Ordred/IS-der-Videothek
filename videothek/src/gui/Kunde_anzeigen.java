@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 
 import controller.UC_Guthaben_aufladen;
+import controller.UC_Kunde_erfassen;
 import model.Kunde;
 import model.Kundenliste;
 
@@ -50,6 +51,10 @@ public class Kunde_anzeigen extends JFrame {
 	
 	private buttons guthabenaufladen;
 	private buttons abbrechen;
+	private buttons bearbeiten;
+	private UC_Kunde_erfassen uckb;
+	
+	
 	
 	public Kunde_anzeigen(Kunde k, Kundenliste kl) {
 		super("Kundeninformationen");
@@ -91,9 +96,11 @@ public class Kunde_anzeigen extends JFrame {
 		
 		abbrechen = new buttons("Abbrechen");
 		guthabenaufladen = new buttons("Guthaben aufladen");
+		bearbeiten = new buttons("Bearbeiten");
 		
 		abbrechen.addActionListener(a);
 		guthabenaufladen.addActionListener(a);
+		bearbeiten.addActionListener(a);
 		
 		angaben.add(name);
 		angaben.add(nameT);
@@ -114,6 +121,7 @@ public class Kunde_anzeigen extends JFrame {
 		
 		buttons.add(abbrechen);
 		buttons.add(guthabenaufladen);
+		buttons.add(bearbeiten);
 		
 		add(angaben, BorderLayout.CENTER);
 		add(buttons, BorderLayout.SOUTH);		
@@ -134,6 +142,10 @@ public class Kunde_anzeigen extends JFrame {
 				uga = new UC_Guthaben_aufladen(k, kl, ka);
 				validate();
 				repaint();
+			}
+			
+			if (e.getSource() == bearbeiten) {
+				uckb = new UC_Kunde_erfassen(kl,"Kunde bearbeiten", k);
 			}
 			
 			

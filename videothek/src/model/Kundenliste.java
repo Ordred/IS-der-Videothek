@@ -22,7 +22,7 @@ public class Kundenliste implements Serializable{
 	
 	public Kundenliste() {
 		kundenliste = new ArrayList<Kunde>();
-		datei = "kundenlist.ser";		
+		datei = "kundenliste.ser";		
 	}
 	
 	public void kundeBearbeiten(Kunde k) {
