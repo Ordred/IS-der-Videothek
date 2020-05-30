@@ -36,6 +36,12 @@ import javax.swing.SwingConstants;
 import controller.UC_Guthaben_aufladen;
 import controller.UC_Kunde_suchen;
 import controller.UC_Medium_ausleihen;
+import gui_elemente.Buttons;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
+import gui_elemente.SuchButton;
+import gui_elemente.SuchFrame;
+import gui_elemente.SuchLabel;
 import model.Kunde;
 import model.Kundenliste;
 

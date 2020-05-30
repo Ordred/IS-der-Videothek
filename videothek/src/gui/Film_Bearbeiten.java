@@ -20,6 +20,11 @@ import javax.swing.border.EmptyBorder;
 
 import controller.UC_Film_bearbeiten;
 import controller.UC_Film_erfassen;
+import gui_elemente.Buttons;
+import gui_elemente.ErfassFrame;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
+import gui_elemente.LöschDialog;
 
 public class Film_Bearbeiten extends ErfassFrame{
 

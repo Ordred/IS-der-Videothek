@@ -18,7 +18,11 @@ import javax.swing.SwingConstants;
 
 import controller.UC_Film_zurückgeben;
 import controller.UC_Medium_suchen;
-
+import gui_elemente.Buttons;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
+import gui_elemente.SuchButton;
+import gui_elemente.SuchLabel;
 import model.Kunde;
 import model.Kundenliste;
 import model.Medienliste;

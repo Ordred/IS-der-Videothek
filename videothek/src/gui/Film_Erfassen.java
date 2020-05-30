@@ -19,6 +19,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.UC_Film_erfassen;
+import gui_elemente.Buttons;
+import gui_elemente.ErfassFrame;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
 
 public class Film_Erfassen extends ErfassFrame{
 

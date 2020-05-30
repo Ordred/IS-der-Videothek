@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 
 import controller.UC_Guthaben_aufladen;
 import controller.UC_Kunde_erfassen;
+import gui_elemente.Buttons;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
 import model.Kunde;
 import model.Kundenliste;
 

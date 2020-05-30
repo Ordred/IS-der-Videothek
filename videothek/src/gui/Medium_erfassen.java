@@ -13,6 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controller.UC_Medium_erfassen;
+import gui_elemente.Buttons;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
+import gui_elemente.SuchFrame;
 import model.Medienliste;
 
 public class Medium_erfassen extends SuchFrame{

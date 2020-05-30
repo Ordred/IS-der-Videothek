@@ -14,6 +14,11 @@ import javax.swing.SwingConstants;
 
 
 import controller.UC_Kunde_erfassen;
+import gui_elemente.Buttons;
+import gui_elemente.ErfassFrame;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
+import gui_elemente.LöschDialog;
 import model.Kunde;
 
 public class Kunde_Erfassen extends ErfassFrame{

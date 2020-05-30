@@ -5,23 +5,25 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 import javax.swing.JTextField;
 
 import controller.UC_Guthaben_aufladen;
+import gui_elemente.Buttons;
+import gui_elemente.ErfassLabel;
+import gui_elemente.ErfassPanel;
 
 public class Guthaben_aufladen extends JFrame {
 	
-	private JLabel betrag;
+	private ErfassLabel betrag;
 	private JTextField eingabe;
-	private JButton abbrechen;
-	private JButton speichern;
+	private Buttons abbrechen;
+	private Buttons speichern;
 	
-	private JPanel buttons;
-	private JPanel eingeben;
+	private ErfassPanel buttons;
+	private ErfassPanel eingeben;
 	
 	private UC_Guthaben_aufladen uga;
 	
@@ -37,16 +39,16 @@ public class Guthaben_aufladen extends JFrame {
 		
 		a = new ActionHandler();
 		
-		betrag = new JLabel("Betrag");
+		betrag = new ErfassLabel("Betrag");
 		eingabe= new JTextField("Betrag eingeben");
-		abbrechen = new JButton("Abbrechen");
-		speichern = new JButton("Speichern");
+		abbrechen = new Buttons("Abbrechen");
+		speichern = new Buttons("Speichern");
 		
 		abbrechen.addActionListener(a);
 		speichern.addActionListener(a);
 		
-		buttons = new JPanel();
-		eingeben = new JPanel();
+		buttons = new ErfassPanel();
+		eingeben = new ErfassPanel();
 		
 		buttons.setLayout(new FlowLayout());
 		eingeben.setLayout(new FlowLayout());
