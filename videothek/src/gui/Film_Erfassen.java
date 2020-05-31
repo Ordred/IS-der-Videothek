@@ -183,8 +183,8 @@ public class Film_Erfassen extends ErfassFrame{
 						zahl.add(ok, BorderLayout.SOUTH);
 						zahl.setSize(300, 150);
 						zahl.setLocationRelativeTo(null);
-						zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					} catch (NullPointerException exception) {
+						zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);}
+					 catch (NullPointerException exception) {
 						JDialog zahl = new JDialog();
 						zahl.setTitle("Bitte Datei für Hülle auswählen!");
 						zahl.setVisible(true);

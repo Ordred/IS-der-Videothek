@@ -427,19 +427,19 @@ public class Film_suchen extends SuchFrame {
 					zahl.setLocationRelativeTo(null);
 					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-				}
+				}}
 
 
-				if (e.getSource() == abbrechen) {
-					dispose();
-				}
+			if (e.getSource() == abbrechen) {
+				dispose();
+			}
 
-				if (e.getSource() == ok) {
-					nichtgefunden.setVisible(false);
-				}
+			if (e.getSource() == ok) {
+				nichtgefunden.setVisible(false);
+			}
 
 
-				/*
+			/*
 					System.out.println("Titel Suche");
 					try {
 						fa = new Film_anzeigen(ucfs.titel(suchfeld.getText()));
@@ -481,12 +481,12 @@ public class Film_suchen extends SuchFrame {
 							}		
 
 						}
-				 */
+			 */
 
 
 
-			}
+
 		}
 	}
 
-
+}
