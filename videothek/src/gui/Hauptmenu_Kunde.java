@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
 
 import controller.UC_Film_erfassen;
 import controller.UC_Film_suchen;
@@ -105,6 +107,7 @@ public class Hauptmenu_Kunde extends JFrame {
 
 		buttons.add(filmsuchen);
 		buttons.add(filmzurückgeben);
+		
 
 		add(buttons, BorderLayout.CENTER);
 		add(guthabenP, BorderLayout.SOUTH);

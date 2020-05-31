@@ -104,15 +104,17 @@ public class Kunde_suchen extends SuchFrame {
 	private ErfassPanel buttons;
 	
 	private Geschäftseinnahmen ge;
+	
+	private Film_anzeigen.ActionHandler fa;
 
-	public Kunde_suchen (Geschäftseinnahmen ge, UC_Kunde_suchen ucks, Kundenliste kl, boolean admin) {
+	public Kunde_suchen (Geschäftseinnahmen ge, UC_Kunde_suchen ucks, Kundenliste kl, boolean admin, Film_anzeigen.ActionHandler fa) {
 
 		super("Kunde suchen");
 		gl = new GridLayout(3, 1);
 		super.setLayout(gl);
 		
 		this.ge = ge;
-
+		this.fa = fa;
 
 	
 		suche2 = new JDialog();
@@ -265,6 +267,11 @@ public class Kunde_suchen extends SuchFrame {
 				for (int i = 0; i < suchergebnisseName.size(); i++) {
 					if (e.getSource() == suchergebnisseName.get(i)) {
 						k = suchergebnisse.get(i);
+						try {
+							fa.setK(k);
+						} catch (NullPointerException exception) {
+							System.out.println("Kein fa");
+						}
 						System.out.println("Kunde gesetzt");
 						suche2.dispose();
 						dispose();

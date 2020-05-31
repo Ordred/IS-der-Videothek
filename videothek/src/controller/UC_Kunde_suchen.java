@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import gui.Film_anzeigen;
 import gui.Hauptmenu_Besitzer;
 import gui.Kunde_suchen;
 import model.Geschäftseinnahmen;
@@ -21,17 +22,20 @@ public class UC_Kunde_suchen {
 	private Hauptmenu_Besitzer hb;
 
 	private Geschäftseinnahmen ge;
+	
+	private Film_anzeigen.ActionHandler fa;
 
 
 
-	public UC_Kunde_suchen(Geschäftseinnahmen ge, Kundenliste kl, boolean admin) {
+	public UC_Kunde_suchen(Geschäftseinnahmen ge, Kundenliste kl, boolean admin, Film_anzeigen.ActionHandler fa) {
 
 		this.kl = kl;
 		this.ge = ge;
+		this.fa = fa;
 		
 		suchergebnisse = new ArrayList<Kunde>();
 
-		ks = new Kunde_suchen(ge, this, kl, admin);
+		ks = new Kunde_suchen(ge, this, kl, admin, fa);
 
 		ks.setVisible(true);
 		ks.setSize(300,240);

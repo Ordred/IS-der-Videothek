@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -101,6 +103,7 @@ public class Film_anzeigen extends ErfassFrame {
 	private ErfassPanel bild;
 
 	private Buttons ok2;
+
 	private ErfassFrame kG;
 	private UC_Film_bearbeiten ucfb;
 	private Filmliste fl2;
@@ -118,10 +121,16 @@ public class Film_anzeigen extends ErfassFrame {
 	private Buttons ok3;
 	private LöschDialog nichtLager;
 
+	private Film_anzeigen fa;
+
+	private Buttons ausleihen2;
+
 
 
 	public Film_anzeigen(Film f, Kunde k, Filmliste fl2, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
 		super("");
+
+
 
 		if (media == null) {
 			super.setTitle("Filminformationen");
@@ -175,6 +184,8 @@ public class Film_anzeigen extends ErfassFrame {
 
 		ok3 = new Buttons("Ok");
 
+
+		ausleihen2 = new Buttons("Ausleihen");
 
 
 		Image img = icon.getImage() ;  
@@ -232,6 +243,7 @@ public class Film_anzeigen extends ErfassFrame {
 
 		abbrechen.addActionListener(a);
 		ausleihen.addActionListener(a);
+		ausleihen2.addActionListener(a);
 		bearbeiten.addActionListener(a);
 
 
@@ -280,8 +292,15 @@ public class Film_anzeigen extends ErfassFrame {
 
 		buttons.add(abbrechen);
 		if(!mediumE) {
-			buttons.add(ausleihen);
+			if (media == null) {
+				buttons.add(ausleihen);
+			}
+			else {
+				
+			}
+			if (k == null) {
 			buttons.add(bearbeiten);
+			}
 		}
 
 		bild.setLayout(new FlowLayout());
@@ -421,16 +440,93 @@ public class Film_anzeigen extends ErfassFrame {
 				if (k == null) {
 					Geschäftseinnahmen ge = new Geschäftseinnahmen();
 					ge.laden();
-					ucks = new UC_Kunde_suchen(ge, kl, true);
+					ucks = new UC_Kunde_suchen(ge, kl, true, this);
 				}
 
-				dispose();
+			}
+
+			if (e.getSource() == ausleihen2) {
+				Geschäftseinnahmen ge = new Geschäftseinnahmen();
+				ge.laden();
+				ucks = new UC_Kunde_suchen(ge, kl, true, this);	
+
+
+				if (ucks.getKs().getK() != null && media != null) {
+
+					k = ucks.getKs().getK();
+					ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
+
+
+					if(k.getGuthaben() >= -media.getPreis()) {
+						ml.laden();
+						ucma.ausleihen();
+
+						System.out.println("ausleihen gestartet");
+					}
+
+					else {
+						kG = new ErfassFrame("Zu wenig Guthaben");
+
+						kG.setVisible(true);
+						kG.setSize(300, 150);
+						kG.setLocationRelativeTo(null);
+						kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
+						kG.add(ok2, BorderLayout.SOUTH);
+
+					}
+				}
+
+			}
+
+		}
+
+
+
+
+
+		public Kunde getK() {
+			return k;
+		}
+
+
+		public Medium getMedia() {
+			return media;
+		}
+
+		public void setK(Kunde k2) {
+			k = k2;
+
+			System.out.println(k);
+			System.out.println(media);
+
+
+
+			ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
+
+
+			if(k.getGuthaben() >= -media.getPreis()) {
+				ml.laden();
+				ucma.ausleihen();
+
+				System.out.println("ausleihen gestartet");
+			}
+
+			else {
+				kG = new ErfassFrame("Zu wenig Guthaben");
+
+				kG.setVisible(true);
+				kG.setSize(300, 150);
+				kG.setLocationRelativeTo(null);
+				kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
+				kG.add(ok2, BorderLayout.SOUTH);
 			}
 
 		}
 
 	}
-}
 
+
+
+}
 
 

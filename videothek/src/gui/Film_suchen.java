@@ -169,9 +169,9 @@ public class Film_suchen extends SuchFrame {
 
 		auswahlL = new ErfassLabel("Auswahl", SwingConstants.LEFT);
 
-		menu = new ErfassPanel(null);
-		suche = new ErfassPanel(null);
-		buttons = new ErfassPanel(null);
+		menu = new ErfassPanel();
+		suche = new ErfassPanel();
+		buttons = new ErfassPanel();
 
 		flow1 = new FlowLayout();
 		flow2 = new FlowLayout();

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 
 import controller.UC_Film_bearbeiten;
 import controller.UC_Film_erfassen;
@@ -117,6 +119,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 		einnahmenP.add(einnahmenL[2], BorderLayout.CENTER);
 		einnahmenP.add(einnahmen[3], BorderLayout.CENTER);
 		einnahmenP.add(einnahmenL[3], BorderLayout.CENTER);
+		
+		
 		
 		a = new ActionHandler();
 
@@ -273,7 +277,7 @@ public class Hauptmenu_Besitzer extends JFrame {
 				fl.laden();
 				ml.laden();
 				
-				ucks = new UC_Kunde_suchen(ge, kl, false);
+				ucks = new UC_Kunde_suchen(ge, kl, false, null);
 			}
 
 			if (e.getSource() == mediumsuchen) {

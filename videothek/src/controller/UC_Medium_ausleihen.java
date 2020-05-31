@@ -91,9 +91,7 @@ public class UC_Medium_ausleihen {
 			if (ml.getMedienliste().get(i).getFilm().getId() == m.getFilm().getId() &&
 					ml.getMedienliste().get(i).isLagernd() && 
 					medium.equalsIgnoreCase(ml.getMedienliste().get(i).getMedium())){
-				System.out.println("geht2");
-
-				
+				System.out.println("geht2");			
 
 
 				k.getAusleihliste().add(m);
