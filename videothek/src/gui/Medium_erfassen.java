@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 
 
 import javax.swing.JComboBox;
-
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -46,10 +47,13 @@ public class Medium_erfassen extends SuchFrame{
 	private UC_Medium_erfassen ume;
 	private UC_Medium_bearbeiten umb;
 	private Medienliste ml;
-	
+
 	private Buttons ja;
 	private Buttons nein;
 	private LöschDialog löschen2;
+	
+	private JDialog zahl;
+	private Buttons ok;
 
 
 	public Medium_erfassen(UC_Medium_bearbeiten umb, UC_Medium_erfassen ume, Medienliste ml) {
@@ -63,6 +67,11 @@ public class Medium_erfassen extends SuchFrame{
 
 
 		a = new ActionHandler();
+		
+		zahl = new JDialog();
+		ok = new Buttons("Ok");
+		ok.addActionListener(a);
+		
 		buttons = new ErfassPanel(new FlowLayout());
 		medien = new ErfassPanel(new FlowLayout());
 		preise = new ErfassPanel(new FlowLayout());	
@@ -81,10 +90,10 @@ public class Medium_erfassen extends SuchFrame{
 		abbrechen = new Buttons("Abbrechen");
 		löschen = new Buttons("Löschen");
 		bearbeiten = new Buttons("Bearbeiten");
-		
+
 		ja = new Buttons("Ja");
 		nein = new Buttons("Nein");
-		
+
 		ja.addActionListener(a);
 		nein.addActionListener(a);
 
@@ -134,16 +143,16 @@ public class Medium_erfassen extends SuchFrame{
 				umb.löschen();
 				löschen2.dispose();
 			}
-			
+
 			if (e.getSource() == nein) {
 				löschen2.dispose();
 				dispose();
 			}
-			
-			
-			
+
+
+
 			if (e.getSource() == löschen) {
-				
+
 				ErfassPanel ll = new ErfassPanel(new FlowLayout());
 				löschen2 = new LöschDialog("Film löschen", "Sind Sie sicher, dass Sie diesen Film löschen möchten?", SwingConstants.CENTER);
 				löschen2.setLocationRelativeTo(null);
@@ -152,24 +161,42 @@ public class Medium_erfassen extends SuchFrame{
 				löschen2.add(ll, BorderLayout.SOUTH);
 				löschen2.setVisible(true);
 			}
-			
+
 			if (e.getSource() == filmerfassen) {
 				ume.setFilm();
 			}
 
 			if (e.getSource() == speichern) {
 
-				if (umb == null) {
-					ume.setMedium(medium.getSelectedItem().toString());
-					ume.setPreis(Integer.parseInt(preis.getText()));
-					ume.speichern();
+				try {
+
+					if (umb == null) {
+						ume.setMedium(medium.getSelectedItem().toString());
+						ume.setPreis(Integer.parseInt(preis.getText()));
+						ume.speichern();
+					}
+					else {
+						umb.setMedium(medium.getSelectedItem().toString());
+						umb.setPreis(Integer.parseInt(preis.getText()));
+						umb.speichern();
+					}
+					dispose();
+				} catch (NumberFormatException exception) {
+
+					zahl = new JDialog();
+					zahl.setTitle("Bitte Zahl eingeben");
+					zahl.setVisible(true);
+					zahl.add(new ErfassLabel("Bitte Zahl eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
+					zahl.add(ok, BorderLayout.SOUTH);
+					zahl.setSize(300, 150);
+					zahl.setLocationRelativeTo(null);
+					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 				}
-				else {
-					umb.setMedium(medium.getSelectedItem().toString());
-					umb.setPreis(Integer.parseInt(preis.getText()));
-					umb.speichern();
-				}
-				dispose();
+			}
+			
+			if (e.getSource() == ok) {
+				zahl.dispose();
 			}
 
 			if (e.getSource() == abbrechen) {

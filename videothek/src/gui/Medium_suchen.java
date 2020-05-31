@@ -96,10 +96,13 @@ public class Medium_suchen extends SuchFrame {
 	private ErfassPanel menu;
 	private ErfassPanel suche;
 	private ErfassPanel buttons;
-	
+
 	private Kundenliste kl;
 	private Medienliste ml;
 	private Filmliste fl;
+	
+	private JDialog zahl;
+	private Buttons ok2;
 
 
 	public Medium_suchen (UC_Medium_suchen ucms, Filmliste fl, Kundenliste kl, Medienliste ml) {
@@ -110,13 +113,15 @@ public class Medium_suchen extends SuchFrame {
 
 		suche2 = new JDialog();
 
-		
+
 		setLocationRelativeTo(null);
-		
+
 		this.kl = kl;
 		this.ml = ml;
 		this.fl =fl;
-	
+		
+		ok2 = new Buttons("Ok");
+
 
 		suchergebnisse = new ArrayList<Medium>();
 		suchergebnisseB = new ArrayList<SuchButton>();
@@ -152,20 +157,22 @@ public class Medium_suchen extends SuchFrame {
 			titelleiste[i].setForeground(Color.white);
 
 		}
-		
-		
+
+
 
 		sucheScroll.setPreferredSize(new Dimension(300, 300));
 
 
 		a = new ActionHandler();
+		
+		ok2.addActionListener(a);
 
 		this.ucms = ucms;
 
 		auswahl.addActionListener(a);
 
 		auswahlL = new JLabel("Auswahl");
-		
+
 		auswahlL.setForeground(Color.white);
 
 		menu = new ErfassPanel();
@@ -195,7 +202,7 @@ public class Medium_suchen extends SuchFrame {
 
 		suchfeld = new JTextField("Suchbegriff eingeben");
 		suchbegriffe = new JLabel("Suchbegriffe");
-		
+
 		suchbegriffe.setForeground(Color.white);
 
 		suche.add(suchbegriffe, BorderLayout.WEST);
@@ -238,6 +245,10 @@ public class Medium_suchen extends SuchFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			if (e.getSource() == ok2) {
+				zahl.dispose();
+			}
 
 			for (int i = 0; i < suchergebnisseB.size(); i++) {
 
@@ -254,196 +265,204 @@ public class Medium_suchen extends SuchFrame {
 			if (e.getSource() == suchen) {
 				System.out.println("Suchen");
 
-				if (auswahl.getSelectedItem() == "Titel") {
-					suchergebnisse = ucms.titel(suchfeld.getText());
-					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
+				try {
+
+					if (auswahl.getSelectedItem() == "Titel") {
+						suchergebnisse = ucms.titel(suchfeld.getText());
+						for (int i = 0; i < suchergebnisse.size(); i++) {
+							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+							suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
-						suchergebnisseB.get(i).setSize(300, 10);
+							suchergebnisseB.get(i).setSize(300, 10);
 
-						suchergebnisseB.get(i).setVisible(true);
-						suchergebnisseB.get(i).addActionListener(a);
-						suchergebnisseP.add(suchergebnisseB.get(i));
-						suchergebnisseP.add(suchergebnisseMedium.get(i));
-						suchergebnisseP.add(suchergebnisseTitel.get(i));
-						suchergebnisseP.add(suchergebnisseGenre.get(i));
-						suchergebnisseP.add(suchergebnisseJahr.get(i));
-						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseP.setLayout(sucheGL);
-						suchergebnisseP.repaint();
-						sucheScroll.repaint();
-						repaint();
-						System.out.println(suchergebnisseB.get(i).getText());
+							suchergebnisseB.get(i).setVisible(true);
+							suchergebnisseB.get(i).addActionListener(a);
+							suchergebnisseP.add(suchergebnisseB.get(i));
+							suchergebnisseP.add(suchergebnisseMedium.get(i));
+							suchergebnisseP.add(suchergebnisseTitel.get(i));
+							suchergebnisseP.add(suchergebnisseGenre.get(i));
+							suchergebnisseP.add(suchergebnisseJahr.get(i));
+							suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseP.setLayout(sucheGL);
+							suchergebnisseP.repaint();
+							sucheScroll.repaint();
+							repaint();
+							System.out.println(suchergebnisseB.get(i).getText());
+						}
 					}
-				}
 
-				if (auswahl.getSelectedItem() == "ID") {
-					suchergebnisse = ucms.id(Integer.parseInt(suchfeld.getText()));
-					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
+					if (auswahl.getSelectedItem() == "ID") {
+						suchergebnisse = ucms.id(Integer.parseInt(suchfeld.getText()));
+						for (int i = 0; i < suchergebnisse.size(); i++) {
+							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+							suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
-						suchergebnisseB.get(i).setSize(300, 10);
+							suchergebnisseB.get(i).setSize(300, 10);
 
-						suchergebnisseB.get(i).setVisible(true);
-						suchergebnisseB.get(i).addActionListener(a);
-						suchergebnisseP.add(suchergebnisseB.get(i));
-						suchergebnisseP.add(suchergebnisseMedium.get(i));
-						suchergebnisseP.add(suchergebnisseTitel.get(i));
-						suchergebnisseP.add(suchergebnisseGenre.get(i));
-						suchergebnisseP.add(suchergebnisseJahr.get(i));
-						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseP.setLayout(sucheGL);
-						suchergebnisseP.repaint();
-						sucheScroll.repaint();
-						repaint();
-						System.out.println(suchergebnisseB.get(i).getText());
+							suchergebnisseB.get(i).setVisible(true);
+							suchergebnisseB.get(i).addActionListener(a);
+							suchergebnisseP.add(suchergebnisseB.get(i));
+							suchergebnisseP.add(suchergebnisseMedium.get(i));
+							suchergebnisseP.add(suchergebnisseTitel.get(i));
+							suchergebnisseP.add(suchergebnisseGenre.get(i));
+							suchergebnisseP.add(suchergebnisseJahr.get(i));
+							suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseP.setLayout(sucheGL);
+							suchergebnisseP.repaint();
+							sucheScroll.repaint();
+							repaint();
+							System.out.println(suchergebnisseB.get(i).getText());
+						}
 					}
-				}
 
-				if (auswahl.getSelectedItem() == "Medium") {
-					suchergebnisse = ucms.medium(suchfeld.getText());
-					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
+					if (auswahl.getSelectedItem() == "Medium") {
+						suchergebnisse = ucms.medium(suchfeld.getText());
+						for (int i = 0; i < suchergebnisse.size(); i++) {
+							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+							suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
-						suchergebnisseB.get(i).setSize(300, 10);
+							suchergebnisseB.get(i).setSize(300, 10);
 
-						suchergebnisseB.get(i).setVisible(true);
-						suchergebnisseB.get(i).addActionListener(a);
-						suchergebnisseP.add(suchergebnisseB.get(i));
-						suchergebnisseP.add(suchergebnisseMedium.get(i));
-						suchergebnisseP.add(suchergebnisseTitel.get(i));
-						suchergebnisseP.add(suchergebnisseGenre.get(i));
-						suchergebnisseP.add(suchergebnisseJahr.get(i));
-						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseP.setLayout(sucheGL);
-						suchergebnisseP.repaint();
-						sucheScroll.repaint();
-						repaint();
-						System.out.println(suchergebnisseB.get(i).getText());
+							suchergebnisseB.get(i).setVisible(true);
+							suchergebnisseB.get(i).addActionListener(a);
+							suchergebnisseP.add(suchergebnisseB.get(i));
+							suchergebnisseP.add(suchergebnisseMedium.get(i));
+							suchergebnisseP.add(suchergebnisseTitel.get(i));
+							suchergebnisseP.add(suchergebnisseGenre.get(i));
+							suchergebnisseP.add(suchergebnisseJahr.get(i));
+							suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseP.setLayout(sucheGL);
+							suchergebnisseP.repaint();
+							sucheScroll.repaint();
+							repaint();
+							System.out.println(suchergebnisseB.get(i).getText());
+						}
 					}
-				}
 
-				if (auswahl.getSelectedItem() == "Jahr") {
-					suchergebnisse = ucms.jahr(Integer.parseInt(suchfeld.getText()));
-					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
+					if (auswahl.getSelectedItem() == "Jahr") {
+						suchergebnisse = ucms.jahr(Integer.parseInt(suchfeld.getText()));
+						for (int i = 0; i < suchergebnisse.size(); i++) {
+							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+							suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
-						suchergebnisseB.get(i).setSize(300, 10);
+							suchergebnisseB.get(i).setSize(300, 10);
 
-						suchergebnisseB.get(i).setVisible(true);
-						suchergebnisseB.get(i).addActionListener(a);
-						suchergebnisseP.add(suchergebnisseB.get(i));
-						suchergebnisseP.add(suchergebnisseMedium.get(i));
-						suchergebnisseP.add(suchergebnisseTitel.get(i));
-						suchergebnisseP.add(suchergebnisseGenre.get(i));
-						suchergebnisseP.add(suchergebnisseJahr.get(i));
-						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseP.setLayout(sucheGL);
-						suchergebnisseP.repaint();
-						sucheScroll.repaint();
-						repaint();
-						System.out.println(suchergebnisseB.get(i).getText());
+							suchergebnisseB.get(i).setVisible(true);
+							suchergebnisseB.get(i).addActionListener(a);
+							suchergebnisseP.add(suchergebnisseB.get(i));
+							suchergebnisseP.add(suchergebnisseMedium.get(i));
+							suchergebnisseP.add(suchergebnisseTitel.get(i));
+							suchergebnisseP.add(suchergebnisseGenre.get(i));
+							suchergebnisseP.add(suchergebnisseJahr.get(i));
+							suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseP.setLayout(sucheGL);
+							suchergebnisseP.repaint();
+							sucheScroll.repaint();
+							repaint();
+							System.out.println(suchergebnisseB.get(i).getText());
+						}
 					}
-				}
 
-				if (auswahl.getSelectedItem() == "Genre") {
-					suchergebnisse = ucms.genre(suchfeld.getText());
-					for (int i = 0; i < suchergebnisse.size(); i++) {
-						sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
+					if (auswahl.getSelectedItem() == "Genre") {
+						suchergebnisse = ucms.genre(suchfeld.getText());
+						for (int i = 0; i < suchergebnisse.size(); i++) {
+							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-						suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
-						suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
-						suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
-						suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
-						suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
+							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
+							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
+							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
+							suchergebnisseJahr.add(new SuchLabel(Integer.toString(suchergebnisse.get(i).getFilm().getJahr()), SwingConstants.CENTER));
 
-						suchergebnisseB.get(i).setSize(300, 10);
+							suchergebnisseB.get(i).setSize(300, 10);
 
-						suchergebnisseB.get(i).setVisible(true);
-						suchergebnisseB.get(i).addActionListener(a);
-						suchergebnisseP.add(suchergebnisseB.get(i));
-						suchergebnisseP.add(suchergebnisseMedium.get(i));
-						suchergebnisseP.add(suchergebnisseTitel.get(i));
-						suchergebnisseP.add(suchergebnisseGenre.get(i));
-						suchergebnisseP.add(suchergebnisseJahr.get(i));
-						suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
-						suchergebnisseP.setLayout(sucheGL);
-						suchergebnisseP.repaint();
-						sucheScroll.repaint();
-						repaint();
-						System.out.println(suchergebnisseB.get(i).getText());
+							suchergebnisseB.get(i).setVisible(true);
+							suchergebnisseB.get(i).addActionListener(a);
+							suchergebnisseP.add(suchergebnisseB.get(i));
+							suchergebnisseP.add(suchergebnisseMedium.get(i));
+							suchergebnisseP.add(suchergebnisseTitel.get(i));
+							suchergebnisseP.add(suchergebnisseGenre.get(i));
+							suchergebnisseP.add(suchergebnisseJahr.get(i));
+							suchergebnisseMedium.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseTitel.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseGenre.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseJahr.get(i).setBorder(BorderFactory.createLineBorder(Color.black));
+							suchergebnisseP.setLayout(sucheGL);
+							suchergebnisseP.repaint();
+							sucheScroll.repaint();
+							repaint();
+							System.out.println(suchergebnisseB.get(i).getText());
+						}
 					}
+
+					if (suchergebnisse.size() > 0) {
+
+						suche2 = new JDialog();
+						suche2.setTitle("Suchergebnisse");
+						suche2.add(sucheScroll);
+						suche2.setVisible(true);
+						suche2.setSize(900,600);
+						suche2.setLocationRelativeTo(null);
+						suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						dispose();
+					}
+
+					else {
+						nichtgefunden.setLocationRelativeTo(null);
+						nichtgefunden.setVisible(true);
+					}
+
+				} catch (NumberFormatException exception) {
+					
+					zahl = new JDialog();
+					zahl.setTitle("Bitte Zahl eingeben");
+					zahl.setVisible(true);
+					zahl.add(new ErfassLabel("Bitte Zahl eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
+					zahl.add(ok2, BorderLayout.SOUTH);
+					zahl.setSize(300, 150);
+					zahl.setLocationRelativeTo(null);
+					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 				}
 
-
-
-
-
-
-
-
-				if (suchergebnisse.size() > 0) {
-
-					suche2 = new JDialog();
-					suche2.setTitle("Suchergebnisse");
-					suche2.add(sucheScroll);
-					suche2.setVisible(true);
-					suche2.setSize(900,600);
-					suche2.setLocationRelativeTo(null);
-					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					dispose();
-				}
-
-				else {
-					nichtgefunden.setLocationRelativeTo(null);
-					nichtgefunden.setVisible(true);
-				}
 			}
-
 			if (e.getSource() == abbrechen) {
 				dispose();
 			}
@@ -451,9 +470,12 @@ public class Medium_suchen extends SuchFrame {
 			if (e.getSource() == ok) {
 				nichtgefunden.setVisible(false);
 			}
+		}
+	}
+}
 
 
-			/*
+/*
 					System.out.println("Titel Suche");
 					try {
 						fa = new Film_anzeigen(ucfs.titel(suchfeld.getText()));
@@ -495,12 +517,6 @@ public class Medium_suchen extends SuchFrame {
 							}		
 
 						}
-			 */
-
-
-
-		}
-	}
-}
+ */
 
 
