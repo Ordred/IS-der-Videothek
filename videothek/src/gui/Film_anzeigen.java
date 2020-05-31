@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -15,14 +16,17 @@ import javax.swing.JFrame;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 
 import controller.UC_Film_bearbeiten;
 import controller.UC_Kunde_suchen;
 import controller.UC_Medium_ausleihen;
+import controller.UC_Medium_bearbeiten;
 import gui_elemente.Buttons;
 import gui_elemente.ErfassFrame;
 import gui_elemente.ErfassLabel;
 import gui_elemente.ErfassPanel;
+import gui_elemente.LöschDialog;
 import model.Film;
 import model.Filmliste;
 import model.Geschäftseinnahmen;
@@ -100,16 +104,19 @@ public class Film_anzeigen extends ErfassFrame {
 	private ErfassFrame kG;
 	private UC_Film_bearbeiten ucfb;
 	private Filmliste fl2;
-	
+
 	private ErfassLabel brL;
 	private ErfassLabel dvdL;
 	private ErfassLabel vhsL;
-	
+
 	private ErfassLabel br;
 	private ErfassLabel dvd;
 	private ErfassLabel vhs;
-	
+
 	private ErfassPanel oben;
+	private UC_Medium_bearbeiten umb;
+	private Buttons ok3;
+	private LöschDialog nichtLager;
 
 
 
@@ -137,15 +144,15 @@ public class Film_anzeigen extends ErfassFrame {
 		this.media = media;
 
 		this.mediumE = mediumE;
-		
+
 		brL = new ErfassLabel("Blu-Ray", SwingConstants.LEFT);
 		dvdL = new ErfassLabel("DVD", SwingConstants.LEFT);
 		vhsL = new ErfassLabel("VHS", SwingConstants.LEFT);
-		
+
 		br = new ErfassLabel("Nein", SwingConstants.LEFT);
 		dvd = new ErfassLabel("Nein", SwingConstants.LEFT);
 		vhs = new ErfassLabel("Nein", SwingConstants.LEFT);
-		
+
 		oben = new ErfassPanel(new GridLayout(1, 2));
 
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
@@ -166,6 +173,9 @@ public class Film_anzeigen extends ErfassFrame {
 		ok2 = new Buttons();
 		ok2.setText("Ok");
 
+		ok3 = new Buttons("Ok");
+
+
 
 		Image img = icon.getImage() ;  
 		Image newimg = img.getScaledInstance( 200, 300,  java.awt.Image.SCALE_SMOOTH ) ;  
@@ -173,6 +183,7 @@ public class Film_anzeigen extends ErfassFrame {
 
 		hülle = new ErfassLabel(icon);
 
+		hülle.setBorder(new EtchedBorder(Color.yellow, Color.DARK_GRAY));
 
 		mediumL = new ErfassLabel("Medium", SwingConstants.CENTER);
 
@@ -183,6 +194,7 @@ public class Film_anzeigen extends ErfassFrame {
 		abbrechen2.addActionListener(a);
 		ok.addActionListener(a);
 		ok2.addActionListener(a);
+		ok3.addActionListener(a);
 		ausws = new String [] {"Blu-Ray", "DVD", "VHS"};
 
 		auswahl = new JComboBox<String>(ausws);
@@ -276,8 +288,8 @@ public class Film_anzeigen extends ErfassFrame {
 
 		oben.add(angaben);
 		oben.add(bild);
-		
-		
+
+
 		add(oben,BorderLayout.CENTER);
 		add(buttons, BorderLayout.SOUTH);
 
@@ -306,7 +318,12 @@ public class Film_anzeigen extends ErfassFrame {
 			}
 
 			if (e.getSource() == bearbeiten) {
-				ucfb = new UC_Film_bearbeiten(fl2, ml, kl, f);
+				if (media == null) {
+					ucfb = new UC_Film_bearbeiten(fl2, ml, kl, f);
+				}
+				else {
+					umb = new UC_Medium_bearbeiten(media, ml, fl2, kl);
+				}
 				dispose();
 			}
 
@@ -328,27 +345,40 @@ public class Film_anzeigen extends ErfassFrame {
 					k = ucks.getKs().getK();
 				}
 
+
 				ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
 
+				if (media != null) {
+					if(k.getGuthaben() >= -media.getPreis()) {
+						ml.laden();
+						ucma.ausleihen();
+					}
 
-				if(k.getGuthaben() >= -media.getPreis()) {
-					ml.laden();
-					ucma.ausleihen();
+					else {
+						kG = new ErfassFrame("Zu wenig Guthaben");
+
+						kG.setVisible(true);
+						kG.setSize(300, 150);
+						kG.setLocationRelativeTo(null);
+						kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
+						kG.add(ok2, BorderLayout.SOUTH);
+					}
 				}
-
 				else {
-					kG = new ErfassFrame("Zu wenig Guthaben");
-
-					kG.setVisible(true);
-					kG.setSize(300, 150);
-					kG.setLocationRelativeTo(null);
-					kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
-					kG.add(ok2, BorderLayout.SOUTH);
+					nichtLager = new LöschDialog("Nicht lagernd", "Dieser Film ist in diesem Medium derzeit nicht an Lager", SwingConstants.CENTER);
+					nichtLager.add(ok3, BorderLayout.SOUTH);
+					nichtLager.setVisible(true);
+					nichtLager.setLocationRelativeTo(null);
 				}
 
 
 
 			}
+
+			if (e.getSource() == ok3) {
+				nichtLager.dispose();
+			}
+
 
 			if (e.getSource() == ok2) {
 				kG.dispose();
@@ -400,5 +430,7 @@ public class Film_anzeigen extends ErfassFrame {
 		}
 
 	}
-
 }
+
+
+

@@ -253,6 +253,7 @@ public class Film_suchen extends SuchFrame {
 						fa.setSize(600, 500);
 						fa.setLocationRelativeTo(null);
 						fa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						suche2.dispose();
 						dispose();
 					}
 				}
@@ -264,6 +265,8 @@ public class Film_suchen extends SuchFrame {
 						
 						if (ucme != null) {
 						ucme.setFilm2(suchergebnisse.get(i));
+						suche2.dispose();
+						dispose();
 						}
 						suche2.dispose();
 						dispose();
@@ -390,7 +393,7 @@ public class Film_suchen extends SuchFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize(900,800);
+					suche2.setSize(900,600);
 					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();

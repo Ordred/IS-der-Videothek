@@ -99,7 +99,7 @@ public class Film_Bearbeiten extends ErfassFrame{
 		nein = new Buttons("Nein");
 		
 		titel = new JTextField(ucfb.getF().getTitel());
-		jahr = new JTextField(ucfb.getF().getJahr());
+		jahr = new JTextField(Integer.toString(ucfb.getF().getJahr()));
 		genre = new JTextField(ucfb.getF().getGenre());
 		beschreibung = new JTextField(ucfb.getF().getBeschreibung());
 		icS = ucfb.getF().getHülle();
@@ -202,7 +202,7 @@ public class Film_Bearbeiten extends ErfassFrame{
 					zahl.setTitle("Bitte Zahl bei Jahr eingeben");
 					zahl.setVisible(true);
 					zahl.add(new ErfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
-					zahl.add(ok,SwingConstants.SOUTH);
+					zahl.add(ok,BorderLayout.SOUTH);
 					zahl.setSize(300, 150);
 					zahl.setLocationRelativeTo(null);
 					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

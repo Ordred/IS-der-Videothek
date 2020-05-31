@@ -1,11 +1,17 @@
 package controller;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
 
 import javax.swing.JDialog;
+import javax.swing.SwingConstants;
 
+import gui_elemente.Buttons;
+import gui_elemente.LöschDialog;
 import model.Film;
 import model.Kunde;
 import model.Kundenliste;
@@ -24,6 +30,11 @@ public class UC_Medium_ausleihen {
 	private Kundenliste kl;
 
 	private Medium m;
+	
+	private LöschDialog nichtLager;
+	private Buttons ok;
+	
+	private ActionHandler a;
 
 
 	public UC_Medium_ausleihen(String medium, Kunde k, Film f, Medienliste ml, Kundenliste kl, Medium m) {
@@ -36,6 +47,11 @@ public class UC_Medium_ausleihen {
 		this.m = m;
 
 		heute = LocalDate.now();
+		
+		a = new ActionHandler();
+		
+		ok = new Buttons("Ok");
+		ok.addActionListener(a);
 
 
 
@@ -92,7 +108,10 @@ public class UC_Medium_ausleihen {
 			}
 
 			else if (ml.getMedienliste().get(i).getFilm().getId() == f.getId() && !ml.getMedienliste().get(i).isLagernd()) {
-				JDialog nichtLager = new JDialog();
+				nichtLager = new LöschDialog("Nicht lagernd", "Dieser Film ist in diesem Medium derzeit nicht an Lager", SwingConstants.CENTER);
+				nichtLager.add(ok, BorderLayout.SOUTH);
+				nichtLager.setVisible(true);
+				nichtLager.setLocationRelativeTo(null);
 			}
 		}
 
@@ -156,6 +175,19 @@ public class UC_Medium_ausleihen {
 
 	public void setMl(Medienliste ml) {
 		this.ml = ml;
+	}
+	
+	public class ActionHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if (e.getSource() == ok) {
+				nichtLager.dispose();
+			}
+			
+		}
+		
 	}
 
 }

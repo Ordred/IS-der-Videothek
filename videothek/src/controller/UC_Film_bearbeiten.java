@@ -89,7 +89,7 @@ public class UC_Film_bearbeiten {
 				if (fl.getFilmliste().get(i) == f) {
 					
 					for (int j = 0; j < kl.getKundenliste().size(); j++) {
-						for (int j2 = 0; j2 < kl.getKundenliste().get(j2).getAusleihliste().size(); j2++) {
+						for (int j2 = 0; j2 < kl.getKundenliste().get(j).getAusleihliste().size(); j2++) {
 							if (kl.getKundenliste().get(j).getAusleihliste().get(j2).getFilm().getId() == f.getId()) {
 								kl.getKundenliste().get(j).getAusleihliste().remove(j2);
 							}

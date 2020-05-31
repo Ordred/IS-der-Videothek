@@ -11,7 +11,7 @@ import model.Kundenliste;
 import model.Medienliste;
 import model.Medium;
 
-public class UC_Medium_erfassen {
+public class UC_Medium_bearbeiten {
 	
 	private Medium m;
 	private Medienliste ml;
@@ -21,12 +21,20 @@ public class UC_Medium_erfassen {
 	private Medium_erfassen me;
 	private Kundenliste kl;
 	
-	public UC_Medium_erfassen(Medienliste ml, Filmliste fl) {
-		m = new Medium();
+	public UC_Medium_bearbeiten(Medium m, Medienliste ml, Filmliste fl, Kundenliste kl) {
+		this.m = m;
 		this.ml = ml;
 		this.fl = fl;
+		this.kl = kl;
 		
-		me = new Medium_erfassen(null, this, ml);
+		
+		for (int i = 0; i < ml.getMedienliste().size(); i++) {
+			if (ml.getMedienliste().get(i).getId() == m.getId()) {
+				m = ml.getMedienliste().get(i);
+			}
+		}
+		
+		me = new Medium_erfassen(this, null, ml);
 		me.setVisible(true);
 		me.setSize(400, 220);
 		me.setLocationRelativeTo(null);
@@ -64,13 +72,6 @@ public class UC_Medium_erfassen {
 		m.setPreis(-preis);
 	}
 	
-	public void setFilm() {
-		fs = new Film_suchen(new UC_Film_suchen(false, fl, true, kl, ml, null), true, null, true, this, fl, kl, ml);
-		fs.setVisible(true);
-		fs.setSize(400, 250);
-		fs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-	}
 	
 	public void setFilm2(Film f) {
 		m.setFilm(f);
@@ -82,15 +83,30 @@ public class UC_Medium_erfassen {
 	}
 	
 	public void speichern() {
-		m.setId(ml.getMedienliste().size()+1);
 		
+		
+		ml.speichern();
+		
+	}
+	
+	public void löschen() {
+	
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
-			if (i != ml.getMedienliste().get(i).getId()) {
-				m.setId(i);
+			if (ml.getMedienliste().get(i).getId() == m.getId()) {
+				ml.getMedienliste().remove(i);
+				speichern();
 			}
 		}
 		
-		ml.mediumHinzufügen(m);
+		for (int j = 0; j < kl.getKundenliste().size(); j++) {
+			for (int j2 = 0; j2 < kl.getKundenliste().get(j).getAusleihliste().size(); j2++) {
+				if (kl.getKundenliste().get(j).getAusleihliste().get(j2).getId() == m.getId()) {
+					kl.getKundenliste().get(j).getAusleihliste().remove(j2);
+					kl.speichern();
+				}
+			}
+			
+		}
 		
 	}
 

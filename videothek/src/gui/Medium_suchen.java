@@ -215,14 +215,14 @@ public class Medium_suchen extends SuchFrame {
 
 
 		nichtgefunden = new JDialog();
-		nichtgefundenL = new ErfassLabel("Es konnte kein Film mit diesen Angaben gefunden werden", SwingConstants.CENTER);
+		nichtgefundenL = new ErfassLabel("Es konnte kein Medium mit diesen Angaben gefunden werden", SwingConstants.CENTER);
 		nichtgFL = new FlowLayout();
 		ok = new Buttons ("Ok");
 		ngfPanel = new ErfassPanel();
 		ngfPanel.setLayout(nichtgFL);
 		ngfPanel.add(ok, BorderLayout.CENTER);
 		ok.addActionListener(a);
-		nichtgefunden.setTitle("Film nicht gefunden");
+		nichtgefunden.setTitle("Medium nicht gefunden");
 		nichtgefunden.add(nichtgefundenL, BorderLayout.CENTER);
 		nichtgefunden.add(ngfPanel, BorderLayout.SOUTH);
 
@@ -432,7 +432,7 @@ public class Medium_suchen extends SuchFrame {
 					suche2.setTitle("Suchergebnisse");
 					suche2.add(sucheScroll);
 					suche2.setVisible(true);
-					suche2.setSize(900,800);
+					suche2.setSize(900,600);
 					suche2.setLocationRelativeTo(null);
 					suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					dispose();
