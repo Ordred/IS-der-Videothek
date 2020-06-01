@@ -14,7 +14,7 @@ public class SuchLabel extends JLabel {
 		setText(titel);
 		setHorizontalAlignment(position);
 		
-		Font f = new Font("Arial",2,15);
+		Font f = new Font("Arial",1,18);
 		
 		
 		

@@ -153,7 +153,7 @@ public class Film_suchen extends SuchFrame {
 
 
 			titelleiste[i].setOpaque(true);
-			titelleiste[i].setFont(new Font("Arial", 3, 20));
+			titelleiste[i].setFont(new Font("Arial", 1, 30));
 			titelleiste[i].setBackground(Color.gray);
 			titelleiste[i].setForeground(Color.white);
 
