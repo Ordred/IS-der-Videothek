@@ -13,6 +13,7 @@ public class LöschDialog  extends JDialog{
 		setTitle(titel);
 		setSize(450, 180);
 		ErfassPanel lp = new ErfassPanel();
+		setModal(true);
 		lp.add(new ErfassLabel(text, position), BorderLayout.CENTER);
 		add(lp);
 		

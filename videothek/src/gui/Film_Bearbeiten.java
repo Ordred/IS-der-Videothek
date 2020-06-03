@@ -204,6 +204,7 @@ public class Film_Bearbeiten extends ErfassFrame{
 					zahl.add(new ErfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 					zahl.add(ok,BorderLayout.SOUTH);
 					zahl.setSize(300, 150);
+					zahl.setModal(true);
 					zahl.setLocationRelativeTo(null);
 					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				} 

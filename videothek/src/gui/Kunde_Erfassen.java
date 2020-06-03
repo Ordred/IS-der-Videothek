@@ -318,6 +318,7 @@ public class Kunde_Erfassen extends ErfassFrame{
 					zahl = new JDialog();
 					zahl.setTitle("Bitte Zahl bei Guthaben eingeben");
 					zahl.setVisible(true);
+					zahl.setModal(true);
 					zahl.add(new ErfassLabel("Bitte Zahl bei Guthaben eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 					zahl.add(ok, BorderLayout.SOUTH);
 					zahl.setSize(300, 150);

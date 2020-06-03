@@ -140,6 +140,18 @@ public class Kunde_anzeigen extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
+			nameT = new ErfassLabel(k.getName());
+			vornameT = new ErfassLabel(k.getVorname());
+			geburtsdatumT = new ErfassLabel(k.getGeburtsdatum());
+			lieblingsgenreT = new ErfassLabel(k.getLieblingsgenre());
+			adresseT = new ErfassLabel(k.getAdresse());
+			ortT = new ErfassLabel(k.getOrt());
+			telefonT = new ErfassLabel(k.getTelefon());
+			guthabenT = new ErfassLabel(Integer.toString(k.getGuthaben()));
+			
+			validate();
+			repaint();
+			
 			if (e.getSource() == abbrechen) {
 				dispose();
 			}
@@ -152,6 +164,7 @@ public class Kunde_anzeigen extends JFrame {
 			
 			if (e.getSource() == bearbeiten) {
 				uckb = new UC_Kunde_erfassen(ge, kl,"Kunde bearbeiten", k);
+				dispose();
 			}
 			
 			

@@ -296,10 +296,10 @@ public class Film_anzeigen extends ErfassFrame {
 				buttons.add(ausleihen);
 			}
 			else {
-				
+
 			}
 			if (k == null) {
-			buttons.add(bearbeiten);
+				buttons.add(bearbeiten);
 			}
 		}
 
@@ -321,12 +321,40 @@ public class Film_anzeigen extends ErfassFrame {
 		this.media = media;
 	}
 
+	
+	
 
 
 	public class ActionHandler implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+
+			
+			titelT = new ErfassLabel(f.getTitel(),  SwingConstants.LEFT);
+			jahrT = new ErfassLabel(Integer.toString(f.getJahr()),  SwingConstants.LEFT);
+			genreT = new ErfassLabel(f.getGenre(),  SwingConstants.LEFT);
+			beschreibungT = new ErfassLabel(f.getBeschreibung(),  SwingConstants.LEFT);
+			
+			if (media != null) {
+
+
+				id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.LEFT);
+
+				if (media.isLagernd()) {
+					lager = new ErfassLabel("Ja", SwingConstants.LEFT);
+				}
+				else {
+					lager = new ErfassLabel("Nein", SwingConstants.LEFT);
+				}
+				if (media.getRückgabedatum() != null) {
+					verfügbarkeit = new ErfassLabel (media.getRückgabedatum().toString(),SwingConstants.LEFT);
+				}
+				else {
+					verfügbarkeit = new ErfassLabel("Sofort", SwingConstants.LEFT);
+
+				}
+			}
 
 			if (e.getSource() == abbrechen) {
 				dispose();
@@ -335,6 +363,22 @@ public class Film_anzeigen extends ErfassFrame {
 			if (e.getSource() == abbrechen2) {
 				medium.dispose();
 			}
+
+			for (int i = 0; i < ml.getMedienliste().size(); i++) {
+				if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("Blu-Ray") && ml.getMedienliste().get(i).isLagernd()) {
+					br.setText("Ja");
+				}
+				if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("DVD") && ml.getMedienliste().get(i).isLagernd()) {
+					dvd.setText("Ja");
+				}
+				if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("VHS") && ml.getMedienliste().get(i).isLagernd()) {
+					vhs.setText("Ja");
+				}
+			}
+
+			angaben.validate();
+			angaben.repaint();
+		
 
 			if (e.getSource() == bearbeiten) {
 				if (media == null) {

@@ -55,7 +55,7 @@ public class UC_Film_zurückgeben {
 
 
 		for (int j = 0; j < kl.getKundenliste().size(); j++) {
-			if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(k.getId())) 
+			if (kl.getKundenliste().get(j).getId().equalsIgnoreCase(k.getId())) 
 			{
 				System.out.println("Geschafft");
 				try {

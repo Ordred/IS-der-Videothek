@@ -152,6 +152,11 @@ public class Hauptmenu_Kunde extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			
+			
+			guthaben.setText(Integer.toString(k.getGuthaben()));
+			guthabenP.validate();
+			guthabenP.repaint();
 
 			if (e.getSource() == ok) {
 				keineFilme.dispose();
@@ -173,8 +178,8 @@ public class Hauptmenu_Kunde extends JFrame {
 				for (int i = 0; i < kl.getKundenliste().size(); i++) {
 					if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(k.getId())) {
 						k = kl.getKundenliste().get(i);
-						validate();
-						repaint();
+						guthaben.setText(Integer.toString(k.getGuthaben()));
+						
 					}
 				}				
 
@@ -185,7 +190,8 @@ public class Hauptmenu_Kunde extends JFrame {
 				if (k.getAusleihliste().size() > 0) {
 
 					ucfz = new UC_Film_zurückgeben(ml, kl, k);
-
+					guthaben.setText(Integer.toString(k.getGuthaben()));
+					
 				}
 
 				else {
@@ -213,8 +219,8 @@ public class Hauptmenu_Kunde extends JFrame {
 				for (int i = 0; i < kl.getKundenliste().size(); i++) {
 					if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(k.getId())) {
 						k = kl.getKundenliste().get(i);
-						validate();
-						repaint();
+						guthaben.setText(Integer.toString(k.getGuthaben()));
+						
 					}
 				}
 
@@ -224,7 +230,8 @@ public class Hauptmenu_Kunde extends JFrame {
 				ucfz = null;
 
 				ucsf = new UC_Film_suchen(false, fl, false, kl, ml, k);
-
+				guthaben.setText(Integer.toString(k.getGuthaben()));
+				
 			}
 
 

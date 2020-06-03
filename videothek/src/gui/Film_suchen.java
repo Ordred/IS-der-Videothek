@@ -424,6 +424,7 @@ public class Film_suchen extends SuchFrame {
 					zahl.add(new ErfassLabel("Bitte Zahl eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 					zahl.add(ok2, BorderLayout.SOUTH);
 					zahl.setSize(300, 150);
+					zahl.setModal(true);
 					zahl.setLocationRelativeTo(null);
 					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

@@ -182,12 +182,14 @@ public class Film_Erfassen extends ErfassFrame{
 						zahl.add(new ErfassLabel("Bitte Zahl bei Jahr eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 						zahl.add(ok, BorderLayout.SOUTH);
 						zahl.setSize(300, 150);
+						zahl.setModal(true);
 						zahl.setLocationRelativeTo(null);
 						zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);}
 					 catch (NullPointerException exception) {
 						JDialog zahl = new JDialog();
 						zahl.setTitle("Bitte Datei für Hülle auswählen!");
 						zahl.setVisible(true);
+						zahl.setModal(true);
 						zahl.add(new ErfassLabel("Bitte Datei für Hülle auswählen!", SwingConstants.CENTER), BorderLayout.CENTER);
 						zahl.add(ok, SwingConstants.SOUTH);
 						zahl.setSize(300, 150);

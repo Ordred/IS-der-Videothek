@@ -120,8 +120,6 @@ public class Hauptmenu_Besitzer extends JFrame {
 		einnahmenP.add(einnahmen[3], BorderLayout.CENTER);
 		einnahmenP.add(einnahmenL[3], BorderLayout.CENTER);
 		
-		
-		
 		a = new ActionHandler();
 
 		filmerfassen = new Buttons("Film erfassen");
@@ -206,6 +204,9 @@ public class Hauptmenu_Besitzer extends JFrame {
 			// TODO Auto-generated method stub
 
 			if (e.getSource() == filmerfassen) {
+				einnahmenP.validate();
+				einnahmenP.repaint();
+				
 				ucf = null;
 				uck = null;
 				ucsf = null;
@@ -222,9 +223,15 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ucf = new UC_Film_erfassen(fl);
 				fl.laden();
 				
+				einnahmenP.validate();
+				einnahmenP.repaint();
+				
 			}
 
 			if (e.getSource() == kundeerfassen) {
+				einnahmenP.validate();
+				einnahmenP.repaint();
+				
 				ucf = null;
 				uck = null;
 				ucsf = null;
@@ -241,10 +248,15 @@ public class Hauptmenu_Besitzer extends JFrame {
 				
 				uck = new UC_Kunde_erfassen(ge, kl, "Kunde erfassen", new Kunde());
 				
+				einnahmenP.validate();
+				einnahmenP.repaint();
 				
 			}
 
 			if (e.getSource() == filmsuchen) {
+				einnahmenP.validate();
+				einnahmenP.repaint();
+				
 				ucf = null;
 				uck = null;
 				ucsf = null;
@@ -260,9 +272,16 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ml.laden();
 				
 				ucsf = new UC_Film_suchen(false, fl, false, kl, ml, k);
+				
+				einnahmenP.validate();
+				einnahmenP.repaint();
 			}
 
 			if (e.getSource() == kundesuchen) {
+				
+				einnahmenP.validate();
+				einnahmenP.repaint();
+				
 				ucf = null;
 				uck = null;
 				ucsf = null;
@@ -278,9 +297,15 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ml.laden();
 				
 				ucks = new UC_Kunde_suchen(ge, kl, false, null);
+				
+				einnahmenP.validate();
+				einnahmenP.repaint();
 			}
 
 			if (e.getSource() == mediumsuchen) {
+				einnahmenP.validate();
+				einnahmenP.repaint();
+				
 				ucf = null;
 				uck = null;
 				ucsf = null;
@@ -296,9 +321,15 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ml.laden();
 				
 				ucms = new UC_Medium_suchen(fl, ml, kl);
+				
+				einnahmenP.validate();
+				einnahmenP.repaint();
 			}
 
 			if (e.getSource() == mediumerfassen) {
+				einnahmenP.validate();
+				einnahmenP.repaint();
+				
 				ucf = null;
 				uck = null;
 				ucsf = null;
@@ -314,6 +345,9 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ml.laden();
 				
 				ucme = new UC_Medium_erfassen(ml, fl);
+				
+				einnahmenP.validate();
+				einnahmenP.repaint();
 			}
 
 		}

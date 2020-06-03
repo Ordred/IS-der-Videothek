@@ -96,6 +96,7 @@ public class Guthaben_aufladen extends JFrame {
 					zahl.setVisible(true);
 					zahl.add(new ErfassLabel("Bitte Zahl eingeben!", SwingConstants.CENTER), BorderLayout.CENTER);
 					zahl.add(ok, BorderLayout.SOUTH);
+					zahl.setModal(true);
 					zahl.setSize(300, 150);
 					zahl.setLocationRelativeTo(null);
 					zahl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
