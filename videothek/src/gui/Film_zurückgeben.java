@@ -124,7 +124,7 @@ public class Film_zurückgeben extends JFrame {
 			gl = new GridLayout(ml.size()+1, 5);
 
 
-			medienB.add(new SuchButton(Integer.toString(ml.get(i).getId())));
+			medienB.add(new SuchButton(ml.get(i).getId()));
 			medium.add(new SuchLabel(ml.get(i).getMedium(), SwingConstants.CENTER));
 			titel.add(new SuchLabel(ml.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 			genre.add(new SuchLabel(ml.get(i).getFilm().getGenre(), SwingConstants.CENTER));

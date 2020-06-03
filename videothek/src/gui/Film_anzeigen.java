@@ -163,18 +163,25 @@ public class Film_anzeigen extends ErfassFrame {
 		vhs = new ErfassLabel("Nein", SwingConstants.LEFT);
 
 		oben = new ErfassPanel(new GridLayout(1, 2));
-
+		
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
-			if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("Blu-Ray") && ml.getMedienliste().get(i).isLagernd()) {
-				br.setText("Ja");
-			}
-			if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("DVD") && ml.getMedienliste().get(i).isLagernd()) {
-				dvd.setText("Ja");
-			}
-			if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("VHS") && ml.getMedienliste().get(i).isLagernd()) {
-				vhs.setText("Ja");
+			if (f.getId().equalsIgnoreCase(ml.getMedienliste().get(i).getFilm().getId())) {
+				if (media == null) { 
+				media = ml.getMedienliste().get(i);
+				}
+				if (media.getMedium().equalsIgnoreCase("Blu-Ray") && media.isLagernd()) {
+					br.setText("Ja");
+				}
+				if (media.getMedium().equalsIgnoreCase("DVD") && media.isLagernd()) {
+					dvd.setText("Ja");
+				}
+				if (media.getMedium().equalsIgnoreCase("VHS") && media.isLagernd()) {
+					vhs.setText("Ja");
+				}
+				
 			}
 		}
+
 
 
 		ImageIcon icon = new ImageIcon(f.getHülle());
@@ -250,7 +257,7 @@ public class Film_anzeigen extends ErfassFrame {
 		if (media != null) {
 
 
-			id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.LEFT);
+			id = new ErfassLabel(media.getId(), SwingConstants.LEFT);
 
 			if (media.isLagernd()) {
 				lager = new ErfassLabel("Ja", SwingConstants.LEFT);
@@ -321,8 +328,8 @@ public class Film_anzeigen extends ErfassFrame {
 		this.media = media;
 	}
 
-	
-	
+
+
 
 
 	public class ActionHandler implements ActionListener {
@@ -330,16 +337,16 @@ public class Film_anzeigen extends ErfassFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			
+
 			titelT = new ErfassLabel(f.getTitel(),  SwingConstants.LEFT);
 			jahrT = new ErfassLabel(Integer.toString(f.getJahr()),  SwingConstants.LEFT);
 			genreT = new ErfassLabel(f.getGenre(),  SwingConstants.LEFT);
 			beschreibungT = new ErfassLabel(f.getBeschreibung(),  SwingConstants.LEFT);
-			
+
 			if (media != null) {
 
 
-				id = new ErfassLabel(Integer.toString(media.getId()), SwingConstants.LEFT);
+				id = new ErfassLabel(media.getId(), SwingConstants.LEFT);
 
 				if (media.isLagernd()) {
 					lager = new ErfassLabel("Ja", SwingConstants.LEFT);
@@ -378,7 +385,7 @@ public class Film_anzeigen extends ErfassFrame {
 
 			angaben.validate();
 			angaben.repaint();
-		
+
 
 			if (e.getSource() == bearbeiten) {
 				if (media == null) {

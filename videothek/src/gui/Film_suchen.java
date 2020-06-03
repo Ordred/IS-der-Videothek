@@ -405,7 +405,7 @@ public class Film_suchen extends SuchFrame {
 						suche2.setTitle("Suchergebnisse");
 						suche2.add(sucheScroll);
 						suche2.setVisible(true);
-						suche2.setSize(900,600);
+						suche2.setSize(1600,600);
 						suche2.setLocationRelativeTo(null);
 						suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						dispose();

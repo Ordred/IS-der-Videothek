@@ -273,7 +273,7 @@ public class Medium_suchen extends SuchFrame {
 							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseB.add(new SuchButton(suchergebnisse.get(i).getId()));
 							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
 							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
@@ -306,7 +306,7 @@ public class Medium_suchen extends SuchFrame {
 							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseB.add(new SuchButton(suchergebnisse.get(i).getId()));
 							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
 							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
@@ -339,7 +339,7 @@ public class Medium_suchen extends SuchFrame {
 							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseB.add(new SuchButton(suchergebnisse.get(i).getId()));
 							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
 							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
@@ -372,7 +372,7 @@ public class Medium_suchen extends SuchFrame {
 							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseB.add(new SuchButton(suchergebnisse.get(i).getId()));
 							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
 							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
@@ -405,7 +405,7 @@ public class Medium_suchen extends SuchFrame {
 							sucheGL = new GridLayout(suchergebnisse.size()+1, 5);
 
 
-							suchergebnisseB.add(new SuchButton(Integer.toString(suchergebnisse.get(i).getId())));
+							suchergebnisseB.add(new SuchButton(suchergebnisse.get(i).getId()));
 							suchergebnisseMedium.add(new SuchLabel(suchergebnisse.get(i).getMedium(), SwingConstants.CENTER));
 							suchergebnisseTitel.add(new SuchLabel(suchergebnisse.get(i).getFilm().getTitel(), SwingConstants.CENTER));
 							suchergebnisseGenre.add(new SuchLabel(suchergebnisse.get(i).getFilm().getGenre(), SwingConstants.CENTER));
@@ -438,7 +438,7 @@ public class Medium_suchen extends SuchFrame {
 						suche2.setTitle("Suchergebnisse");
 						suche2.add(sucheScroll);
 						suche2.setVisible(true);
-						suche2.setSize(900,600);
+						suche2.setSize(1600,500);
 						suche2.setLocationRelativeTo(null);
 						suche2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						dispose();

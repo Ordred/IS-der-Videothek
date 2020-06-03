@@ -12,15 +12,15 @@ public class Film implements Serializable {
 	private String hülle;
 	private String beschreibung;
 	private String genre;
-	private int id;
+	private String id;
 	
 	
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.id = Integer.toString(id);
 	}
 	public String getHülle() {
 		return hülle;

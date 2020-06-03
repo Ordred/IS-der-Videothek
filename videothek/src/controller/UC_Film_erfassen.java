@@ -67,14 +67,18 @@ public class UC_Film_erfassen {
 	
 	public void speichern() {
 		
-		f.setId(fl.getFilmliste().size()+1);
+		if (f.getId() == null) {
+		int id = 0;
 		
 		for (int i = 0; i < fl.getFilmliste().size(); i++) {
-			if (fl.getFilmliste().get(i).getId() != i) {
-				f.setId(i);
+			if (Integer.parseInt(fl.getFilmliste().get(i).getId()) >= id)
+			{
+			id = Integer.parseInt(fl.getFilmliste().get(i).getId())+1;
 			}
 		}
-
+		
+		f.setId(id);
+		}
 		fl.filmHinzufügen(f);
 	}
 }

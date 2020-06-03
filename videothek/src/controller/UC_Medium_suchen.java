@@ -102,7 +102,7 @@ public class UC_Medium_suchen {
 
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
 
-			if (ml.getMedienliste().get(i).getId() == id) {
+			if (Integer.parseInt(ml.getMedienliste().get(i).getId()) == id) {
 				suchergebnisse.add(ml.getMedienliste().get(i));
 			}
 		}
