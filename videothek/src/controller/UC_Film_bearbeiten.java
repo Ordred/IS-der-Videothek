@@ -78,7 +78,7 @@ public class UC_Film_bearbeiten {
 
 	public void speichern() {
 		for (int i = 0; i < fl.getFilmliste().size(); i++) {
-			if (fl.getFilmliste().get(i) == f) {
+			if (fl.getFilmliste().get(i).getId().equalsIgnoreCase(f.getId())) {
 				fl.filmÄndern(f,i);
 			}
 		}
@@ -86,11 +86,11 @@ public class UC_Film_bearbeiten {
 
 		public void löschen() {
 			for (int i = 0; i < fl.getFilmliste().size(); i++) {
-				if (fl.getFilmliste().get(i) == f) {
+				if (fl.getFilmliste().get(i).getId().equalsIgnoreCase(f.getId())) {
 					
 					for (int j = 0; j < kl.getKundenliste().size(); j++) {
 						for (int j2 = 0; j2 < kl.getKundenliste().get(j).getAusleihliste().size(); j2++) {
-							if (kl.getKundenliste().get(j).getAusleihliste().get(j2).getFilm().getId() == f.getId()) {
+							if (kl.getKundenliste().get(j).getAusleihliste().get(j2).getFilm().getId().equalsIgnoreCase(f.getId())) {
 								kl.getKundenliste().get(j).getAusleihliste().remove(j2);
 							}
 						}
@@ -98,7 +98,7 @@ public class UC_Film_bearbeiten {
 					}
 					
 					for (int j = 0; j < ml.getMedienliste().size(); j++) {
-						if (ml.getMedienliste().get(j).getFilm().getId() == f.getId()) {
+						if (ml.getMedienliste().get(j).getFilm().getId().equalsIgnoreCase(f.getId())) {
 							ml.getMedienliste().remove(j);
 						}
 					}

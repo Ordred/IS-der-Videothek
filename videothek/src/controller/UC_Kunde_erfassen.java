@@ -98,32 +98,16 @@ public class UC_Kunde_erfassen {
 		
 
 		if (!bearbeiten) {
-			
-			k.setId(kl.getKundenliste().size());
+			int id = 0;
 			
 			for (int i = 0; i < kl.getKundenliste().size(); i++) {
-				try {
-				if (!kl.getKundenliste().get(i).getId().equalsIgnoreCase(Integer.toString(i))) {
-					k.setId(i);
-					
-					break;
+				if (Integer.parseInt(kl.getKundenliste().get(i).getId()) >= id)
+				{
+				id = Integer.parseInt(kl.getKundenliste().get(i).getId())+1;
 				}
-				} catch (NullPointerException e) {
-					k.setId(i);
-					
-					break;
-				}
+			}			
+			k.setId(id);
 			}
-		}
-		else {
-			for (int i = 0; i < kl.getKundenliste().size(); i++) {
-				System.out.println(k.getId());
-				if (kl.getKundenliste().get(i).getId().equalsIgnoreCase(k.getId())) {
-					kl.getKundenliste().remove(i);
-					
-				}
-			}
-		}
 		System.out.println(k.getId());
 		kl.kundeHinzufügen(k);
 	}

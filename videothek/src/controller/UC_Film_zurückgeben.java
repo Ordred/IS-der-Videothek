@@ -45,7 +45,7 @@ public class UC_Film_zurückgeben {
 
 		
 		for (int j = 0; j < ml.getMedienliste().size(); j++) {
-			if (ml.getMedienliste().get(j).getId() == k.getAusleihliste().get(i).getId()) {
+			if (ml.getMedienliste().get(j).getId().equalsIgnoreCase(k.getAusleihliste().get(i).getId())) {
 				ml.getMedienliste().get(j).setLagernd(true);
 				ml.getMedienliste().get(j).setRückgabedatum(null);
 				ml.speichern();

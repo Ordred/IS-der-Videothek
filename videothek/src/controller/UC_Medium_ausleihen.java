@@ -88,7 +88,7 @@ public class UC_Medium_ausleihen {
 			System.out.println(medium.equalsIgnoreCase(ml.getMedienliste().get(i).getMedium()));
 
 
-			if (ml.getMedienliste().get(i).getFilm().getId() == m.getFilm().getId() &&
+			if (ml.getMedienliste().get(i).getFilm().getId().equalsIgnoreCase(m.getFilm().getId()) &&
 					ml.getMedienliste().get(i).isLagernd() && 
 					medium.equalsIgnoreCase(ml.getMedienliste().get(i).getMedium())){
 				System.out.println("geht2");			
@@ -105,7 +105,7 @@ public class UC_Medium_ausleihen {
 				ml.laden();
 			}
 
-			else if (ml.getMedienliste().get(i).getFilm().getId() == f.getId() && !ml.getMedienliste().get(i).isLagernd()) {
+			else if (ml.getMedienliste().get(i).getFilm().getId().equalsIgnoreCase(f.getId()) && !ml.getMedienliste().get(i).isLagernd()) {
 				nichtLager = new LöschDialog("Nicht lagernd", "Dieser Film ist in diesem Medium derzeit nicht an Lager", SwingConstants.CENTER);
 				nichtLager.add(ok, BorderLayout.SOUTH);
 				nichtLager.setVisible(true);

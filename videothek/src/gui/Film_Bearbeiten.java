@@ -157,6 +157,7 @@ public class Film_Bearbeiten extends ErfassFrame{
 			
 			if (e.getSource() == nein) {
 				löschen2.dispose();
+				
 			}
 			
 			if (e.getSource() == ja) {
@@ -174,8 +175,6 @@ public class Film_Bearbeiten extends ErfassFrame{
 				if (result == JFileChooser.APPROVE_OPTION) {
 				    icS = datei.getSelectedFile().getName();
 				}
-				
-
 				    
 				datei.setVisible(true);
 				datei.setSize(300, 300);
@@ -214,11 +213,12 @@ public class Film_Bearbeiten extends ErfassFrame{
 				
 				ErfassPanel ll = new ErfassPanel(new FlowLayout());
 				löschen2 = new LöschDialog("Film löschen", "Sind Sie sicher, dass Sie diesen Film löschen möchten?", SwingConstants.CENTER);
-				löschen2.setLocationRelativeTo(null);
+				
 				ll.add(ja);
 				ll.add(nein);
 				löschen2.add(ll, BorderLayout.SOUTH);
 				löschen2.setVisible(true);
+				löschen2.setLocationRelativeTo(null);
 				
 				
 			}

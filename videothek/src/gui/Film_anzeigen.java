@@ -125,6 +125,7 @@ public class Film_anzeigen extends ErfassFrame {
 
 	private Buttons ausleihen2;
 
+	private boolean kMedium;
 
 
 	public Film_anzeigen(Film f, Kunde k, Filmliste fl2, Kundenliste kl, Medienliste ml, boolean mediumE, Medium media) {
@@ -163,11 +164,12 @@ public class Film_anzeigen extends ErfassFrame {
 		vhs = new ErfassLabel("Nein", SwingConstants.LEFT);
 
 		oben = new ErfassPanel(new GridLayout(1, 2));
-		
+
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
 			if (f.getId().equalsIgnoreCase(ml.getMedienliste().get(i).getFilm().getId())) {
 				if (media == null) { 
-				media = ml.getMedienliste().get(i);
+					media = ml.getMedienliste().get(i);
+					kMedium = true;
 				}
 				if (media.getMedium().equalsIgnoreCase("Blu-Ray") && media.isLagernd()) {
 					br.setText("Ja");
@@ -178,8 +180,12 @@ public class Film_anzeigen extends ErfassFrame {
 				if (media.getMedium().equalsIgnoreCase("VHS") && media.isLagernd()) {
 					vhs.setText("Ja");
 				}
-				
+
 			}
+		}
+
+		if (kMedium) {
+			media = null;
 		}
 
 
@@ -371,21 +377,6 @@ public class Film_anzeigen extends ErfassFrame {
 				medium.dispose();
 			}
 
-			for (int i = 0; i < ml.getMedienliste().size(); i++) {
-				if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("Blu-Ray") && ml.getMedienliste().get(i).isLagernd()) {
-					br.setText("Ja");
-				}
-				if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("DVD") && ml.getMedienliste().get(i).isLagernd()) {
-					dvd.setText("Ja");
-				}
-				if (ml.getMedienliste().get(i).getMedium().equalsIgnoreCase("VHS") && ml.getMedienliste().get(i).isLagernd()) {
-					vhs.setText("Ja");
-				}
-			}
-
-			angaben.validate();
-			angaben.repaint();
-
 
 			if (e.getSource() == bearbeiten) {
 				if (media == null) {
@@ -404,7 +395,7 @@ public class Film_anzeigen extends ErfassFrame {
 				if (media == null) {
 
 					for (int i = 0; i < ml.getMedienliste().size(); i++) {
-						if (ml.getMedienliste().get(i).getFilm().getId() == f.getId() && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(m)) {
+						if (ml.getMedienliste().get(i).getFilm().getId().equalsIgnoreCase(f.getId()) && ml.getMedienliste().get(i).getMedium().equalsIgnoreCase(m)) {
 							media = ml.getMedienliste().get(i);
 							System.out.println("medium gesetzt");
 						}
@@ -422,6 +413,7 @@ public class Film_anzeigen extends ErfassFrame {
 					if(k.getGuthaben() >= -media.getPreis()) {
 						ml.laden();
 						ucma.ausleihen();
+						media = null;
 					}
 
 					else {
@@ -441,7 +433,7 @@ public class Film_anzeigen extends ErfassFrame {
 					nichtLager.setLocationRelativeTo(null);
 				}
 
-
+				dispose();
 
 			}
 
@@ -493,83 +485,8 @@ public class Film_anzeigen extends ErfassFrame {
 					ge.laden();
 					ucks = new UC_Kunde_suchen(ge, kl, true, this);
 				}
+				dispose();
 
-			}
-
-			if (e.getSource() == ausleihen2) {
-				Geschäftseinnahmen ge = new Geschäftseinnahmen();
-				ge.laden();
-				ucks = new UC_Kunde_suchen(ge, kl, true, this);	
-
-
-				if (ucks.getKs().getK() != null && media != null) {
-
-					k = ucks.getKs().getK();
-					ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
-
-
-					if(k.getGuthaben() >= -media.getPreis()) {
-						ml.laden();
-						ucma.ausleihen();
-
-						System.out.println("ausleihen gestartet");
-					}
-
-					else {
-						kG = new ErfassFrame("Zu wenig Guthaben");
-
-						kG.setVisible(true);
-						kG.setSize(300, 150);
-						kG.setLocationRelativeTo(null);
-						kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
-						kG.add(ok2, BorderLayout.SOUTH);
-
-					}
-				}
-
-			}
-
-		}
-
-
-
-
-
-		public Kunde getK() {
-			return k;
-		}
-
-
-		public Medium getMedia() {
-			return media;
-		}
-
-		public void setK(Kunde k2) {
-			k = k2;
-
-			System.out.println(k);
-			System.out.println(media);
-
-
-
-			ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
-
-
-			if(k.getGuthaben() >= -media.getPreis()) {
-				ml.laden();
-				ucma.ausleihen();
-
-				System.out.println("ausleihen gestartet");
-			}
-
-			else {
-				kG = new ErfassFrame("Zu wenig Guthaben");
-
-				kG.setVisible(true);
-				kG.setSize(300, 150);
-				kG.setLocationRelativeTo(null);
-				kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
-				kG.add(ok2, BorderLayout.SOUTH);
 			}
 
 		}
@@ -578,6 +495,51 @@ public class Film_anzeigen extends ErfassFrame {
 
 
 
+
+
+	public Kunde getK() {
+		return k;
+	}
+
+
+	public Medium getMedia() {
+		return media;
+	}
+
+	public void setK(Kunde k2) {
+		k = k2;
+
+		System.out.println(k);
+		System.out.println(media);
+
+
+
+		ucma = new UC_Medium_ausleihen(m,k,f,ml,kl, media);
+
+
+		if(k.getGuthaben() >= -media.getPreis()) {
+			ml.laden();
+			ucma.ausleihen();
+
+			System.out.println("ausleihen gestartet");
+		}
+
+		else {
+			kG = new ErfassFrame("Zu wenig Guthaben");
+
+			kG.setVisible(true);
+			kG.setSize(300, 150);
+			kG.setLocationRelativeTo(null);
+			kG.add(new ErfassLabel("Zu wenig Guthaben!"), BorderLayout.CENTER);
+			kG.add(ok2, BorderLayout.SOUTH);
+		}
+
+	}
+
 }
+
+
+
+
 
 

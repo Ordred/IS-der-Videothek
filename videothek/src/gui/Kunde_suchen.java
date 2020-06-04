@@ -272,11 +272,7 @@ public class Kunde_suchen extends SuchFrame {
 				for (int i = 0; i < suchergebnisseName.size(); i++) {
 					if (e.getSource() == suchergebnisseName.get(i)) {
 						k = suchergebnisse.get(i);
-						try {
-							fa.setK(k);
-						} catch (NullPointerException exception) {
-							System.out.println("Kein fa");
-						}
+						
 						System.out.println("Kunde gesetzt");
 						suche2.dispose();
 						dispose();

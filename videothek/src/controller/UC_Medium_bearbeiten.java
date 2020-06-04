@@ -29,7 +29,7 @@ public class UC_Medium_bearbeiten {
 		
 		
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
-			if (ml.getMedienliste().get(i).getId() == m.getId()) {
+			if (ml.getMedienliste().get(i).getId().equalsIgnoreCase(m.getId())) {
 				m = ml.getMedienliste().get(i);
 			}
 		}
@@ -92,7 +92,7 @@ public class UC_Medium_bearbeiten {
 	public void löschen() {
 	
 		for (int i = 0; i < ml.getMedienliste().size(); i++) {
-			if (ml.getMedienliste().get(i).getId() == m.getId()) {
+			if (ml.getMedienliste().get(i).getId().equalsIgnoreCase(m.getId())) {
 				ml.getMedienliste().remove(i);
 				speichern();
 			}
@@ -100,7 +100,7 @@ public class UC_Medium_bearbeiten {
 		
 		for (int j = 0; j < kl.getKundenliste().size(); j++) {
 			for (int j2 = 0; j2 < kl.getKundenliste().get(j).getAusleihliste().size(); j2++) {
-				if (kl.getKundenliste().get(j).getAusleihliste().get(j2).getId() == m.getId()) {
+				if (kl.getKundenliste().get(j).getAusleihliste().get(j2).getId().equalsIgnoreCase(m.getId())) {
 					kl.getKundenliste().get(j).getAusleihliste().remove(j2);
 					kl.speichern();
 				}

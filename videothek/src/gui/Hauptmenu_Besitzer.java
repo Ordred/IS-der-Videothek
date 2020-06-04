@@ -201,11 +201,25 @@ public class Hauptmenu_Besitzer extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			
+			
+			einnahmenL[0] = new ErfassLabel(Integer.toString(ge.wochenEinnahmen()), SwingConstants.CENTER);
+			einnahmenL[1] = new ErfassLabel(Integer.toString(ge.monatsEinnahmen()), SwingConstants.CENTER);
+			einnahmenL[2] = new ErfassLabel(Integer.toString(ge.jahresEinnahmen()), SwingConstants.CENTER);
+			einnahmenL[3] = new ErfassLabel(Integer.toString(ge.gesamtEinnahmen()), SwingConstants.CENTER);
+			
+			for (int i = 0; i < einnahmen.length; i++) {
+				einnahmen[i].validate();
+				einnahmen[i].repaint();
+			}
+			
+			
+			einnahmenP.validate();
+			einnahmenP.repaint();
 
 			if (e.getSource() == filmerfassen) {
-				einnahmenP.validate();
-				einnahmenP.repaint();
+			
+				 
 				
 				ucf = null;
 				uck = null;
@@ -223,14 +237,14 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ucf = new UC_Film_erfassen(fl);
 				fl.laden();
 				
-				einnahmenP.validate();
-				einnahmenP.repaint();
+				
+				 
 				
 			}
 
 			if (e.getSource() == kundeerfassen) {
-				einnahmenP.validate();
-				einnahmenP.repaint();
+				
+				 
 				
 				ucf = null;
 				uck = null;
@@ -248,14 +262,13 @@ public class Hauptmenu_Besitzer extends JFrame {
 				
 				uck = new UC_Kunde_erfassen(ge, kl, "Kunde erfassen", new Kunde());
 				
-				einnahmenP.validate();
-				einnahmenP.repaint();
+				
 				
 			}
 
 			if (e.getSource() == filmsuchen) {
-				einnahmenP.validate();
-				einnahmenP.repaint();
+				
+				 
 				
 				ucf = null;
 				uck = null;
@@ -273,14 +286,12 @@ public class Hauptmenu_Besitzer extends JFrame {
 				
 				ucsf = new UC_Film_suchen(false, fl, false, kl, ml, k);
 				
-				einnahmenP.validate();
-				einnahmenP.repaint();
+			
+				
 			}
 
 			if (e.getSource() == kundesuchen) {
-				
-				einnahmenP.validate();
-				einnahmenP.repaint();
+		
 				
 				ucf = null;
 				uck = null;
@@ -297,14 +308,11 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ml.laden();
 				
 				ucks = new UC_Kunde_suchen(ge, kl, false, null);
-				
-				einnahmenP.validate();
-				einnahmenP.repaint();
+			
 			}
 
 			if (e.getSource() == mediumsuchen) {
-				einnahmenP.validate();
-				einnahmenP.repaint();
+	
 				
 				ucf = null;
 				uck = null;
@@ -323,12 +331,12 @@ public class Hauptmenu_Besitzer extends JFrame {
 				ucms = new UC_Medium_suchen(fl, ml, kl);
 				
 				einnahmenP.validate();
-				einnahmenP.repaint();
+				 
 			}
 
 			if (e.getSource() == mediumerfassen) {
-				einnahmenP.validate();
-				einnahmenP.repaint();
+				
+				 
 				
 				ucf = null;
 				uck = null;
@@ -346,8 +354,8 @@ public class Hauptmenu_Besitzer extends JFrame {
 				
 				ucme = new UC_Medium_erfassen(ml, fl);
 				
-				einnahmenP.validate();
-				einnahmenP.repaint();
+				 
+				 
 			}
 
 		}

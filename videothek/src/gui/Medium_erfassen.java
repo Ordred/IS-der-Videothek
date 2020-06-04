@@ -142,6 +142,7 @@ public class Medium_erfassen extends SuchFrame{
 			if (e.getSource() == ja) {
 				umb.löschen();
 				löschen2.dispose();
+				dispose();
 			}
 
 			if (e.getSource() == nein) {
