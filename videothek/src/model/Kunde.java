@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.Icon;
 
-import login.Benutzer;
+
 
 public class Kunde implements Serializable {
 	
